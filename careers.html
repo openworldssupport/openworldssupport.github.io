@@ -1,587 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Careers - OpenWorlds</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OpenWorlds Careers Portal</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .ow-logo { width: 42px; height: 42px; border-radius: 10px; object-fit: cover; }
+    .brand-wrap { display:flex; align-items:center; gap:.8rem; }
+    .careers-hero { background: linear-gradient(135deg, var(--primary-blue), var(--dark-blue)); color: #fff; padding: 80px 20px; }
+    .careers-layout { display:grid; grid-template-columns: 320px 1fr; gap: 2rem; padding: 40px 20px 80px; }
+    .side-nav { background:#fff; border:1px solid #dfe7f5; border-radius:12px; padding:1rem; position:sticky; top:90px; height:fit-content; }
+    .side-nav h3 { color:var(--primary-blue); margin-bottom:1rem; font-size:1rem; }
+    .side-nav a { display:block; padding:.7rem .8rem; color:var(--dark-gray); text-decoration:none; border-radius:8px; margin-bottom:.35rem; font-size:.95rem; }
+    .side-nav a:hover { background:var(--light-blue); color:var(--primary-blue); }
+    .volunteer-notice { background:#fff; border-left:5px solid var(--primary-blue); border-radius:12px; padding:1.5rem; margin-bottom:2rem; box-shadow:0 2px 8px rgba(0,0,0,.06); }
+    .branch-section { margin-bottom:2rem; background:#fff; border:1px solid #dfe7f5; border-radius:14px; overflow:hidden; }
+    .branch-header { padding:1.25rem 1.5rem; background:linear-gradient(135deg,#f5f9ff,#eef5ff); border-bottom:1px solid #dfe7f5; }
+    .branch-header h2 { color:var(--primary-blue); font-size:1.35rem; margin-bottom:.35rem; }
+    .branch-header p { color:var(--text-gray); margin:0; }
+    .role-list { padding:1.25rem; display:grid; gap:1rem; }
+    .role-card { border:1px solid #e5ebf6; border-radius:12px; padding:1rem; display:grid; gap:.75rem; }
+    .role-top { display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap; align-items:flex-start; }
+    .role-top h3 { margin:0; font-size:1.1rem; color:var(--dark-gray); }
+    .status-badge { padding:.35rem .65rem; border-radius:999px; font-size:.8rem; font-weight:700; }
+    .status-open { background:#e9f9ef; color:#1d7f46; }
+    .status-limited { background:#fff4db; color:#9a6a00; }
+    .status-waitlist { background:#eef2ff; color:#4451c2; }
+    .status-closed { background:#fdecec; color:#b42318; }
+    .role-meta { display:flex; flex-wrap:wrap; gap:.75rem; color:var(--text-gray); font-size:.9rem; }
+    .role-actions { display:flex; gap:.75rem; flex-wrap:wrap; }
+    .btn-link { display:inline-block; padding:.75rem 1rem; border-radius:8px; text-decoration:none; font-weight:600; }
+    .btn-primary-link { background:var(--primary-blue); color:#fff; }
+    .btn-secondary-link { background:var(--light-blue); color:var(--primary-blue); }
+    @media (max-width: 900px) { .careers-layout { grid-template-columns: 1fr; } .side-nav { position:static; } }
+  </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="nav-brand">🌐 OpenWorlds</div>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="index.html#about">About</a></li>
-                <li><a href="index.html#contact">Contact</a></li>
-                <li><a href="careers.html">Careers</a></li>
-                <li><a href="community.html">Community</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <!-- Careers Hero -->
-    <section class="hero" style="min-height: 300px; padding: 60px 20px;">
-        <div class="hero-content">
-            <h1>Join Our Team</h1>
-            <p>Help us build the future of user-generated content</p>
-        </div>
-    </section>
-
-    <!-- Notice Banner -->
-    <section class="notice-banner">
-        <div class="container">
-            <div class="notice-content">
-                <i class="fas fa-info-circle"></i>
-                <div>
-                    <h3>Volunteering Opportunity</h3>
-                    <p>All current career positions are volunteer-based. We don't offer payment at this time, but this is a great opportunity to contribute to an innovative platform and build your portfolio!</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Careers Content -->
-    <section class="careers-section">
-        <div class="container">
-            <h2>Current Opportunities</h2>
-            
-            <!-- Department Filter -->
-            <div class="filter-section">
-                <label for="department-filter">Filter by Department:</label>
-                <select id="department-filter">
-                    <option value="all">All Departments</option>
-                    <option value="engineering">Engineering</option>
-                    <option value="design">Design</option>
-                    <option value="community">Community</option>
-                    <option value="product">Product</option>
-                </select>
-            </div>
-            
-            <div class="job-listings">
-                <div class="job-card" data-department="engineering">
-                    <div class="job-header">
-                        <h3>Senior Software Engineer</h3>
-                        <span class="job-type">Volunteer</span>
-                    </div>
-                    <p class="job-department"><i class="fas fa-tag"></i> Engineering</p>
-                    <p class="job-location"><i class="fas fa-globe"></i> Remote</p>
-                    <p class="job-description">We're looking for an experienced software engineer to help build scalable backend systems. You'll work with a talented team to create robust APIs and infrastructure.</p>
-                    <div class="job-tags">
-                        <span>Python</span>
-                        <span>Node.js</span>\n                        <span>AWS</span>
-                        <span>Docker</span>
-                    </div>
-                    <button class="btn btn-primary apply-btn">Apply Now</button>
-                </div>
-
-                <div class="job-card" data-department="design">
-                    <div class="job-header">
-                        <h3>UX/UI Designer</h3>
-                        <span class="job-type">Volunteer</span>
-                    </div>
-                    <p class="job-department"><i class="fas fa-tag"></i> Design</p>
-                    <p class="job-location"><i class="fas fa-globe"></i> Remote</p>
-                    <p class="job-description">Design beautiful and intuitive interfaces for our platform. You'll collaborate with product and engineering teams to create amazing user experiences.</p>
-                    <div class="job-tags">
-                        <span>Figma</span>
-                        <span>UI Design</span>
-                        <span>UX Research</span>
-                        <span>Prototyping</span>
-                    </div>
-                    <button class="btn btn-primary apply-btn">Apply Now</button>
-                </div>
-
-                <div class="job-card" data-department="community">
-                    <div class="job-header">
-                        <h3>Community Manager</h3>
-                        <span class="job-type">Volunteer</span>
-                    </div>
-                    <p class="job-department"><i class="fas fa-tag"></i> Community</p>
-                    <p class="job-location"><i class="fas fa-globe"></i> Remote</p>
-                    <p class="job-description">Build and nurture our creator community. You'll manage social channels, engage with users, and help shape the future of our platform.</p>
-                    <div class="job-tags">
-                        <span>Community Building</span>
-                        <span>Social Media</span>
-                        <span>Communication</span>
-                        <span>Analytics</span>
-                    </div>
-                    <button class="btn btn-primary apply-btn">Apply Now</button>
-                </div>
-
-                <div class="job-card" data-department="product">
-                    <div class="job-header">
-                        <h3>Product Manager</h3>
-                        <span class="job-type">Volunteer</span>
-                    </div>
-                    <p class="job-department"><i class="fas fa-tag"></i> Product</p>
-                    <p class="job-location"><i class="fas fa-globe"></i> Remote</p>
-                    <p class="job-description">Lead product strategy and development. You'll work cross-functionally to define features, prioritize roadmap items, and drive product success.</p>
-                    <div class="job-tags">
-                        <span>Product Strategy</span>
-                        <span>Analytics</span>
-                        <span>Roadmapping</span>
-                        <span>User Research</span>
-                    </div>
-                    <button class="btn btn-primary apply-btn">Apply Now</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Why Join Us -->
-    <section class="why-join" style="background-color: var(--gray); padding: 80px 20px;">
-        <div class="container">
-            <h2 style="text-align: center; color: var(--primary-blue); margin-bottom: 3rem;">Why Join OpenWorlds?</h2>
-            <div class="benefits-grid">
-                <div class="benefit-item">
-                    <i class="fas fa-star"></i>
-                    <h3>Build Your Portfolio</h3>
-                    <p>Contribute to a real-world UGC platform and showcase your skills</p>
-                </div>
-                <div class="benefit-item">
-                    <i class="fas fa-users"></i>
-                    <h3>Creative Community</h3>
-                    <p>Work with passionate creators and innovators</p>
-                </div>
-                <div class="benefit-item">
-                    <i class="fas fa-lightbulb"></i>
-                    <h3>Learn & Grow</h3>
-                    <p>Gain valuable experience and expand your skill set</p>
-                </div>
-                <div class="benefit-item">
-                    <i class="fas fa-rocket"></i>
-                    <h3>Make an Impact</h3>
-                    <p>Help shape the future of user-generated content</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>OpenWorlds</h4>
-                    <p>Empowering creators worldwide</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="careers.html">Careers</a></li>
-                        <li><a href="community.html">Community</a></li>
-                        <li><a href="index.html#contact">Support</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Follow Us</h4>
-                    <div class="social-links">
-                        <a href="https://discord.gg/TRJ8ZmBKDS"><i class="fab fa-discord"></i></a>
-                        <a href="https://www.youtube.com/@Official-OpenWorlds"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 OpenWorlds. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Application Modal -->
-    <div id="applicationModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Apply Now</h2>
-            <p class="job-title"></p>
-            <form id="applicationForm">
-                <div class="form-group">
-                    <label for="name">Full Name *</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email Address *</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="portfolio">Portfolio/Website URL</label>
-                    <input type="url" id="portfolio" name="portfolio" placeholder="https://yourportfolio.com">
-                </div>
-                <div class="form-group">
-                    <label for="linkedin">LinkedIn Profile URL</label>
-                    <input type="url" id="linkedin" name="linkedin" placeholder="https://linkedin.com/in/yourprofile">
-                </div>
-                <div class="form-group">
-                    <label for="experience">Tell us about your experience (500 characters max) *</label>
-                    <textarea id="experience" name="experience" rows="5" maxlength="500" required></textarea>
-                    <small id="charCount">0/500</small>
-                </div>
-                <div class="form-group">
-                    <label for="why">Why do you want to join OpenWorlds? *</label>
-                    <textarea id="why" name="why" rows="4" required></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit Application</button>
-            </form>
-        </div>
+  <nav class="navbar">
+    <div class="container">
+      <div class="brand-wrap">
+        <img src="assets/openworlds-logo.png" alt="OpenWorlds logo" class="ow-logo">
+        <div class="nav-brand">OpenWorlds</div>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+        <li><a href="careers.html">Careers</a></li>
+        <li><a href="community.html">Community</a></li>
+      </ul>
     </div>
+  </nav>
 
-    <style>
-        .notice-banner {
-            background: linear-gradient(135deg, #e6f0ff 0%, #f0f5ff 100%);
-            border-left: 4px solid var(--primary-blue);
-            padding: 2rem;
-            margin: 2rem 0;
-        }
+  <section class="careers-hero">
+    <div class="container">
+      <h1>OpenWorlds Careers Portal</h1>
+      <p>Explore branches, review position details, and apply to help shape the future of OpenWorlds.</p>
+    </div>
+  </section>
 
-        .notice-content {
-            display: flex;
-            gap: 1.5rem;
-            align-items: flex-start;
-        }
+  <section class="container careers-layout">
+    <aside class="side-nav">
+      <h3>Branches</h3>
+      <a href="#executive">Executive Leadership</a>
+      <a href="#engineering">Engineering & Software Development</a>
+      <a href="#design">Game Design & Systems Architecture</a>
+      <a href="#creative">Creative Content & Art Production</a>
+      <a href="#community-ops">Community Operations & Player Engagement</a>
+      <a href="#safety">Trust & Safety / Moderation</a>
+      <a href="#data">Data Science, Analytics & Research</a>
+      <a href="#ai">Artificial Intelligence & Procedural Systems</a>
+      <a href="#operations">Operations & Internal Systems</a>
+      <a href="#marketing">Marketing & Growth</a>
+      <a href="#business">Business Development & Strategy</a>
+      <a href="#legal">Legal & Policy</a>
+    </aside>
 
-        .notice-content i {
-            font-size: 2rem;
-            color: var(--primary-blue);
-            flex-shrink: 0;
-        }
+    <main>
+      <div class="volunteer-notice">
+        <h2>Voluntary Contributor Notice</h2>
+        <p>OpenWorlds is built as a community-driven UGC game platform in active development.</p>
+        <p>All positions listed within the Careers Portal are voluntary contributor roles.</p>
+        <p>By applying for a position, applicants are choosing to take part in building and shaping OpenWorlds because they are interested in contributing to the platform, its systems, and its community.</p>
+        <p>These roles are not traditional employment positions and do not include salaries, wages, or employment contracts.</p>
+        <p>Instead, OpenWorlds contributors join out of interest in collaboration, creativity, and participation in building a large-scale game platform.</p>
+        <p>We value contribution, initiative, and commitment from individuals who want to be part of shaping the future of OpenWorlds.</p>
+      </div>
 
-        .notice-content h3 {
-            color: var(--primary-blue);
-            margin-bottom: 0.5rem;
-        }
+      <section id="executive" class="branch-section">
+        <div class="branch-header"><h2>Executive Leadership Branch</h2><p>Strategic governance, senior operational guidance, and long-term platform direction.</p></div>
+        <div class="role-list">
+          <article class="role-card"><div class="role-top"><div><h3>Executive Strategic & Advisory Board</h3><div class="role-meta"><span>Department: Executive Leadership Branch</span><span>Availability: 3–7 positions</span><span>Time: 4–8 hrs/week</span></div></div><span class="status-badge status-open">Open</span></div><p>Support OpenWorlds with strategic planning, governance guidance, project direction, growth planning, and advisory support during its active development phase.</p><div class="role-actions"><a class="btn-link btn-secondary-link" href="roles/executive-strategic-advisory-board.html">Position Details</a><a class="btn-link btn-primary-link" href="applications/executive-strategic-advisory-board.html">Apply Here</a></div></article>
+          <article class="role-card"><div class="role-top"><div><h3>Chief Technical Officer (CTO)</h3><div class="role-meta"><span>Department: Executive Leadership Branch</span><span>Time: Flexible</span><span>Application: Email-only</span></div></div><span class="status-badge status-limited">Limited</span></div><p>Senior executive leadership for technical architecture and engineering direction.</p><div class="role-actions"><a class="btn-link btn-secondary-link" href="roles/chief-technical-officer.html">Position Details</a></div></article>
+          <article class="role-card"><div class="role-top"><div><h3>Chief Operating Officer (COO)</h3><div class="role-meta"><span>Department: Executive Leadership Branch</span><span>Time: Flexible</span><span>Application: Email-only</span></div></div><span class="status-badge status-limited">Limited</span></div><p>Senior executive leadership for cross-functional operations, delivery rhythm, and organizational maturity.</p><div class="role-actions"><a class="btn-link btn-secondary-link" href="roles/chief-operating-officer.html">Position Details</a></div></article>
+          <article class="role-card"><div class="role-top"><div><h3>Chief Financial Officer (CFO)</h3><div class="role-meta"><span>Department: Executive Leadership Branch</span><span>Time: Flexible</span><span>Application: Email-only</span></div></div><span class="status-badge status-waitlist">Waitlist</span></div><p>Financial planning, contributor structure planning, and strategic business oversight.</p><div class="role-actions"><a class="btn-link btn-secondary-link" href="roles/chief-financial-officer.html">Position Details</a></div></article>
+          <article class="role-card"><div class="role-top"><div><h3>Chief Marketing Officer (CMO)</h3><div class="role-meta"><span>Department: Executive Leadership Branch</span><span>Time: Flexible</span><span>Application: Email-only</span></div></div><span class="status-badge status-limited">Limited</span></div><p>Brand growth, external visibility, and strategic audience development leadership.</p><div class="role-actions"><a class="btn-link btn-secondary-link" href="roles/chief-marketing-officer.html">Position Details</a></div></article>
+        </div>
+      </section>
 
-        .notice-content p {
-            color: var(--text-gray);
-            margin: 0;
-        }
+      <section id="engineering" class="branch-section"><div class="branch-header"><h2>Engineering & Software Development Branch</h2><p>Core systems, web infrastructure, platform services, and technical foundations.</p></div><div class="role-list">
+        <article class="role-card"><div class="role-top"><div><h3>Backend Platform Engineer</h3><div class="role-meta"><span>Department: Engineering & Software Development Branch</span><span>Available: 2</span><span>Time: 8–15 hrs/week</span></div></div><span class="status-badge status-open">Open</span></div><p>Build service foundations, application logic, APIs, and persistent platform systems for OpenWorlds.</p><div class="role-actions"><a class="btn-link btn-secondary-link" href="roles/backend-platform-engineer.html">Position Details</a><a class="btn-link btn-primary-link" href="applications/backend-platform-engineer.html">Apply Here</a></div></article>
+        <article class="role-card"><div class="role-top"><div><h3>Frontend Platform Engineer</h3><div class="role-meta"><span>Department: Engineering & Software Development Branch</span><span>Available: 2</span><span>Time: 8–15 hrs/week</span></div></div><span class="status-badge status-open">Open</span></div><p>Create polished, reliable user-facing web experiences for creators, contributors, and players.</p><div class="role-actions"><a class="btn-link btn-secondary-link" href="roles/frontend-platform-engineer.html">Position Details</a><a class="btn-link btn-primary-link" href="applications/frontend-platform-engineer.html">Apply Here</a></div></article>
+      </div></section>
 
-        .careers-section {
-            padding: 80px 20px;
-        }
+      <section id="design" class="branch-section"><div class="branch-header"><h2>Game Design & Systems Architecture Branch</h2><p>Gameplay design, platform systems thinking, progression, and experience architecture.</p></div><div class="role-list">
+        <article class="role-card"><div class="role-top"><div><h3>Systems Designer</h3><div class="role-meta"><span>Department: Game Design & Systems Architecture Branch</span><span>Available: 2</span><span>Time: 6–12 hrs/week</span></div></div><span class="status-badge status-open">Open</span></div><p>Design coherent gameplay loops, creator mechanics, and progression systems aligned with long-term platform goals.</p><div class="role-actions"><a class="btn-link btn-secondary-link" href="roles/systems-designer.html">Position Details</a><a class="btn-link btn-primary-link" href="applications/systems-designer.html">Apply Here</a></div></article>
+      </div></section>
 
-        .careers-section h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            color: var(--primary-blue);
-            margin-bottom: 3rem;
-        }
+      <section id="creative" class="branch-section"><div class="branch-header"><h2>Creative Content & Art Production Branch</h2><p>Visual identity, assets, environments, UI art, and creative production support.</p></div><div class="role-list">
+        <article class="role-card"><div class="role-top"><div><h3>Concept Artist</h3><div class="role-meta"><span>Department: Creative Content & Art Production Branch</span><span>Available: 2</span><span>Time: 5–10 hrs/week</span></div></div><span class="status-badge status-open">Open</span></div><p>Develop concept work that helps define style direction, world identity, and visual consistency for OpenWorlds.</p><div class="role-actions"><a class="btn-link btn-secondary-link" href="roles/concept-artist.html">Position Details</a><a class="btn-link btn-primary-link" href="applications/concept-artist.html">Apply Here</a></div></article>
+      </div></section>
 
-        .filter-section {
-            margin-bottom: 3rem;
-            text-align: center;
-        }
+      <section id="community-ops" class="branch-section"><div class="branch-header"><h2>Community Operations & Player Engagement Branch</h2><p>Community health, contributor support, communication flow, and player-facing engagement systems.</p></div><div class="role-list">
+        <article class="role-card"><div class="role-top"><div><h3>Community Operations Coordinator</h3><div class="role-meta"><span>Department: Community Operations & Player Engagement Branch</span><span>Available: 3</span><span>Time: 6–10 hrs/week</span></div></div><span class="status-badge status-open">Open</span></div><p>Help structure contributor communications, onboarding rhythms, and healthy day-to-day community operations.</p><div class="role-actions"><a class="btn-link btn-secondary-link" href="roles/community-operations-coordinator.html">Position Details</a><a class="btn-link btn-primary-link" href="applications/community-operations-coordinator.html">Apply Here</a></div></article>
+      </div></section>
 
-        .filter-section label {
-            font-weight: 600;
-            margin-right: 1rem;
-            color: var(--dark-gray);
-        }
+      <section id="safety" class="branch-section"><div class="branch-header"><h2>Trust & Safety / Moderation Branch</h2><p>Player safety, moderation standards, escalation handling, and healthy community governance.</p></div><div class="role-list">
+        <article class="role-card"><div class="role-top"><div><h3>Trust & Safety Analyst</h3><div class="role-meta"><span>Department: Trust & Safety / Moderation Branch</span><span>Available: 2</span><span>Time: 5–10 hrs/week</span></div></div><span class="status-badge status-open">Open</span></div><p>Support moderation policy, incident review, contributor escalation paths, and platform safety thinking.</p><div class="role-actions"><a class="btn-link btn-secondary-link" href="roles/trust-safety-analyst.html">Position Details</a><a class="btn-link btn-primary-link" href="applications/trust-safety-analyst.html">Apply Here</a></div></article>
+      </div></section>
 
-        .filter-section select {
-            padding: 0.75rem 1rem;
-            border: 2px solid var(--primary-blue);
-            border-radius: 5px;
-            font-size: 1rem;
-            cursor: pointer;
-            background-color: var(--white);
-            color: var(--dark-gray);
-        }
+      <section id="data" class="branch-section"><div class="branch-header"><h2>Data Science, Analytics & Research Branch</h2><p>Platform insight, contributor research, user behavior analysis, and decision support.</p></div><div class="role-list">
+        <article class="role-card"><div class="role-top"><div><h3>Product Data Analyst</h3><div class="role-meta"><span>Department: Data Science, Analytics & Research Branch</span><span>Available: 1</span><span>Time: 5–10 hrs/week</span></div></div><span class="status-badge status-limited">Limited</span></div><p>Turn product questions into structured analysis that helps guide platform priorities and contributor decisions.</p><div class="role-actions"><a class="btn-link btn-secondary-link" href="roles/product-data-analyst.html">Position Details</a><a class="btn-link btn-primary-link" href="applications/product-data-analyst.html">Apply Here</a></div></article>
+      </div></section>
 
-        .filter-section select:focus {
-            outline: none;
-            box-shadow: 0 0 5px rgba(0, 102, 204, 0.3);
-        }
+      <section id="ai" class="branch-section"><div class="branch-header"><h2>Artificial Intelligence & Procedural Systems Branch</h2><p>Intelligent systems research, automation experimentation, and procedural feature development.</p></div><div class="role-list">
+        <article class="role-card"><div class="role-top"><div><h3>Procedural Systems Developer</h3><div class="role-meta"><span>Department: Artificial Intelligence & Procedural Systems Branch</span><span>Available: 1</span><span>Time: 6–12 hrs/week</span></div></div><span class="status-badge status-open">Open</span></div><p>Explore procedural systems, generation workflows, and technical experiments that can enhance OpenWorlds creation tooling.</p><div class="role-actions"><a class="btn-link btn-secondary-link" href="roles/procedural-systems-developer.html">Position Details</a><a class="btn-link btn-primary-link" href="applications/procedural-systems-developer.html">Apply Here</a></div></article>
+      </div></section>
 
-        .job-listings {
-            display: grid;
-            gap: 2rem;
-        }
+      <section id="operations" class="branch-section"><div class="branch-header"><h2>Operations & Internal Systems Branch</h2><p>Internal documentation, contributor workflows, systems organization, and project operations.</p></div><div class="role-list">
+        <article class="role-card"><div class="role-top"><div><h3>Documentation & Workflow Specialist</h3><div class="role-meta"><span>Department: Operations & Internal Systems Branch</span><span>Available: 2</span><span>Time: 4–8 hrs/week</span></div></div><span class="status-badge status-open">Open</span></div><p>Create clarity across internal systems by improving documentation, workflow visibility, and contributor guidance.</p><div class="role-actions"><a class="btn-link btn-secondary-link" href="roles/documentation-workflow-specialist.html">Position Details</a><a class="btn-link btn-primary-link" href="applications/documentation-workflow-specialist.html">Apply Here</a></div></article>
+      </div></section>
 
-        .job-card {
-            background-color: var(--white);
-            border: 1px solid #ddd;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            transition: box-shadow 0.3s ease;
-        }
+      <section id="marketing" class="branch-section"><div class="branch-header"><h2>Marketing & Growth Branch</h2><p>Positioning, content growth, platform storytelling, and audience expansion.</p></div><div class="role-list">
+        <article class="role-card"><div class="role-top"><div><h3>Growth Content Strategist</h3><div class="role-meta"><span>Department: Marketing & Growth Branch</span><span>Available: 2</span><span>Time: 5–10 hrs/week</span></div></div><span class="status-badge status-open">Open</span></div><p>Shape audience growth messaging, launch narratives, creator-facing campaigns, and brand communication systems.</p><div class="role-actions"><a class="btn-link btn-secondary-link" href="roles/growth-content-strategist.html">Position Details</a><a class="btn-link btn-primary-link" href="applications/growth-content-strategist.html">Apply Here</a></div></article>
+      </div></section>
 
-        .job-card:hover {
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
-        }
+      <section id="business" class="branch-section"><div class="branch-header"><h2>Business Development & Strategy Branch</h2><p>Partnership thinking, platform positioning, business opportunity analysis, and strategic support.</p></div><div class="role-list">
+        <article class="role-card"><div class="role-top"><div><h3>Business Strategy Associate</h3><div class="role-meta"><span>Department: Business Development & Strategy Branch</span><span>Available: 1</span><span>Time: 4–8 hrs/week</span></div></div><span class="status-badge status-limited">Limited</span></div><p>Support strategic research, roadmap framing, opportunity evaluation, and business-facing planning for OpenWorlds.</p><div class="role-actions"><a class="btn-link btn-secondary-link" href="roles/business-strategy-associate.html">Position Details</a><a class="btn-link btn-primary-link" href="applications/business-strategy-associate.html">Apply Here</a></div></article>
+      </div></section>
 
-        .job-card.hidden {
-            display: none;
-        }
+      <section id="legal" class="branch-section"><div class="branch-header"><h2>Legal & Policy Branch</h2><p>Policy drafting support, trust standards, governance materials, and platform compliance thinking.</p></div><div class="role-list">
+        <article class="role-card"><div class="role-top"><div><h3>Policy Research Specialist</h3><div class="role-meta"><span>Department: Legal & Policy Branch</span><span>Available: 1</span><span>Time: 4–6 hrs/week</span></div></div><span class="status-badge status-waitlist">Waitlist</span></div><p>Help research and shape internal contributor policies, moderation standards, and platform governance materials.</p><div class="role-actions"><a class="btn-link btn-secondary-link" href="roles/policy-research-specialist.html">Position Details</a><a class="btn-link btn-primary-link" href="applications/policy-research-specialist.html">Apply Here</a></div></article>
+      </div></section>
+    </main>
+  </section>
 
-        .job-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .job-header h3 {
-            color: var(--dark-gray);
-            margin: 0;
-        }
-
-        .job-type {
-            background-color: #fff3cd;
-            color: #856404;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-
-        .job-department {
-            color: var(--primary-blue);
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .job-location {
-            color: var(--text-gray);
-            margin-bottom: 1rem;
-        }
-
-        .job-description {
-            color: var(--text-gray);
-            margin-bottom: 1rem;
-            line-height: 1.6;
-        }
-
-        .job-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .job-tags span {
-            background-color: var(--light-blue);
-            color: var(--primary-blue);
-            padding: 0.4rem 0.8rem;
-            border-radius: 4px;
-            font-size: 0.85rem;
-        }
-
-        .apply-btn {
-            width: 100%;
-        }
-
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-        }
-
-        .benefit-item {
-            text-align: center;
-            background-color: var(--white);
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .benefit-item i {
-            font-size: 2.5rem;
-            color: var(--primary-blue);
-            margin-bottom: 1rem;
-        }
-
-        .benefit-item h3 {
-            color: var(--dark-gray);
-            margin-bottom: 0.5rem;
-        }
-
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            animation: fadeIn 0.3s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .modal-content {
-            background-color: var(--white);
-            margin: 5% auto;
-            padding: 2rem;
-            border-radius: 8px;
-            width: 90%;
-            max-width: 600px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            animation: slideDown 0.3s ease;
-        }
-
-        @keyframes slideDown {
-            from { transform: translateY(-50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 2rem;
-            font-weight: bold;
-            cursor: pointer;
-            line-height: 1;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: var(--dark-gray);
-        }
-
-        .modal h2 {
-            color: var(--primary-blue);
-            margin-bottom: 0.5rem;
-        }
-
-        .job-title {
-            color: var(--text-gray);
-            margin-bottom: 1.5rem;
-            font-weight: 600;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: var(--dark-gray);
-            font-weight: 600;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-family: inherit;
-            font-size: 1rem;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary-blue);
-            box-shadow: 0 0 5px rgba(0, 102, 204, 0.3);
-        }
-
-        #charCount {
-            display: block;
-            margin-top: 0.25rem;
-            color: var(--text-gray);
-            font-size: 0.85rem;
-        }
-
-        @media (max-width: 600px) {
-            .modal-content {
-                width: 95%;
-                margin: 20% auto;
-            }
-
-            .job-header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-        }
-    </style>
-
-    <script>
-        // Department Filter
-        document.getElementById('department-filter').addEventListener('change', function(e) {
-            const selectedDept = e.target.value;
-            const jobCards = document.querySelectorAll('.job-card');
-            
-            jobCards.forEach(card => {
-                if (selectedDept === 'all' || card.dataset.department === selectedDept) {
-                    card.classList.remove('hidden');
-                } else {
-                    card.classList.add('hidden');
-                }
-            });
-        });
-
-        // Modal functionality
-        const modal = document.getElementById('applicationModal');
-        const closeBtn = document.querySelector('.close');
-        const applyBtns = document.querySelectorAll('.apply-btn');
-        const applicationForm = document.getElementById('applicationForm');
-        const charCount = document.getElementById('charCount');
-        const experienceField = document.getElementById('experience');
-
-        // Open modal
-        applyBtns.forEach(btn => {
-            btn.addEventListener('click', function() {
-                const jobCard = this.closest('.job-card');
-                const jobTitle = jobCard.querySelector('h3').textContent;
-                document.querySelector('.job-title').textContent = 'Position: ' + jobTitle;
-                modal.style.display = 'block';
-                applicationForm.reset();
-                charCount.textContent = '0/500';
-            });
-        });
-
-        // Close modal
-        closeBtn.addEventListener('click', function() {
-            modal.style.display = 'none';
-        });
-
-        // Close modal when clicking outside
-        window.addEventListener('click', function(e) {
-            if (e.target === modal) {
-                modal.style.display = 'none';
-            }
-        });
-
-        // Character counter
-        experienceField.addEventListener('input', function() {
-            charCount.textContent = this.value.length + '/500';
-        });
-
-        // Form submission
-        applicationForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const formData = {
-                name: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                portfolio: document.getElementById('portfolio').value,
-                linkedin: document.getElementById('linkedin').value,
-                experience: document.getElementById('experience').value,
-                why: document.getElementById('why').value
-            };
-
-            // Create mailto link with form data
-            const subject = 'OpenWorlds Volunteer Application';
-            const body = `Name: ${formData.name}%0D%0A%0D%0AEmail: ${formData.email}%0D%0A%0D%0APortfolio: ${formData.portfolio}%0D%0A%0D%0ALinkedIn: ${formData.linkedin}%0D%0A%0D%0AExperience:%0D%0A${formData.experience}%0D%0A%0D%0AWhy I want to join:%0D%0A${formData.why}`;
-
-            window.location.href = `mailto:opwnworldssupport@gmail.com?subject=${subject}&body=${body}`;
-
-            alert('Thank you for your application! Your email client will open with your application details. Please send the email to complete your submission.');
-            modal.style.display = 'none';
-        });
-    </script>
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section"><div class="brand-wrap"><img src="assets/openworlds-logo.png" alt="OpenWorlds logo" class="ow-logo"><h4>OpenWorlds</h4></div><p>Empowering creators worldwide</p></div>
+        <div class="footer-section"><h4>Quick Links</h4><ul><li><a href="index.html">Home</a></li><li><a href="careers.html">Careers</a></li><li><a href="community.html">Community</a></li><li><a href="index.html#contact">Support</a></li></ul></div>
+        <div class="footer-section"><h4>Follow Us</h4><div class="social-links"><a href="https://discord.gg/TRJ8ZmBKDS"><i class="fab fa-discord"></i></a><a href="https://www.youtube.com/@Official-OpenWorlds"><i class="fab fa-youtube"></i></a></div></div>
+      </div>
+      <div class="footer-bottom"><p>&copy; 2024 OpenWorlds. All rights reserved.</p></div>
+    </div>
+  </footer>
 </body>
 </html>
