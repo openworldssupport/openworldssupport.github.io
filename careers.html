@@ -11,7 +11,7 @@
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
-            <div class="nav-brand">🌍 OpenWorlds</div>
+            <div class="nav-brand">🌐 OpenWorlds</div>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="index.html#about">About</a></li>
@@ -27,6 +27,19 @@
         <div class="hero-content">
             <h1>Join Our Team</h1>
             <p>Help us build the future of user-generated content</p>
+        </div>
+    </section>
+
+    <!-- Notice Banner -->
+    <section class="notice-banner">
+        <div class="container">
+            <div class="notice-content">
+                <i class="fas fa-info-circle"></i>
+                <div>
+                    <h3>Volunteering Opportunity</h3>
+                    <p>All current career positions are volunteer-based. We don't offer payment at this time, but this is a great opportunity to contribute to an innovative platform and build your portfolio!</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -51,24 +64,23 @@
                 <div class="job-card" data-department="engineering">
                     <div class="job-header">
                         <h3>Senior Software Engineer</h3>
-                        <span class="job-type">Full-time</span>
+                        <span class="job-type">Volunteer</span>
                     </div>
                     <p class="job-department"><i class="fas fa-tag"></i> Engineering</p>
                     <p class="job-location"><i class="fas fa-globe"></i> Remote</p>
                     <p class="job-description">We're looking for an experienced software engineer to help build scalable backend systems. You'll work with a talented team to create robust APIs and infrastructure.</p>
                     <div class="job-tags">
                         <span>Python</span>
-                        <span>Node.js</span>
-                        <span>AWS</span>
+                        <span>Node.js</span>\n                        <span>AWS</span>
                         <span>Docker</span>
                     </div>
-                    <button class="btn btn-primary">Apply Now</button>
+                    <button class="btn btn-primary apply-btn">Apply Now</button>
                 </div>
 
                 <div class="job-card" data-department="design">
                     <div class="job-header">
                         <h3>UX/UI Designer</h3>
-                        <span class="job-type">Full-time</span>
+                        <span class="job-type">Volunteer</span>
                     </div>
                     <p class="job-department"><i class="fas fa-tag"></i> Design</p>
                     <p class="job-location"><i class="fas fa-globe"></i> Remote</p>
@@ -79,13 +91,13 @@
                         <span>UX Research</span>
                         <span>Prototyping</span>
                     </div>
-                    <button class="btn btn-primary">Apply Now</button>
+                    <button class="btn btn-primary apply-btn">Apply Now</button>
                 </div>
 
                 <div class="job-card" data-department="community">
                     <div class="job-header">
                         <h3>Community Manager</h3>
-                        <span class="job-type">Full-time</span>
+                        <span class="job-type">Volunteer</span>
                     </div>
                     <p class="job-department"><i class="fas fa-tag"></i> Community</p>
                     <p class="job-location"><i class="fas fa-globe"></i> Remote</p>
@@ -96,13 +108,13 @@
                         <span>Communication</span>
                         <span>Analytics</span>
                     </div>
-                    <button class="btn btn-primary">Apply Now</button>
+                    <button class="btn btn-primary apply-btn">Apply Now</button>
                 </div>
 
                 <div class="job-card" data-department="product">
                     <div class="job-header">
                         <h3>Product Manager</h3>
-                        <span class="job-type">Full-time</span>
+                        <span class="job-type">Volunteer</span>
                     </div>
                     <p class="job-department"><i class="fas fa-tag"></i> Product</p>
                     <p class="job-location"><i class="fas fa-globe"></i> Remote</p>
@@ -113,7 +125,7 @@
                         <span>Roadmapping</span>
                         <span>User Research</span>
                     </div>
-                    <button class="btn btn-primary">Apply Now</button>
+                    <button class="btn btn-primary apply-btn">Apply Now</button>
                 </div>
             </div>
         </div>
@@ -125,24 +137,24 @@
             <h2 style="text-align: center; color: var(--primary-blue); margin-bottom: 3rem;">Why Join OpenWorlds?</h2>
             <div class="benefits-grid">
                 <div class="benefit-item">
-                    <i class="fas fa-briefcase"></i>
-                    <h3>Competitive Salary</h3>
-                    <p>We offer competitive compensation packages</p>
+                    <i class="fas fa-star"></i>
+                    <h3>Build Your Portfolio</h3>
+                    <p>Contribute to a real-world UGC platform and showcase your skills</p>
                 </div>
                 <div class="benefit-item">
-                    <i class="fas fa-globe"></i>
-                    <h3>Remote Work</h3>
-                    <p>Work from anywhere in the world</p>
+                    <i class="fas fa-users"></i>
+                    <h3>Creative Community</h3>
+                    <p>Work with passionate creators and innovators</p>
                 </div>
                 <div class="benefit-item">
-                    <i class="fas fa-heart"></i>
-                    <h3>Health Benefits</h3>
-                    <p>Comprehensive health insurance coverage</p>
+                    <i class="fas fa-lightbulb"></i>
+                    <h3>Learn & Grow</h3>
+                    <p>Gain valuable experience and expand your skill set</p>
                 </div>
                 <div class="benefit-item">
-                    <i class="fas fa-graduation-cap"></i>
-                    <h3>Professional Development</h3>
-                    <p>Continuous learning and growth opportunities</p>
+                    <i class="fas fa-rocket"></i>
+                    <h3>Make an Impact</h3>
+                    <p>Help shape the future of user-generated content</p>
                 </div>
             </div>
         </div>
@@ -179,7 +191,73 @@
         </div>
     </footer>
 
+    <!-- Application Modal -->
+    <div id="applicationModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Apply Now</h2>
+            <p class="job-title"></p>
+            <form id="applicationForm">
+                <div class="form-group">
+                    <label for="name">Full Name *</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="portfolio">Portfolio/Website URL</label>
+                    <input type="url" id="portfolio" name="portfolio" placeholder="https://yourportfolio.com">
+                </div>
+                <div class="form-group">
+                    <label for="linkedin">LinkedIn Profile URL</label>
+                    <input type="url" id="linkedin" name="linkedin" placeholder="https://linkedin.com/in/yourprofile">
+                </div>
+                <div class="form-group">
+                    <label for="experience">Tell us about your experience (500 characters max) *</label>
+                    <textarea id="experience" name="experience" rows="5" maxlength="500" required></textarea>
+                    <small id="charCount">0/500</small>
+                </div>
+                <div class="form-group">
+                    <label for="why">Why do you want to join OpenWorlds? *</label>
+                    <textarea id="why" name="why" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit Application</button>
+            </form>
+        </div>
+    </div>
+
     <style>
+        .notice-banner {
+            background: linear-gradient(135deg, #e6f0ff 0%, #f0f5ff 100%);
+            border-left: 4px solid var(--primary-blue);
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .notice-content {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+
+        .notice-content i {
+            font-size: 2rem;
+            color: var(--primary-blue);
+            flex-shrink: 0;
+        }
+
+        .notice-content h3 {
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .notice-content p {
+            color: var(--text-gray);
+            margin: 0;
+        }
+
         .careers-section {
             padding: 80px 20px;
         }
@@ -244,6 +322,8 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
 
         .job-header h3 {
@@ -252,8 +332,8 @@
         }
 
         .job-type {
-            background-color: var(--light-blue);
-            color: var(--primary-blue);
+            background-color: #fff3cd;
+            color: #856404;
             padding: 0.5rem 1rem;
             border-radius: 20px;
             font-size: 0.9rem;
@@ -292,6 +372,10 @@
             font-size: 0.85rem;
         }
 
+        .apply-btn {
+            width: 100%;
+        }
+
         .benefits-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -303,6 +387,7 @@
             background-color: var(--white);
             padding: 2rem;
             border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
 
         .benefit-item i {
@@ -315,9 +400,116 @@
             color: var(--dark-gray);
             margin-bottom: 0.5rem;
         }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background-color: var(--white);
+            margin: 5% auto;
+            padding: 2rem;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: var(--dark-gray);
+        }
+
+        .modal h2 {
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .job-title {
+            color: var(--text-gray);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--dark-gray);
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 5px rgba(0, 102, 204, 0.3);
+        }
+
+        #charCount {
+            display: block;
+            margin-top: 0.25rem;
+            color: var(--text-gray);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 600px) {
+            .modal-content {
+                width: 95%;
+                margin: 20% auto;
+            }
+
+            .job-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
     </style>
 
     <script>
+        // Department Filter
         document.getElementById('department-filter').addEventListener('change', function(e) {
             const selectedDept = e.target.value;
             const jobCards = document.querySelectorAll('.job-card');
@@ -329,6 +521,66 @@
                     card.classList.add('hidden');
                 }
             });
+        });
+
+        // Modal functionality
+        const modal = document.getElementById('applicationModal');
+        const closeBtn = document.querySelector('.close');
+        const applyBtns = document.querySelectorAll('.apply-btn');
+        const applicationForm = document.getElementById('applicationForm');
+        const charCount = document.getElementById('charCount');
+        const experienceField = document.getElementById('experience');
+
+        // Open modal
+        applyBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const jobCard = this.closest('.job-card');
+                const jobTitle = jobCard.querySelector('h3').textContent;
+                document.querySelector('.job-title').textContent = 'Position: ' + jobTitle;
+                modal.style.display = 'block';
+                applicationForm.reset();
+                charCount.textContent = '0/500';
+            });
+        });
+
+        // Close modal
+        closeBtn.addEventListener('click', function() {
+            modal.style.display = 'none';
+        });
+
+        // Close modal when clicking outside
+        window.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+        // Character counter
+        experienceField.addEventListener('input', function() {
+            charCount.textContent = this.value.length + '/500';
+        });
+
+        // Form submission
+        applicationForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                portfolio: document.getElementById('portfolio').value,
+                linkedin: document.getElementById('linkedin').value,
+                experience: document.getElementById('experience').value,
+                why: document.getElementById('why').value
+            };
+
+            // Create mailto link with form data
+            const subject = 'OpenWorlds Volunteer Application';
+            const body = `Name: ${formData.name}%0D%0A%0D%0AEmail: ${formData.email}%0D%0A%0D%0APortfolio: ${formData.portfolio}%0D%0A%0D%0ALinkedIn: ${formData.linkedin}%0D%0A%0D%0AExperience:%0D%0A${formData.experience}%0D%0A%0D%0AWhy I want to join:%0D%0A${formData.why}`;
+
+            window.location.href = `mailto:opwnworldssupport@gmail.com?subject=${subject}&body=${body}`;
+
+            alert('Thank you for your application! Your email client will open with your application details. Please send the email to complete your submission.');
+            modal.style.display = 'none';
         });
     </script>
 </body>
