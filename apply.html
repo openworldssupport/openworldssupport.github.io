@@ -1,0 +1,1232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join OpenWorlds - Application</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">🌐 OpenWorlds</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+                <li><a href="careers.html">Careers</a></li>
+                <li><a href="community.html">Community</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" style="min-height: 250px; padding: 60px 20px; background: linear-gradient(135deg, #0066cc 0%, #003d99 100%);">
+        <div class="hero-content">
+            <h1>Join the OpenWorlds Team</h1>
+            <p>Build the future of user-generated content with us</p>
+        </div>
+    </section>
+
+    <!-- Volunteer Notice -->
+    <section class="volunteer-notice">
+        <div class="container">
+            <div class="notice-box">
+                <i class="fas fa-lightbulb"></i>
+                <h3>Community-Driven. Volunteer-Based. World-Changing.</h3>
+                <p>OpenWorlds is an early-stage UGC platform built by passionate volunteers. All positions are <strong>unpaid volunteer roles</strong> focused on collaboration, learning, and innovation. We're looking for talented individuals who want to shape the future of user-generated content alongside a creative, supportive community.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Application Form -->
+    <section class="application-section">
+        <div class="container">
+            <div class="form-header">
+                <h2>Application Form</h2>
+                <p class="form-subtitle">Please take your time to complete this form. Your responses help us match you with the right role and team.</p>
+                <div class="progress-indicator">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+                <p class="form-progress" id="formProgress">Step 1 of 7</p>
+            </div>
+
+            <form id="applicationForm" class="app-form">
+                <!-- SECTION 1: BASIC INFORMATION -->
+                <div class="form-section active" data-section="1">
+                    <div class="section-header">
+                        <h3><span class="section-number">1</span> Basic Information</h3>
+                        <p>Let's start with the essentials</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="displayName">Display Name / Username *</label>
+                        <input type="text" id="displayName" name="displayName" placeholder="How should we call you?" required>
+                        <small>This is how you'll be known in the OpenWorlds community</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="discordUsername">Discord Username *</label>
+                        <input type="text" id="discordUsername" name="discordUsername" placeholder="e.g., YourName#1234" required>
+                        <small>We primarily coordinate through Discord</small>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="timezone">Timezone *</label>
+                            <select id="timezone" name="timezone" required>
+                                <option value="">Select your timezone</option>
+                                <option value="UTC-12">UTC-12 (Baker Island)</option>
+                                <option value="UTC-11">UTC-11 (Samoa)</option>
+                                <option value="UTC-10">UTC-10 (Hawaii)</option>
+                                <option value="UTC-9">UTC-9 (Alaska)</option>
+                                <option value="UTC-8">UTC-8 (Pacific)</option>
+                                <option value="UTC-7">UTC-7 (Mountain)</option>
+                                <option value="UTC-6">UTC-6 (Central)</option>
+                                <option value="UTC-5">UTC-5 (Eastern)</option>
+                                <option value="UTC-4">UTC-4 (Atlantic)</option>
+                                <option value="UTC-3">UTC-3 (Brazil, Greenland)</option>
+                                <option value="UTC-2">UTC-2 (Mid-Atlantic)</option>
+                                <option value="UTC-1">UTC-1 (Azores)</option>
+                                <option value="UTC">UTC (GMT)</option>
+                                <option value="UTC+1">UTC+1 (Europe)</option>
+                                <option value="UTC+2">UTC+2 (Eastern Europe)</option>
+                                <option value="UTC+3">UTC+3 (East Africa)</option>
+                                <option value="UTC+4">UTC+4 (Gulf)</option>
+                                <option value="UTC+5">UTC+5 (Pakistan)</option>
+                                <option value="UTC+6">UTC+6 (Central Asia)</option>
+                                <option value="UTC+7">UTC+7 (Southeast Asia)</option>
+                                <option value="UTC+8">UTC+8 (Singapore, China)</option>
+                                <option value="UTC+9">UTC+9 (Japan, Korea)</option>
+                                <option value="UTC+10">UTC+10 (Australia)</option>
+                                <option value="UTC+11">UTC+11 (Australia East)</option>
+                                <option value="UTC+12">UTC+12 (New Zealand)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="country">Country *</label>
+                            <input type="text" id="country" name="country" placeholder="Where are you based?" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="languages">Preferred Languages (comma-separated)</label>
+                        <input type="text" id="languages" name="languages" placeholder="e.g., English, Spanish, French">
+                    </div>
+                </div>
+
+                <!-- SECTION 2: ROLE SELECTION -->
+                <div class="form-section" data-section="2">
+                    <div class="section-header">
+                        <h3><span class="section-number">2</span> Role Selection</h3>
+                        <p>Where do you see yourself contributing?</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="primaryDivision">Primary Division *</label>
+                        <select id="primaryDivision" name="primaryDivision" required>
+                            <option value="">-- Select a division --</option>
+                            <option value="executive">🧭 Executive & Strategic Leadership</option>
+                            <option value="gamedev">🧩 Game & Platform Development</option>
+                            <option value="creative">🎨 Creative Content</option>
+                            <option value="community">🌍 Community & Social</option>
+                            <option value="safety">🛡️ Trust, Safety & Moderation</option>
+                            <option value="qa">🧪 Quality Assurance & Testing</option>
+                            <option value="analytics">📊 Data, Analytics & Research</option>
+                            <option value="ai">🧠 AI, Systems & Emerging Tech</option>
+                            <option value="operations">🧾 Operations & Support</option>
+                            <option value="marketing">📢 Marketing & Growth</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="secondaryDivision">Secondary Division (optional)</label>
+                        <select id="secondaryDivision" name="secondaryDivision">
+                            <option value="">-- No secondary division --</option>
+                            <option value="executive">🧭 Executive & Strategic Leadership</option>
+                            <option value="gamedev">🧩 Game & Platform Development</option>
+                            <option value="creative">🎨 Creative Content</option>
+                            <option value="community">🌍 Community & Social</option>
+                            <option value="safety">🛡️ Trust, Safety & Moderation</option>
+                            <option value="qa">🧪 Quality Assurance & Testing</option>
+                            <option value="analytics">📊 Data, Analytics & Research</option>
+                            <option value="ai">🧠 AI, Systems & Emerging Tech</option>
+                            <option value="operations">🧾 Operations & Support</option>
+                            <option value="marketing">📢 Marketing & Growth</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Specific Roles You're Interested In (select all that apply) *</label>
+                        <div id="rolesContainer" class="checkbox-grid">
+                            <!-- Dynamically populated by JavaScript -->
+                        </div>
+                        <small id="roleError" class="error-message" style="display:none;">Please select at least one role</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="seniorityLevel">Preferred Seniority Level *</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="seniorityLevel" value="contributor" required>
+                                <span class="radio-text">
+                                    <strong>Contributor</strong>
+                                    <small>New to this area or learning</small>
+                                </span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="seniorityLevel" value="specialist" required>
+                                <span class="radio-text">
+                                    <strong>Specialist</strong>
+                                    <small>Experienced with proven skills</small>
+                                </span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="seniorityLevel" value="lead" required>
+                                <span class="radio-text">
+                                    <strong>Team Lead</strong>
+                                    <small>Leadership experience & vision</small>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECTION 3: EXPERIENCE EVALUATION -->
+                <div class="form-section" data-section="3">
+                    <div class="section-header">
+                        <h3><span class="section-number">3</span> Experience Evaluation</h3>
+                        <p>Tell us about your background and expertise</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="relevantExperience">Describe your relevant experience in detail *</label>
+                        <textarea id="relevantExperience" name="relevantExperience" rows="5" placeholder="Share your background, projects, and what makes you qualified for the role(s) you're applying for..." required></textarea>
+                        <small>Minimum 100 characters • Be specific about your achievements</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tools">What tools, engines, or software have you used?</label>
+                        <textarea id="tools" name="tools" rows="4" placeholder="e.g., Unreal Engine, Unity, Blender, Photoshop, Python, etc."></textarea>
+                        <small>List technical skills, software, programming languages, or creative tools</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="portfolio">Links to Portfolio, GitHub, or Work Samples</label>
+                        <textarea id="portfolio" name="portfolio" rows="3" placeholder="Paste links to your work (GitHub, portfolio website, itch.io, ArtStation, etc.)&#10;One link per line"></textarea>
+                        <small>This helps us evaluate your skills directly</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="teamExperience">Have you worked in a team before? Describe your role clearly. *</label>
+                        <textarea id="teamExperience" name="teamExperience" rows="4" placeholder="Tell us about a team project, your responsibilities, and how you collaborated..." required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="complexProject">What was the most complex project you've worked on? *</label>
+                        <textarea id="complexProject" name="complexProject" rows="4" placeholder="Describe the project, challenges you faced, and what you learned..." required></textarea>
+                    </div>
+                </div>
+
+                <!-- SECTION 4: SKILL DEPTH ASSESSMENT (DYNAMIC) -->
+                <div class="form-section" data-section="4">
+                    <div class="section-header">
+                        <h3><span class="section-number">4</span> Skill Depth Assessment</h3>
+                        <p id="depthIntro">Questions tailored to your role (dynamically loaded)</p>
+                    </div>
+                    <div id="skillDepthContainer">
+                        <!-- Dynamically populated by JavaScript based on selected division -->
+                    </div>
+                </div>
+
+                <!-- SECTION 5: SCENARIO-BASED EVALUATION -->
+                <div class="form-section" data-section="5">
+                    <div class="section-header">
+                        <h3><span class="section-number">5</span> Scenario-Based Evaluation</h3>
+                        <p>How would you handle real-world situations?</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="scenario1">Scenario 1: You join a team where deadlines are unclear and communication is inconsistent. How do you stabilize the workflow without formal authority? *</label>
+                        <textarea id="scenario1" name="scenario1" rows="4" placeholder="Walk through your thought process and actions..." required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="scenario2">Scenario 2: A major bug is affecting users but no one knows the cause. Walk through your full problem-solving process step by step. *</label>
+                        <textarea id="scenario2" name="scenario2" rows="4" placeholder="Describe your methodology..." required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="scenario3">Scenario 3: A community member is repeatedly causing tension but is also a valuable contributor. How do you handle this situation fairly? *</label>
+                        <textarea id="scenario3" name="scenario3" rows="4" placeholder="Explain your approach to this delicate situation..." required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="scenario4">Scenario 4: You are assigned a role you are unfamiliar with but the project depends on it. What is your approach? *</label>
+                        <textarea id="scenario4" name="scenario4" rows="4" placeholder="How would you tackle this challenge?" required></textarea>
+                    </div>
+                </div>
+
+                <!-- SECTION 6: MOTIVATION & VISION -->
+                <div class="form-section" data-section="6">
+                    <div class="section-header">
+                        <h3><span class="section-number">6</span> Motivation & Vision</h3>
+                        <p>Why OpenWorlds? What's your vision?</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="whyOpenWorlds">Why do you want to join OpenWorlds specifically? *</label>
+                        <textarea id="whyOpenWorlds" name="whyOpenWorlds" rows="4" placeholder="What attracts you to our mission and vision?" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="canContribute">What do you believe you can contribute to the project? *</label>
+                        <textarea id="canContribute" name="canContribute" rows="4" placeholder="What unique value do you bring?" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="successDefinition">What does success look like for you in this role? *</label>
+                        <textarea id="successDefinition" name="successDefinition" rows="4" placeholder="Your goals and what achievement means to you..." required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contributionArea">Where do you see yourself contributing most within the next 6 months? *</label>
+                        <textarea id="contributionArea" name="contributionArea" rows="4" placeholder="Be specific about areas and goals..." required></textarea>
+                    </div>
+                </div>
+
+                <!-- SECTION 7: COMMITMENT & AVAILABILITY -->
+                <div class="form-section" data-section="7">
+                    <div class="section-header">
+                        <h3><span class="section-number">7</span> Commitment & Availability</h3>
+                        <p>Let's make sure timing works for everyone</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="hoursPerWeek">Hours per week you can dedicate *</label>
+                        <select id="hoursPerWeek" name="hoursPerWeek" required>
+                            <option value="">-- Select commitment level --</option>
+                            <option value="1-5">1-5 hours per week</option>
+                            <option value="5-10">5-10 hours per week</option>
+                            <option value="10-20">10-20 hours per week</option>
+                            <option value="20-30">20-30 hours per week</option>
+                            <option value="30+">30+ hours per week</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="consistency">Consistency Level *</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="consistency" value="low" required>
+                                <span class="radio-text">
+                                    <strong>Low</strong>
+                                    <small>Flexible schedule, sporadic availability</small>
+                                </span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="consistency" value="medium" required>
+                                <span class="radio-text">
+                                    <strong>Medium</strong>
+                                    <small>Regular but flexible commitment</small>
+                                </span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="consistency" value="high" required>
+                                <span class="radio-text">
+                                    <strong>High</strong>
+                                    <small>Consistent, reliable presence</small>
+                                </span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="consistency" value="variable" required>
+                                <span class="radio-text">
+                                    <strong>Variable</strong>
+                                    <small>Availability depends on project needs</small>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="collaboration">Preferred Collaboration Style *</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="collaboration" value="async" required>
+                                <span class="radio-text">
+                                    <strong>Async</strong>
+                                    <small>Written communication, flexible timing</small>
+                                </span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="collaboration" value="meetings" required>
+                                <span class="radio-text">
+                                    <strong>Meetings</strong>
+                                    <small>Prefer scheduled voice/video calls</small>
+                                </span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="collaboration" value="hybrid" required>
+                                <span class="radio-text">
+                                    <strong>Hybrid</strong>
+                                    <small>Mix of async and meetings</small>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="additionalInfo">Anything else you'd like us to know?</label>
+                        <textarea id="additionalInfo" name="additionalInfo" rows="3" placeholder="Share any additional context, constraints, or information..."></textarea>
+                    </div>
+
+                    <div class="form-group checkbox">
+                        <label>
+                            <input type="checkbox" id="volunteerAcknowledge" name="volunteerAcknowledge" required>
+                            <span>I understand that all OpenWorlds positions are volunteer-based and unpaid at this stage of development. I'm excited to contribute and help build this community-driven platform. *</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Form Navigation -->
+                <div class="form-navigation">
+                    <button type="button" class="btn btn-secondary" id="prevBtn" onclick="changeSection(-1)" style="display:none;">← Previous</button>
+                    <button type="button" class="btn btn-primary" id="nextBtn" onclick="changeSection(1)">Next →</button>
+                    <button type="submit" class="btn btn-success" id="submitBtn" style="display:none;">
+                        <i class="fas fa-paper-plane"></i> Submit Application
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>OpenWorlds</h4>
+                    <p>Empowering creators worldwide</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                        <li><a href="community.html">Community</a></li>
+                        <li><a href="index.html#contact">Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="https://discord.gg/TRJ8ZmBKDS"><i class="fab fa-discord"></i></a>
+                        <a href="https://www.youtube.com/@Official-OpenWorlds"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 OpenWorlds. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <style>
+        .volunteer-notice {
+            background: linear-gradient(135deg, #f0f5ff 0%, #e6f0ff 100%);
+            padding: 3rem 20px;
+            margin: 2rem 0;
+        }
+
+        .notice-box {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            border-left: 5px solid var(--primary-blue);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+
+        .notice-box i {
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            flex-shrink: 0;
+        }
+
+        .notice-box h3 {
+            color: var(--primary-blue);
+            margin: 0 0 0.5rem 0;
+        }
+
+        .notice-box p {
+            color: var(--text-gray);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .notice-box strong {
+            color: var(--dark-gray);
+        }
+
+        .application-section {
+            padding: 80px 20px;
+            background-color: #f9f9f9;
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .form-header h2 {
+            color: var(--primary-blue);
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-subtitle {
+            color: var(--text-gray);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        .progress-indicator {
+            background: #e0e0e0;
+            height: 6px;
+            border-radius: 3px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-blue) 0%, #0052a3 100%);
+            width: 14.28%;
+            transition: width 0.3s ease;
+        }
+
+        .form-progress {
+            color: var(--text-gray);
+            font-weight: 600;
+        }
+
+        .app-form {
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 3rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .form-section {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .form-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-header {
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .section-header h3 {
+            color: var(--dark-gray);
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 0 0 0.5rem 0;
+        }
+
+        .section-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--primary-blue);
+            color: var(--white);
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .section-header p {
+            color: var(--text-gray);
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--dark-gray);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="url"],
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            background-color: var(--white);
+        }
+
+        .form-group input[type="text"]:focus,
+        .form-group input[type="email"]:focus,
+        .form-group input[type="url"]:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-group small {
+            display: block;
+            margin-top: 0.4rem;
+            color: var(--text-gray);
+            font-size: 0.85rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .checkbox-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: flex-start;
+            padding: 1rem;
+            background: #f9f9f9;
+            border-radius: 5px;
+            border: 2px solid transparent;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .checkbox-item:hover {
+            background: #f0f5ff;
+            border-color: var(--primary-blue);
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            margin-top: 2px;
+            margin-right: 0.75rem;
+            cursor: pointer;
+            accent-color: var(--primary-blue);
+        }
+
+        .checkbox-item input[type="checkbox"]:checked + label {
+            color: var(--primary-blue);
+            font-weight: 600;
+        }
+
+        .checkbox-item label {
+            cursor: pointer;
+            margin: 0;
+            font-weight: 500;
+            color: var(--dark-gray);
+        }
+
+        .checkbox-item .role-name {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+        }
+
+        .checkbox-item .role-desc {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text-gray);
+        }
+
+        .radio-group {
+            display: grid;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .radio-label {
+            display: flex;
+            align-items: flex-start;
+            padding: 1rem;
+            background: #f9f9f9;
+            border-radius: 5px;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .radio-label:hover {
+            background: #f0f5ff;
+            border-color: var(--primary-blue);
+        }
+
+        .radio-label input[type="radio"] {
+            margin-top: 3px;
+            margin-right: 1rem;
+            cursor: pointer;
+            accent-color: var(--primary-blue);
+        }
+
+        .radio-text {
+            flex: 1;
+        }
+
+        .radio-text strong {
+            display: block;
+            color: var(--dark-gray);
+            font-weight: 600;
+        }
+
+        .radio-text small {
+            display: block;
+            color: var(--text-gray);
+            font-size: 0.85rem;
+            margin-top: 0.2rem;
+        }
+
+        .form-group.checkbox {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 2px solid #f0f0f0;
+        }
+
+        .form-group.checkbox label {
+            display: flex;
+            align-items: flex-start;
+            font-weight: 500;
+            color: var(--text-gray);
+            margin: 0;
+        }
+
+        .form-group.checkbox input[type="checkbox"] {
+            margin-top: 3px;
+            margin-right: 0.75rem;
+            flex-shrink: 0;
+            accent-color: var(--primary-blue);
+            cursor: pointer;
+        }
+
+        .form-group.checkbox span {
+            cursor: pointer;
+            line-height: 1.5;
+        }
+
+        .error-message {
+            color: #e74c3c;
+            display: block;
+            margin-top: 0.5rem;
+            font-weight: 600;
+        }
+
+        .form-navigation {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 2px solid #f0f0f0;
+        }
+
+        .btn {
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.95rem;
+        }
+
+        .btn-primary {
+            background: var(--primary-blue);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: #0052a3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 102, 204, 0.3);
+        }
+
+        .btn-secondary {
+            background: #e0e0e0;
+            color: var(--dark-gray);
+        }
+
+        .btn-secondary:hover {
+            background: #d0d0d0;
+        }
+
+        .btn-success {
+            background: #27ae60;
+            color: var(--white);
+        }
+
+        .btn-success:hover {
+            background: #229954;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(39, 174, 96, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .app-form {
+                padding: 2rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .checkbox-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-navigation {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .notice-box {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .notice-box i {
+                width: 100%;
+            }
+
+            .section-header h3 {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+
+    <script>
+        // Division roles structure
+        const divisionRoles = {
+            executive: {
+                name: "Executive & Strategic Leadership",
+                roles: [
+                    { id: "ceo", name: "Chief Executive Officer (CEO)" },
+                    { id: "coceo", name: "Co-Chief Executive Officer (Co-CEO)" },
+                    { id: "coo", name: "Chief Operating Officer (COO)" },
+                    { id: "cto", name: "Chief Technical Officer (CTO)" },
+                    { id: "cco", name: "Chief Creative Officer (CCO)" },
+                    { id: "ccmo", name: "Chief Community Officer (CCMO)" },
+                    { id: "csto", name: "Chief Security & Trust Officer (CSTO)" },
+                    { id: "advisors", name: "Executive Advisors Board" },
+                    { id: "strategic", name: "Strategic Planning Director" },
+                    { id: "operations_dir", name: "Internal Operations Director" }
+                ]
+            },
+            gamedev: {
+                name: "Game & Platform Development",
+                roles: [
+                    { id: "lead_game_eng", name: "Lead Game Engineer" },
+                    { id: "gameplay_eng", name: "Gameplay Systems Engineer" },
+                    { id: "backend_eng", name: "Backend Infrastructure Engineer" },
+                    { id: "frontend_eng", name: "Frontend/UI Engineer" },
+                    { id: "network_eng", name: "Networking & Multiplayer Engineer" },
+                    { id: "perf_eng", name: "Performance Optimization Engineer" },
+                    { id: "api_eng", name: "API & Services Engineer" },
+                    { id: "lead_designer", name: "Lead Game Designer" },
+                    { id: "systems_designer", name: "Systems Designer" },
+                    { id: "economy_designer", name: "Economy & Progression Designer" },
+                    { id: "level_designer", name: "Level Designer" },
+                    { id: "ux_designer", name: "UX/UI Designer" },
+                    { id: "interaction_designer", name: "Interaction Designer" },
+                    { id: "tools_dev", name: "Developer Tools Engineer" },
+                    { id: "editor_dev", name: "Internal Editor Systems Developer" },
+                    { id: "pipeline_dev", name: "Pipeline Automation Engineer" }
+                ]
+            },
+            creative: {
+                name: "Creative Content",
+                roles: [
+                    { id: "art_director", name: "Art Director" },
+                    { id: "env_artist", name: "3D Environment Artist" },
+                    { id: "char_artist", name: "3D Character Artist" },
+                    { id: "animator", name: "Animator (Character/Creature/Environment)" },
+                    { id: "concept_artist", name: "Concept Artist" },
+                    { id: "texture_artist", name: "Texture & Material Artist" },
+                    { id: "vfx_artist", name: "VFX Artist" },
+                    { id: "sound_designer", name: "Sound Designer" },
+                    { id: "music_composer", name: "Music Composer" },
+                    { id: "narrative_designer", name: "Narrative Designer" },
+                    { id: "lore_team", name: "Lore & Worldbuilding Team" }
+                ]
+            },
+            community: {
+                name: "Community & Social",
+                roles: [
+                    { id: "community_mgr", name: "Community Manager" },
+                    { id: "discord_mgr", name: "Discord Server Manager" },
+                    { id: "social_coord", name: "Social Media Coordinator" },
+                    { id: "engagement_spec", name: "Player Engagement Specialist" },
+                    { id: "event_coord", name: "Event Coordinator" },
+                    { id: "content_reviewer", name: "Community Content Reviewer" }
+                ]
+            },
+            safety: {
+                name: "Trust, Safety & Moderation",
+                roles: [
+                    { id: "safety_lead", name: "Trust & Safety Lead" },
+                    { id: "moderation_team", name: "Content Moderation Team" },
+                    { id: "report_team", name: "Player Report Investigation Team" },
+                    { id: "abuse_analyst", name: "Anti-Abuse Systems Analyst" },
+                    { id: "policy_spec", name: "Policy Development Specialist" },
+                    { id: "risk_analyst", name: "Risk Assessment Analyst" },
+                    { id: "behavior_team", name: "Behavioral Monitoring Team" }
+                ]
+            },
+            qa: {
+                name: "Quality Assurance & Testing",
+                roles: [
+                    { id: "qa_lead", name: "QA Lead" },
+                    { id: "game_tester", name: "Game Tester" },
+                    { id: "bug_analyst", name: "Bug Reporting Analyst" },
+                    { id: "automation_eng", name: "Automation Testing Engineer" },
+                    { id: "balance_tester", name: "Balance Tester (Gameplay & Economy)" },
+                    { id: "stress_coord", name: "Stress Test Coordinator" }
+                ]
+            },
+            analytics: {
+                name: "Data, Analytics & Research",
+                roles: [
+                    { id: "data_analyst", name: "Data Analyst" },
+                    { id: "behavior_analyst", name: "Player Behavior Analyst" },
+                    { id: "economy_analyst", name: "Economy Analyst" },
+                    { id: "retention_researcher", name: "Retention & Engagement Researcher" },
+                    { id: "heatmap_analyst", name: "Heatmap & Interaction Analyst" },
+                    { id: "ab_test_spec", name: "A/B Testing Specialist" }
+                ]
+            },
+            ai: {
+                name: "AI, Systems & Emerging Technology",
+                roles: [
+                    { id: "ai_designer", name: "AI Systems Designer" },
+                    { id: "ml_engineer", name: "Machine Learning Engineer (Gameplay Systems)" },
+                    { id: "proc_gen_dev", name: "Procedural Generation Developer" },
+                    { id: "npc_designer", name: "Smart NPC Behavior Designer" },
+                    { id: "automation_eng", name: "Automation Systems Engineer" }
+                ]
+            },
+            operations: {
+                name: "Operations & Support",
+                roles: [
+                    { id: "ops_manager", name: "Internal Operations Manager" },
+                    { id: "doc_spec", name: "Documentation Specialist" },
+                    { id: "kb_curator", name: "Knowledge Base Curator" },
+                    { id: "support_vol", name: "Technical Support Volunteer" },
+                    { id: "workflow_coord", name: "Workflow Coordinator" }
+                ]
+            },
+            marketing: {
+                name: "Marketing & Growth",
+                roles: [
+                    { id: "marketing_lead", name: "Marketing Lead" },
+                    { id: "brand_strategist", name: "Brand Strategist" },
+                    { id: "growth_analyst", name: "Growth Analyst" },
+                    { id: "influencer_coord", name: "Influencer Outreach Coordinator" },
+                    { id: "content_creator", name: "Content Marketing Creator" },
+                    { id: "media_team", name: "Trailer / Media Production Team" }
+                ]
+            }
+        };
+
+        // Skill depth questions by division
+        const skillDepthQuestions = {
+            gamedev: [
+                { question: "Explain a complex system you have built or contributed to", id: "q1" },
+                { question: "How do you approach debugging large-scale issues?", id: "q2" },
+                { question: "Describe your understanding of system architecture and scalability", id: "q3" }
+            ],
+            creative: [
+                { question: "Walk through your creative workflow from idea to final output", id: "q1" },
+                { question: "How do you ensure consistency in worldbuilding or design?", id: "q2" },
+                { question: "Show how you adapt to feedback and iteration", id: "q3" }
+            ],
+            community: [
+                { question: "How would you handle conflict between community members?", id: "q1" },
+                { question: "What does a healthy online community look like to you?", id: "q2" },
+                { question: "Describe a time you handled responsibility in a group setting", id: "q3" }
+            ],
+            safety: [
+                { question: "How would you handle conflict between community members?", id: "q1" },
+                { question: "Describe your experience with moderation or conflict resolution", id: "q2" },
+                { question: "How do you balance fairness with community safety?", id: "q3" }
+            ],
+            executive: [
+                { question: "Describe a situation where you led a team or initiative", id: "q1" },
+                { question: "How do you manage conflicting priorities in a project?", id: "q2" },
+                { question: "What does effective leadership mean in a volunteer environment?", id: "q3" }
+            ],
+            qa: [
+                { question: "Describe your experience with game testing or QA", id: "q1" },
+                { question: "How do you approach finding and documenting bugs systematically?", id: "q2" },
+                { question: "What makes good testing coverage in your opinion?", id: "q3" }
+            ],
+            default: [
+                { question: "Tell us about your strongest skill in this area", id: "q1" },
+                { question: "How do you stay updated with trends and best practices?", id: "q2" },
+                { question: "Describe a challenge you overcame in your field", id: "q3" }
+            ]
+        };
+
+        let currentSection = 1;
+
+        // Populate roles dropdown
+        document.getElementById('primaryDivision').addEventListener('change', function() {
+            updateRoles();
+            updateSkillDepthQuestions();
+        });
+
+        document.getElementById('secondaryDivision').addEventListener('change', function() {
+            updateRoles();
+        });
+
+        function updateRoles() {
+            const primaryDiv = document.getElementById('primaryDivision').value;
+            const secondaryDiv = document.getElementById('secondaryDivision').value;
+            const rolesContainer = document.getElementById('rolesContainer');
+            
+            rolesContainer.innerHTML = '';
+
+            if (!primaryDiv) return;
+
+            const allRoles = [];
+            if (primaryDiv) {
+                allRoles.push(...(divisionRoles[primaryDiv]?.roles || []));
+            }
+            if (secondaryDiv && secondaryDiv !== primaryDiv) {
+                allRoles.push(...(divisionRoles[secondaryDiv]?.roles || []));
+            }
+
+            allRoles.forEach(role => {
+                const checkboxItem = document.createElement('div');
+                checkboxItem.className = 'checkbox-item';
+                checkboxItem.innerHTML = `
+                    <input type="checkbox" id="role_${role.id}" name="roles" value="${role.id}">
+                    <label for="role_${role.id}">
+                        <span class="role-name">${role.name}</span>
+                    </label>
+                `;
+                rolesContainer.appendChild(checkboxItem);
+            });
+        }
+
+        function updateSkillDepthQuestions() {
+            const primaryDiv = document.getElementById('primaryDivision').value;
+            const container = document.getElementById('skillDepthContainer');
+            const questions = skillDepthQuestions[primaryDiv] || skillDepthQuestions.default;
+
+            container.innerHTML = '';
+
+            questions.forEach((q, index) => {
+                const formGroup = document.createElement('div');
+                formGroup.className = 'form-group';
+                formGroup.innerHTML = `
+                    <label for="skillDepth_${q.id}"><strong>Q${index + 1}:</strong> ${q.question} *</label>
+                    <textarea id="skillDepth_${q.id}" name="skillDepth_${q.id}" rows="4" placeholder="Your answer here..." required></textarea>
+                `;
+                container.appendChild(formGroup);
+            });
+        }
+
+        function changeSection(direction) {
+            const sections = document.querySelectorAll('.form-section');
+            const currentSection = document.querySelector('.form-section.active');
+            const currentIndex = Array.from(sections).indexOf(currentSection);
+            
+            // Validate current section before moving
+            if (direction === 1 && !validateSection(currentIndex + 1)) {
+                return;
+            }
+
+            currentSection.classList.remove('active');
+            const newIndex = currentIndex + direction;
+            
+            if (newIndex >= 0 && newIndex < sections.length) {
+                sections[newIndex].classList.add('active');
+                updateProgressBar(newIndex + 1);
+                updateButtonVisibility(newIndex + 1);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        function validateSection(sectionNum) {
+            const section = document.querySelector(`[data-section="${sectionNum}"]`);
+            if (!section) return true;
+
+            const requiredFields = section.querySelectorAll('[required]');
+            let isValid = true;
+
+            requiredFields.forEach(field => {
+                if (field.type === 'checkbox' && field.name === 'roles') {
+                    const checkedRoles = section.querySelectorAll('input[name="roles"]:checked');
+                    if (checkedRoles.length === 0) {
+                        document.getElementById('roleError').style.display = 'block';
+                        isValid = false;
+                    } else {
+                        document.getElementById('roleError').style.display = 'none';
+                    }
+                } else if (!field.value.trim()) {
+                    field.classList.add('error');
+                    isValid = false;
+                } else {
+                    field.classList.remove('error');
+                }
+            });
+
+            return isValid;
+        }
+
+        function updateProgressBar(sectionNum) {
+            const progress = (sectionNum / 7) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+            document.getElementById('formProgress').textContent = `Step ${sectionNum} of 7`;
+        }
+
+        function updateButtonVisibility(sectionNum) {
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const submitBtn = document.getElementById('submitBtn');
+
+            prevBtn.style.display = sectionNum > 1 ? 'block' : 'none';
+            nextBtn.style.display = sectionNum < 7 ? 'block' : 'none';
+            submitBtn.style.display = sectionNum === 7 ? 'block' : 'none';
+        }
+
+        // Form submission
+        document.getElementById('applicationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Collect form data
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+
+            // Prepare email body
+            let emailBody = `🌐 OPENWORLDS VOLUNTEER APPLICATION\n\n`;
+            emailBody += `${'='.repeat(60)}\n\n`;
+
+            emailBody += `📝 BASIC INFORMATION\n`;
+            emailBody += `Display Name: ${data.displayName}\n`;
+            emailBody += `Discord: ${data.discordUsername}\n`;
+            emailBody += `Timezone: ${data.timezone}\n`;
+            emailBody += `Country: ${data.country}\n`;
+            emailBody += `Languages: ${data.languages || 'Not specified'}\n\n`;
+
+            emailBody += `${'='.repeat(60)}\n`;
+            emailBody += `🎯 ROLE SELECTION\n`;
+            emailBody += `Primary Division: ${document.querySelector(`#primaryDivision option[value="${data.primaryDivision}"]`)?.textContent}\n`;
+            emailBody += `Secondary Division: ${data.secondaryDivision ? document.querySelector(`#secondaryDivision option[value="${data.secondaryDivision}"]`)?.textContent : 'None'}\n`;
+            emailBody += `Seniority Level: ${data.seniorityLevel}\n`;
+            emailBody += `Selected Roles: ${Array.from(formData.getAll('roles')).join(', ') || 'None selected'}\n\n`;
+
+            emailBody += `${'='.repeat(60)}\n`;
+            emailBody += `💼 EXPERIENCE\n`;
+            emailBody += `Relevant Experience:\n${data.relevantExperience}\n\n`;
+            emailBody += `Tools & Software:\n${data.tools || 'Not specified'}\n\n`;
+            emailBody += `Portfolio/Work Samples:\n${data.portfolio || 'Not provided'}\n\n`;
+            emailBody += `Team Experience:\n${data.teamExperience}\n\n`;
+            emailBody += `Complex Project:\n${data.complexProject}\n\n`;
+
+            emailBody += `${'='.repeat(60)}\n`;
+            emailBody += `🔍 SKILL DEPTH ASSESSMENT\n`;
+            const primaryDiv = data.primaryDivision;
+            const questions = skillDepthQuestions[primaryDiv] || skillDepthQuestions.default;
+            questions.forEach((q, index) => {
+                emailBody += `Q${index + 1}: ${q.question}\nAnswer: ${formData.get(`skillDepth_${q.id}`) || 'Not answered'}\n\n`;
+            });
+
+            emailBody += `${'='.repeat(60)}\n`;
+            emailBody += `🎭 SCENARIO-BASED EVALUATION\n`;
+            emailBody += `Scenario 1 (Workflow Stabilization):\n${data.scenario1}\n\n`;
+            emailBody += `Scenario 2 (Bug Investigation):\n${data.scenario2}\n\n`;
+            emailBody += `Scenario 3 (Community Conflict):\n${data.scenario3}\n\n`;
+            emailBody += `Scenario 4 (Unfamiliar Role):\n${data.scenario4}\n\n`;
+
+            emailBody += `${'='.repeat(60)}\n`;
+            emailBody += `💡 MOTIVATION & VISION\n`;
+            emailBody += `Why OpenWorlds?\n${data.whyOpenWorlds}\n\n`;
+            emailBody += `Contribution:\n${data.canContribute}\n\n`;
+            emailBody += `Success Definition:\n${data.successDefinition}\n\n`;
+            emailBody += `Contribution Area (6 months):\n${data.contributionArea}\n\n`;
+
+            emailBody += `${'='.repeat(60)}\n`;
+            emailBody += `📅 COMMITMENT & AVAILABILITY\n`;
+            emailBody += `Hours per Week: ${data.hoursPerWeek}\n`;
+            emailBody += `Consistency: ${data.consistency}\n`;
+            emailBody += `Collaboration Style: ${data.collaboration}\n`;
+            emailBody += `Additional Info:\n${data.additionalInfo || 'None'}\n\n`;
+
+            emailBody += `${'='.repeat(60)}\n`;
+            emailBody += `✅ Application submitted on: ${new Date().toLocaleString()}\n`;
+
+            // Create mailto link
+            const subject = `OpenWorlds Application - ${data.displayName}`;
+            const mailtoLink = `mailto:opwnworldssupport@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+
+            window.location.href = mailtoLink;
+
+            setTimeout(() => {
+                alert('🎉 Thank you for applying to OpenWorlds!\n\nYour email client is opening with your application details. Please review and send the email to complete your submission.\n\nWe appreciate your interest in joining our creative community!');
+            }, 500);
+        });
+
+        // Initialize
+        updateProgressBar(1);
+        updateButtonVisibility(1);
+    </script>
+</body>
+</html>
