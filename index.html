@@ -6,12 +6,19 @@
     <title>OpenWorlds - UGC Platform</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .brand-wrap { display: flex; align-items: center; gap: 0.8rem; }
+        .ow-logo { width: 42px; height: 42px; border-radius: 10px; object-fit: cover; }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
-            <div class="nav-brand">🌍 OpenWorlds</div>
+            <div class="brand-wrap">
+                <img src="assets/openworlds-logo.png" alt="OpenWorlds logo" class="ow-logo">
+                <div class="nav-brand">OpenWorlds</div>
+            </div>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
@@ -26,7 +33,6 @@
     <section id="home" class="hero">
         <div class="hero-content">
             <h1>Welcome to OpenWorlds</h1>
-            <p>The Ultimate User-Generated Content Platform</p>
             <p class="hero-description">OpenWorlds is a community where we share our creativity and passion with each other for the best possible experience.</p>
         </div>
     </section>
@@ -74,7 +80,10 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h4>OpenWorlds</h4>
+                    <div class="brand-wrap">
+                        <img src="assets/openworlds-logo.png" alt="OpenWorlds logo" class="ow-logo">
+                        <h4>OpenWorlds</h4>
+                    </div>
                     <p>Empowering creators worldwide</p>
                 </div>
                 <div class="footer-section">

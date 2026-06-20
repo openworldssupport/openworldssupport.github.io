@@ -6,115 +6,9 @@
     <title>Community - OpenWorlds</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
-<body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="nav-brand">🌍 OpenWorlds</div>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="index.html#about">About</a></li>
-                <li><a href="index.html#contact">Contact</a></li>
-                <li><a href="careers.html">Careers</a></li>
-                <li><a href="community.html">Community</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <!-- Community Hero -->
-    <section class="hero" style="min-height: 300px; padding: 60px 20px;">
-        <div class="hero-content">
-            <h1>Join Our Community</h1>
-            <p>Connect with millions of creators and players worldwide</p>
-        </div>
-    </section>
-
-    <!-- Community Content -->
-    <section class="community-section">
-        <div class="container">
-            <h2>Be Part of Something Great</h2>
-            <p class="section-intro">OpenWorlds is a community where we share our creativity and passion with each other for the best possible experience.</p>
-
-            <div class="community-platforms">
-                <div class="platform-card">
-                    <i class="fab fa-discord fa-3x"></i>
-                    <h3>Discord Server</h3>
-                    <p>Join our active Discord community to chat with creators, get support, and stay updated on news and events.</p>
-                    <a href="https://discord.gg/TRJ8ZmBKDS" class="btn btn-primary">Join Discord</a>
-                </div>
-                <div class="platform-card">
-                    <i class="fab fa-youtube fa-3x"></i>
-                    <h3>YouTube</h3>
-                    <p>Subscribe to our YouTube channel for tutorials, gameplay, creator spotlights, and behind-the-scenes content.</p>
-                    <a href="https://www.youtube.com/@Official-OpenWorlds" class="btn btn-primary">Subscribe</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Community Guidelines -->
-    <section class="guidelines-section">
-        <div class="container">
-            <h2>Community Guidelines</h2>
-            <p class="section-intro">We're committed to building a safe, inclusive, and welcoming community for all creators and players.</p>
-            <div class="guidelines-grid">
-                <div class="guideline-card">
-                    <i class="fas fa-heart"></i>
-                    <h3>Respect & Kindness</h3>
-                    <p>Treat all community members with respect. We have zero tolerance for harassment, discrimination, or hateful content.</p>
-                </div>
-                <div class="guideline-card">
-                    <i class="fas fa-lock"></i>
-                    <h3>Privacy & Security</h3>
-                    <p>Protect your personal information and respect others' privacy. Never share or request sensitive data.</p>
-                </div>
-                <div class="guideline-card">
-                    <i class="fas fa-lightbulb"></i>
-                    <h3>Original Content</h3>
-                    <p>Create original content and respect intellectual property rights. Plagiarism and copyright infringement are prohibited.</p>
-                </div>
-                <div class="guideline-card">
-                    <i class="fas fa-shield-alt"></i>
-                    <h3>Safety First</h3>
-                    <p>Keep our platform safe by reporting harmful content and following all community rules and policies.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>OpenWorlds</h4>
-                    <p>Empowering creators worldwide</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="careers.html">Careers</a></li>
-                        <li><a href="community.html">Community</a></li>
-                        <li><a href="index.html#contact">Support</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Follow Us</h4>
-                    <div class="social-links">
-                        <a href="https://discord.gg/TRJ8ZmBKDS"><i class="fab fa-discord"></i></a>
-                        <a href="https://www.youtube.com/@Official-OpenWorlds"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 OpenWorlds. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-
     <style>
+        .brand-wrap { display: flex; align-items: center; gap: 0.8rem; }
+        .ow-logo { width: 42px; height: 42px; border-radius: 10px; object-fit: cover; }
         .community-section {
             padding: 80px 20px;
         }
@@ -217,5 +111,118 @@
             font-size: 0.95rem;
         }
     </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="brand-wrap">
+                <img src="assets/openworlds-logo.png" alt="OpenWorlds logo" class="ow-logo">
+                <div class="nav-brand">OpenWorlds</div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+                <li><a href="careers.html">Careers</a></li>
+                <li><a href="community.html">Community</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Community Hero -->
+    <section class="hero" style="min-height: 300px; padding: 60px 20px;">
+        <div class="hero-content">
+            <h1>Join Our Community</h1>
+            <p>Connect with creators and players helping shape OpenWorlds</p>
+        </div>
+    </section>
+
+    <!-- Community Content -->
+    <section class="community-section">
+        <div class="container">
+            <h2>Be Part of Something Great</h2>
+            <p class="section-intro">OpenWorlds is a community where we share our creativity and passion with each other for the best possible experience.</p>
+
+            <div class="community-platforms">
+                <div class="platform-card">
+                    <i class="fab fa-discord fa-3x"></i>
+                    <h3>Discord Server</h3>
+                    <p>Join our active Discord community to chat with creators, get support, and stay updated on news and events.</p>
+                    <a href="https://discord.gg/TRJ8ZmBKDS" class="btn btn-primary">Join Discord</a>
+                </div>
+                <div class="platform-card">
+                    <i class="fab fa-youtube fa-3x"></i>
+                    <h3>YouTube</h3>
+                    <p>Subscribe to our YouTube channel for tutorials, gameplay, creator spotlights, and behind-the-scenes content.</p>
+                    <a href="https://www.youtube.com/@Official-OpenWorlds" class="btn btn-primary">Subscribe</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Guidelines -->
+    <section class="guidelines-section">
+        <div class="container">
+            <h2>Community Guidelines</h2>
+            <p class="section-intro">We're committed to building a safe, inclusive, and welcoming community for all creators and players.</p>
+            <div class="guidelines-grid">
+                <div class="guideline-card">
+                    <i class="fas fa-heart"></i>
+                    <h3>Respect & Kindness</h3>
+                    <p>Treat all community members with respect. We have zero tolerance for harassment, discrimination, or hateful content.</p>
+                </div>
+                <div class="guideline-card">
+                    <i class="fas fa-lock"></i>
+                    <h3>Privacy & Security</h3>
+                    <p>Protect your personal information and respect others' privacy. Never share or request sensitive data.</p>
+                </div>
+                <div class="guideline-card">
+                    <i class="fas fa-lightbulb"></i>
+                    <h3>Original Content</h3>
+                    <p>Create original content and respect intellectual property rights. Plagiarism and copyright infringement are prohibited.</p>
+                </div>
+                <div class="guideline-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Safety First</h3>
+                    <p>Keep our platform safe by reporting harmful content and following all community rules and policies.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="brand-wrap">
+                        <img src="assets/openworlds-logo.png" alt="OpenWorlds logo" class="ow-logo">
+                        <h4>OpenWorlds</h4>
+                    </div>
+                    <p>Empowering creators worldwide</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                        <li><a href="community.html">Community</a></li>
+                        <li><a href="index.html#contact">Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="https://discord.gg/TRJ8ZmBKDS"><i class="fab fa-discord"></i></a>
+                        <a href="https://www.youtube.com/@Official-OpenWorlds"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 OpenWorlds. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
