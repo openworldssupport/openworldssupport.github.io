@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Careers - Open Worlds</title>
+    <title>Careers - OpenWorlds</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -11,11 +11,10 @@
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
-            <div class="nav-brand">Open Worlds</div>
+            <div class="nav-brand">🌍 OpenWorlds</div>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="index.html#about">About</a></li>
-                <li><a href="index.html#features">Features</a></li>
                 <li><a href="index.html#contact">Contact</a></li>
                 <li><a href="careers.html">Careers</a></li>
                 <li><a href="community.html">Community</a></li>
@@ -36,13 +35,26 @@
         <div class="container">
             <h2>Current Opportunities</h2>
             
+            <!-- Department Filter -->
+            <div class="filter-section">
+                <label for="department-filter">Filter by Department:</label>
+                <select id="department-filter">
+                    <option value="all">All Departments</option>
+                    <option value="engineering">Engineering</option>
+                    <option value="design">Design</option>
+                    <option value="community">Community</option>
+                    <option value="product">Product</option>
+                </select>
+            </div>
+            
             <div class="job-listings">
-                <div class="job-card">
+                <div class="job-card" data-department="engineering">
                     <div class="job-header">
                         <h3>Senior Software Engineer</h3>
                         <span class="job-type">Full-time</span>
                     </div>
-                    <p class="job-location"><i class="fas fa-map-marker-alt"></i> Remote / Tech City</p>
+                    <p class="job-department"><i class="fas fa-tag"></i> Engineering</p>
+                    <p class="job-location"><i class="fas fa-globe"></i> Remote</p>
                     <p class="job-description">We're looking for an experienced software engineer to help build scalable backend systems. You'll work with a talented team to create robust APIs and infrastructure.</p>
                     <div class="job-tags">
                         <span>Python</span>
@@ -53,12 +65,13 @@
                     <button class="btn btn-primary">Apply Now</button>
                 </div>
 
-                <div class="job-card">
+                <div class="job-card" data-department="design">
                     <div class="job-header">
                         <h3>UX/UI Designer</h3>
                         <span class="job-type">Full-time</span>
                     </div>
-                    <p class="job-location"><i class="fas fa-map-marker-alt"></i> Remote / Tech City</p>
+                    <p class="job-department"><i class="fas fa-tag"></i> Design</p>
+                    <p class="job-location"><i class="fas fa-globe"></i> Remote</p>
                     <p class="job-description">Design beautiful and intuitive interfaces for our platform. You'll collaborate with product and engineering teams to create amazing user experiences.</p>
                     <div class="job-tags">
                         <span>Figma</span>
@@ -69,12 +82,13 @@
                     <button class="btn btn-primary">Apply Now</button>
                 </div>
 
-                <div class="job-card">
+                <div class="job-card" data-department="community">
                     <div class="job-header">
                         <h3>Community Manager</h3>
                         <span class="job-type">Full-time</span>
                     </div>
-                    <p class="job-location"><i class="fas fa-map-marker-alt"></i> Remote / Tech City</p>
+                    <p class="job-department"><i class="fas fa-tag"></i> Community</p>
+                    <p class="job-location"><i class="fas fa-globe"></i> Remote</p>
                     <p class="job-description">Build and nurture our creator community. You'll manage social channels, engage with users, and help shape the future of our platform.</p>
                     <div class="job-tags">
                         <span>Community Building</span>
@@ -85,12 +99,13 @@
                     <button class="btn btn-primary">Apply Now</button>
                 </div>
 
-                <div class="job-card">
+                <div class="job-card" data-department="product">
                     <div class="job-header">
                         <h3>Product Manager</h3>
                         <span class="job-type">Full-time</span>
                     </div>
-                    <p class="job-location"><i class="fas fa-map-marker-alt"></i> Remote / Tech City</p>
+                    <p class="job-department"><i class="fas fa-tag"></i> Product</p>
+                    <p class="job-location"><i class="fas fa-globe"></i> Remote</p>
                     <p class="job-description">Lead product strategy and development. You'll work cross-functionally to define features, prioritize roadmap items, and drive product success.</p>
                     <div class="job-tags">
                         <span>Product Strategy</span>
@@ -107,7 +122,7 @@
     <!-- Why Join Us -->
     <section class="why-join" style="background-color: var(--gray); padding: 80px 20px;">
         <div class="container">
-            <h2 style="text-align: center; color: var(--primary-blue); margin-bottom: 3rem;">Why Join Open Worlds?</h2>
+            <h2 style="text-align: center; color: var(--primary-blue); margin-bottom: 3rem;">Why Join OpenWorlds?</h2>
             <div class="benefits-grid">
                 <div class="benefit-item">
                     <i class="fas fa-briefcase"></i>
@@ -138,11 +153,11 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>Open Worlds</h3>
+                    <h4>OpenWorlds</h4>
                     <p>Empowering creators worldwide</p>
                 </div>
                 <div class="footer-section">
-                    <h3>Quick Links</h3>
+                    <h4>Quick Links</h4>
                     <ul>
                         <li><a href="index.html">Home</a></li>
                         <li><a href="careers.html">Careers</a></li>
@@ -151,17 +166,15 @@
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h3>Follow Us</h3>
+                    <h4>Follow Us</h4>
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-discord"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="https://discord.gg/TRJ8ZmBKDS"><i class="fab fa-discord"></i></a>
+                        <a href="https://www.youtube.com/@Official-OpenWorlds"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 Open Worlds. All rights reserved.</p>
+                <p>&copy; 2024 OpenWorlds. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -176,6 +189,32 @@
             font-size: 2.5rem;
             color: var(--primary-blue);
             margin-bottom: 3rem;
+        }
+
+        .filter-section {
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .filter-section label {
+            font-weight: 600;
+            margin-right: 1rem;
+            color: var(--dark-gray);
+        }
+
+        .filter-section select {
+            padding: 0.75rem 1rem;
+            border: 2px solid var(--primary-blue);
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            background-color: var(--white);
+            color: var(--dark-gray);
+        }
+
+        .filter-section select:focus {
+            outline: none;
+            box-shadow: 0 0 5px rgba(0, 102, 204, 0.3);
         }
 
         .job-listings {
@@ -194,6 +233,10 @@
 
         .job-card:hover {
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .job-card.hidden {
+            display: none;
         }
 
         .job-header {
@@ -215,6 +258,12 @@
             border-radius: 20px;
             font-size: 0.9rem;
             font-weight: 600;
+        }
+
+        .job-department {
+            color: var(--primary-blue);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
         }
 
         .job-location {
@@ -267,5 +316,20 @@
             margin-bottom: 0.5rem;
         }
     </style>
+
+    <script>
+        document.getElementById('department-filter').addEventListener('change', function(e) {
+            const selectedDept = e.target.value;
+            const jobCards = document.querySelectorAll('.job-card');
+            
+            jobCards.forEach(card => {
+                if (selectedDept === 'all' || card.dataset.department === selectedDept) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
