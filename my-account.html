@@ -290,7 +290,7 @@ function renderUpcoming() {
   el.innerHTML = bookings.map(b => `
     <div style="border:1px solid var(--aw-border);border-radius:10px;overflow:hidden;margin-bottom:14px">
       <div style="background:var(--aw-dark);color:#fff;padding:10px 16px;display:flex;justify-content:space-between;align-items:center">
-        <span style="font-size:.9rem;font-weight:700;color:var(--aw-sky)"><i class="fas fa-plane"></i> ${b.flightId}</span>
+        <span style="font-size:.9rem;font-weight:700;color:var(--aw-sky)"><i class="fas fa-plane"></i> ${awEsc(b.flightId)}</span>
         <div style="display:flex;gap:8px;align-items:center">
           ${awStatusBadge(b.status)}
         </div>
@@ -298,36 +298,36 @@ function renderUpcoming() {
       <div style="padding:16px">
         <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px">
           <div style="text-align:center">
-            <div style="font-size:1.6rem;font-weight:800;color:var(--aw-text)">${b.dep}</div>
-            <div style="font-weight:700;color:var(--aw-blue)">${b.from}</div>
-            <div style="font-size:.75rem;color:var(--aw-muted)">${ap[b.from]?.city||b.from}</div>
+            <div style="font-size:1.6rem;font-weight:800;color:var(--aw-text)">${awEsc(b.dep)}</div>
+            <div style="font-weight:700;color:var(--aw-blue)">${awEsc(b.from)}</div>
+            <div style="font-size:.75rem;color:var(--aw-muted)">${awEsc(ap[b.from]?.city||b.from)}</div>
           </div>
           <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px">
-            <div style="font-size:.75rem;color:var(--aw-muted)">${b.dur}</div>
+            <div style="font-size:.75rem;color:var(--aw-muted)">${awEsc(b.dur)}</div>
             <div style="width:100%;height:1px;background:#ddd;position:relative">
               <span style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:#fff;padding:0 4px;font-size:.9rem">✈</span>
             </div>
           </div>
           <div style="text-align:center">
-            <div style="font-size:1.6rem;font-weight:800;color:var(--aw-text)">${b.arr}</div>
-            <div style="font-weight:700;color:var(--aw-blue)">${b.to}</div>
-            <div style="font-size:.75rem;color:var(--aw-muted)">${ap[b.to]?.city||b.to}</div>
+            <div style="font-size:1.6rem;font-weight:800;color:var(--aw-text)">${awEsc(b.arr)}</div>
+            <div style="font-weight:700;color:var(--aw-blue)">${awEsc(b.to)}</div>
+            <div style="font-size:.75rem;color:var(--aw-muted)">${awEsc(ap[b.to]?.city||b.to)}</div>
           </div>
         </div>
         <div style="display:flex;gap:16px;font-size:.82rem;color:var(--aw-muted);margin-bottom:14px;flex-wrap:wrap">
-          <span><i class="far fa-calendar"></i> ${awFmtDate(b.date)}</span>
+          <span><i class="far fa-calendar"></i> ${awFmtDate(awEsc(b.date))}</span>
           <span><i class="fas fa-chair"></i> ${b.seatClass === 'business' ? 'Business Class' : 'Economy'}</span>
-          <span><i class="fas fa-tag"></i> ${b.ref}</span>
-          ${b.gate ? `<span><i class="fas fa-sign-in-alt"></i> Gate ${b.gate}</span>` : ''}
+          <span><i class="fas fa-tag"></i> ${awEsc(b.ref)}</span>
+          ${b.gate ? `<span><i class="fas fa-sign-in-alt"></i> Gate ${awEsc(b.gate)}</span>` : ''}
         </div>
         <div style="display:flex;gap:8px;flex-wrap:wrap">
-          <button class="aw-btn aw-btn-primary aw-btn-sm" onclick="showBpass('${b.ref}')">
+          <button class="aw-btn aw-btn-primary aw-btn-sm" onclick="showBpass('${awEsc(b.ref)}')">
             <i class="fas fa-ticket-alt"></i> Boarding Pass
           </button>
           <a href="flight-status.html" class="aw-btn aw-btn-outline aw-btn-sm">
             <i class="fas fa-broadcast-tower"></i> Track Flight
           </a>
-          <button class="aw-btn aw-btn-sm" style="background:#fde8e8;color:var(--aw-red);border:1px solid #f5c6c6" onclick="promptCancel('${b.ref}')">
+          <button class="aw-btn aw-btn-sm" style="background:#fde8e8;color:var(--aw-red);border:1px solid #f5c6c6" onclick="promptCancel('${awEsc(b.ref)}')">
             <i class="fas fa-times"></i> Cancel
           </button>
         </div>
@@ -346,14 +346,14 @@ function renderHistory() {
 
   tbody.innerHTML = bookings.map(b => `
     <tr>
-      <td style="font-family:'Courier New',monospace;font-size:.82rem;font-weight:700;color:var(--aw-blue)">${b.ref}</td>
-      <td><strong>${b.from}</strong> → <strong>${b.to}</strong></td>
-      <td>${awFmtDate(b.date)}</td>
+      <td style="font-family:'Courier New',monospace;font-size:.82rem;font-weight:700;color:var(--aw-blue)">${awEsc(b.ref)}</td>
+      <td><strong>${awEsc(b.from)}</strong> → <strong>${awEsc(b.to)}</strong></td>
+      <td>${awFmtDate(awEsc(b.date))}</td>
       <td>${b.seatClass === 'business' ? 'Business' : 'Economy'}</td>
       <td>${awStatusBadge(b.status)}</td>
       <td>
-        <button class="aw-btn aw-btn-ghost aw-btn-sm" onclick="showBpass('${b.ref}')"><i class="fas fa-ticket-alt"></i></button>
-        ${b.status !== 'Cancelled' ? `<button class="aw-btn aw-btn-sm" style="background:#fde8e8;color:var(--aw-red);border:none" onclick="promptCancel('${b.ref}')"><i class="fas fa-times"></i></button>` : ''}
+        <button class="aw-btn aw-btn-ghost aw-btn-sm" onclick="showBpass('${awEsc(b.ref)}')"><i class="fas fa-ticket-alt"></i></button>
+        ${b.status !== 'Cancelled' ? `<button class="aw-btn aw-btn-sm" style="background:#fde8e8;color:var(--aw-red);border:none" onclick="promptCancel('${awEsc(b.ref)}')"><i class="fas fa-times"></i></button>` : ''}
       </td>
     </tr>`).join('');
 }
@@ -367,29 +367,29 @@ function showBpass(ref) {
       <div class="aw-bpass-top">
         <div class="aw-bpass-airline">OpenWorlds Airways — Boarding Pass (Roleplay)</div>
         <div class="aw-bpass-route">
-          <div><div class="aw-bpass-iata">${b.from}</div><div class="aw-bpass-city">${ap[b.from]?.city}</div></div>
+          <div><div class="aw-bpass-iata">${awEsc(b.from)}</div><div class="aw-bpass-city">${awEsc(ap[b.from]?.city)}</div></div>
           <div class="aw-bpass-arrow">→</div>
-          <div><div class="aw-bpass-iata">${b.to}</div><div class="aw-bpass-city">${ap[b.to]?.city}</div></div>
+          <div><div class="aw-bpass-iata">${awEsc(b.to)}</div><div class="aw-bpass-city">${awEsc(ap[b.to]?.city)}</div></div>
         </div>
       </div>
       <div class="aw-bpass-body">
         <div class="aw-bpass-row">
-          <div class="aw-bpass-field"><label>Passenger</label><span>${b.passenger.first} ${b.passenger.last}</span></div>
-          <div class="aw-bpass-field"><label>Flight</label><span>${b.flightId}</span></div>
-          <div class="aw-bpass-field"><label>Date</label><span>${b.date}</span></div>
+          <div class="aw-bpass-field"><label>Passenger</label><span>${awEsc(b.passenger.first)} ${awEsc(b.passenger.last)}</span></div>
+          <div class="aw-bpass-field"><label>Flight</label><span>${awEsc(b.flightId)}</span></div>
+          <div class="aw-bpass-field"><label>Date</label><span>${awEsc(b.date)}</span></div>
         </div>
         <div class="aw-bpass-row">
-          <div class="aw-bpass-field"><label>Departs</label><span>${b.dep}</span></div>
-          <div class="aw-bpass-field"><label>Gate</label><span>${b.gate}</span></div>
+          <div class="aw-bpass-field"><label>Departs</label><span>${awEsc(b.dep)}</span></div>
+          <div class="aw-bpass-field"><label>Gate</label><span>${awEsc(b.gate)}</span></div>
           <div class="aw-bpass-field"><label>Class</label><span>${b.seatClass === 'business' ? 'BIZ' : 'ECO'}</span></div>
         </div>
         <hr class="aw-bpass-sep">
         <div class="aw-bpass-row">
-          <div class="aw-bpass-field"><label>Reference</label><span>${b.ref}</span></div>
-          <div class="aw-bpass-field"><label>Aircraft</label><span style="font-size:.72rem">${b.aircraft}</span></div>
-          <div class="aw-bpass-field"><label>Status</label><span style="color:${b.status==='Cancelled'?'#e74c3c':'#27ae60'}">${b.status.toUpperCase()}</span></div>
+          <div class="aw-bpass-field"><label>Reference</label><span>${awEsc(b.ref)}</span></div>
+          <div class="aw-bpass-field"><label>Aircraft</label><span style="font-size:.72rem">${awEsc(b.aircraft)}</span></div>
+          <div class="aw-bpass-field"><label>Status</label><span style="color:${b.status==='Cancelled'?'#e74c3c':'#27ae60'}">${awEsc(b.status).toUpperCase()}</span></div>
         </div>
-        <div class="aw-bpass-barcode">${barcodeStr}</div>
+        <div class="aw-bpass-barcode">${awEsc(barcodeStr)}</div>
         <hr class="aw-bpass-sep">
         <div style="text-align:center;font-size:.7rem;color:var(--aw-muted);line-height:1.6">
           ROLEPLAY DOCUMENT — NOT A REAL BOARDING PASS<br>

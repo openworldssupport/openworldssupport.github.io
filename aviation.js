@@ -3,6 +3,10 @@
    OpenWorlds Aviation Community
    ============================================================ */
 
+/* ── HTML escape helper (prevents XSS when inserting user data into innerHTML) ── */
+function awEsc(s) {
+  return String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
 /* ── Airports ── */
 const AW_AIRPORTS = {
   LHR: { name: 'London Heathrow',          city: 'London',       country: 'UK' },
@@ -210,8 +214,23 @@ function awToast(title, msg, type='info', duration=3500) {
 
   const toast = document.createElement('div');
   toast.className = `aw-toast ${type}`;
-  toast.innerHTML = `<i class="fas ${icons[type]||'fa-info-circle'}" style="color:${colors[type]||'#0066cc'};margin-top:1px"></i>
-    <div><div class="aw-toast-title">${title}</div><div class="aw-toast-msg">${msg}</div></div>`;
+
+  const icon = document.createElement('i');
+  icon.className = `fas ${icons[type] || 'fa-info-circle'}`;
+  icon.style.cssText = `color:${colors[type] || '#0066cc'};margin-top:1px`;
+
+  const body = document.createElement('div');
+  const titleEl = document.createElement('div');
+  titleEl.className = 'aw-toast-title';
+  titleEl.textContent = title;
+  const msgEl = document.createElement('div');
+  msgEl.className = 'aw-toast-msg';
+  msgEl.textContent = msg;
+  body.appendChild(titleEl);
+  body.appendChild(msgEl);
+
+  toast.appendChild(icon);
+  toast.appendChild(body);
   wrap.appendChild(toast);
 
   setTimeout(() => {

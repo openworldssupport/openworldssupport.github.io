@@ -385,29 +385,29 @@ function showConfirmation(b) {
       <div class="aw-bpass-top">
         <div class="aw-bpass-airline">OpenWorlds Airways — Boarding Pass (Roleplay)</div>
         <div class="aw-bpass-route">
-          <div><div class="aw-bpass-iata">${b.from}</div><div class="aw-bpass-city">${ap[b.from]?.city}</div></div>
+          <div><div class="aw-bpass-iata">${awEsc(b.from)}</div><div class="aw-bpass-city">${awEsc(ap[b.from]?.city)}</div></div>
           <div class="aw-bpass-arrow">→</div>
-          <div><div class="aw-bpass-iata">${b.to}</div><div class="aw-bpass-city">${ap[b.to]?.city}</div></div>
+          <div><div class="aw-bpass-iata">${awEsc(b.to)}</div><div class="aw-bpass-city">${awEsc(ap[b.to]?.city)}</div></div>
         </div>
       </div>
       <div class="aw-bpass-body">
         <div class="aw-bpass-row">
-          <div class="aw-bpass-field"><label>Passenger</label><span>${b.passenger.first} ${b.passenger.last}</span></div>
-          <div class="aw-bpass-field"><label>Flight</label><span>${b.flightId}</span></div>
-          <div class="aw-bpass-field"><label>Date</label><span>${b.date}</span></div>
+          <div class="aw-bpass-field"><label>Passenger</label><span>${awEsc(b.passenger.first)} ${awEsc(b.passenger.last)}</span></div>
+          <div class="aw-bpass-field"><label>Flight</label><span>${awEsc(b.flightId)}</span></div>
+          <div class="aw-bpass-field"><label>Date</label><span>${awEsc(b.date)}</span></div>
         </div>
         <div class="aw-bpass-row">
-          <div class="aw-bpass-field"><label>Departs</label><span>${b.dep}</span></div>
-          <div class="aw-bpass-field"><label>Gate</label><span>${b.gate}</span></div>
+          <div class="aw-bpass-field"><label>Departs</label><span>${awEsc(b.dep)}</span></div>
+          <div class="aw-bpass-field"><label>Gate</label><span>${awEsc(b.gate)}</span></div>
           <div class="aw-bpass-field"><label>Class</label><span>${b.seatClass === 'business' ? 'BIZ' : 'ECO'}</span></div>
         </div>
         <hr class="aw-bpass-sep">
         <div class="aw-bpass-row">
-          <div class="aw-bpass-field"><label>Booking Ref</label><span>${b.ref}</span></div>
-          <div class="aw-bpass-field"><label>Aircraft</label><span style="font-size:.78rem">${b.aircraft}</span></div>
+          <div class="aw-bpass-field"><label>Booking Ref</label><span>${awEsc(b.ref)}</span></div>
+          <div class="aw-bpass-field"><label>Aircraft</label><span style="font-size:.78rem">${awEsc(b.aircraft)}</span></div>
           <div class="aw-bpass-field"><label>Status</label><span style="color:#27ae60">CONFIRMED</span></div>
         </div>
-        <div class="aw-bpass-barcode">${barcodeStr}</div>
+        <div class="aw-bpass-barcode">${awEsc(barcodeStr)}</div>
         <hr class="aw-bpass-sep">
         <div style="text-align:center;font-size:.72rem;color:var(--aw-muted);line-height:1.7">
           <strong>ROLEPLAY DOCUMENT — NOT A REAL BOARDING PASS</strong><br>
