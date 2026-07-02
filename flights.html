@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search &amp; Book Flights — OpenWorlds Aviation</title>
+  <link rel="stylesheet" href="aviation.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<!-- ── Navigation ── -->
+<nav class="aw-nav">
+  <div class="aw-nav-inner">
+    <a href="index.html" class="aw-nav-brand">
+      <img src="assets/openworlds-logo.png" alt="OpenWorlds" class="aw-nav-logo">
+      <div class="aw-nav-name"><strong>OpenWorlds</strong><span>Aviation Community</span></div>
+    </a>
+    <ul class="aw-nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="flights.html">Flights</a></li>
+      <li><a href="flight-status.html">Live Status</a></li>
+      <li><a href="training.html">Training</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="community.html">Community</a></li>
+      <li><a href="careers.html">Careers</a></li>
+      <li class="aw-nav-cta"><a href="my-account.html">My Account</a></li>
+    </ul>
+    <button class="aw-hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- ── Page Hero / Search ── -->
+<section class="aw-page-hero">
+  <div class="aw-container">
+    <p class="aw-eyebrow" style="color:var(--aw-sky)"><i class="fas fa-search"></i> Flight Search</p>
+    <h1>Search &amp; Book Flights</h1>
+    <p>Find available simulated flights, choose your seat class, and complete your roleplay booking.</p>
+
+    <!-- Search form (replicated, results below) -->
+    <div style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:22px 24px;margin-top:24px;max-width:900px">
+      <form id="flightSearch" style="display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:12px;align-items:end">
+        <div style="display:flex;flex-direction:column;gap:5px">
+          <label style="font-size:.72rem;font-weight:700;color:var(--aw-sky);text-transform:uppercase;letter-spacing:.8px">From</label>
+          <select id="srFrom" style="background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.18);color:#fff;padding:10px 13px;border-radius:6px;font-size:.93rem;font-family:inherit;appearance:none">
+            <option value="">Any Airport</option>
+          </select>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:5px">
+          <label style="font-size:.72rem;font-weight:700;color:var(--aw-sky);text-transform:uppercase;letter-spacing:.8px">To</label>
+          <select id="srTo" style="background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.18);color:#fff;padding:10px 13px;border-radius:6px;font-size:.93rem;font-family:inherit;appearance:none">
+            <option value="">Any Airport</option>
+          </select>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:5px">
+          <label style="font-size:.72rem;font-weight:700;color:var(--aw-sky);text-transform:uppercase;letter-spacing:.8px">Date</label>
+          <input type="date" id="srDate" style="background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.18);color:#fff;padding:10px 13px;border-radius:6px;font-size:.93rem;font-family:inherit">
+        </div>
+        <button type="submit" class="aw-btn aw-btn-primary" style="height:42px">
+          <i class="fas fa-search"></i> Search
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ── Results ── -->
+<section class="aw-section aw-section-alt" style="padding-top:48px">
+  <div class="aw-container">
+
+    <!-- Filter bar -->
+    <div class="aw-filter-bar" id="filterBar">
+      <span class="aw-filter-lbl">Status:</span>
+      <button class="aw-filter-btn active" data-filter="all">All</button>
+      <button class="aw-filter-btn" data-filter="On Time">On Time</button>
+      <button class="aw-filter-btn" data-filter="Boarding">Boarding</button>
+      <button class="aw-filter-btn" data-filter="Delayed">Delayed</button>
+      <button class="aw-filter-btn" data-filter="Cancelled">Cancelled</button>
+    </div>
+
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
+      <div id="resultsCount" style="font-size:.9rem;color:var(--aw-muted)">Loading flights…</div>
+      <div style="display:flex;gap:8px;align-items:center;font-size:.82rem;color:var(--aw-muted)">
+        <i class="fas fa-info-circle" style="color:var(--aw-blue)"></i>
+        Simulated flights for entertainment only
+      </div>
+    </div>
+
+    <div id="flightResults" class="aw-flights-grid"></div>
+  </div>
+</section>
+
+<!-- Disclaimer strip -->
+<div class="aw-disclaimer">
+  <div class="aw-container">
+    <span class="aw-disclaimer-title"><i class="fas fa-info-circle"></i> Roleplay Simulation Notice</span>
+    All flights on this page are fictional roleplay simulations within a flight simulator environment. No real travel, real tickets, or real money are involved. This is a non-commercial entertainment community.
+  </div>
+</div>
+
+<!-- ── Footer ── -->
+<footer class="aw-footer">
+  <div class="aw-container">
+    <div class="aw-footer-grid">
+      <div class="aw-footer-brand">
+        <strong><img src="assets/openworlds-logo.png" alt="OpenWorlds"> OpenWorlds Aviation</strong>
+        <p>Realistic aviation roleplay for entertainment purposes only.</p>
+      </div>
+      <div class="aw-footer-col"><h4>Passengers</h4><ul>
+        <li><a href="flights.html">Search Flights</a></li>
+        <li><a href="my-account.html">My Bookings</a></li>
+        <li><a href="flight-status.html">Live Status</a></li>
+      </ul></div>
+      <div class="aw-footer-col"><h4>Staff</h4><ul>
+        <li><a href="careers.html">Open Roles</a></li>
+        <li><a href="training.html">Training</a></li>
+        <li><a href="staff-portal.html">Staff Portal</a></li>
+      </ul></div>
+      <div class="aw-footer-col"><h4>Community</h4><ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="community.html">Community Hub</a></li>
+      </ul></div>
+    </div>
+    <div class="aw-footer-bottom">
+      <span>&copy; 2026 OpenWorlds Aviation. For entertainment only.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ── Booking Modal ── -->
+<div class="aw-overlay" id="bookingOverlay">
+  <div class="aw-modal" style="max-width:560px">
+    <div class="aw-modal-head">
+      <button class="aw-modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
+      <h2 id="modalTitle">Book Your Flight</h2>
+      <p id="modalSubtitle">Complete your roleplay booking below.</p>
+    </div>
+    <div class="aw-modal-body">
+      <div id="modalContent"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Confirmation Modal ── -->
+<div class="aw-overlay" id="confirmOverlay">
+  <div class="aw-modal" style="max-width:500px">
+    <div class="aw-modal-head" style="background:linear-gradient(135deg,#155724,#27ae60)">
+      <button class="aw-modal-close" onclick="closeConfirm()"><i class="fas fa-times"></i></button>
+      <h2><i class="fas fa-check-circle"></i> Booking Confirmed!</h2>
+      <p>Your roleplay booking reference is below.</p>
+    </div>
+    <div class="aw-modal-body" id="confirmBody"></div>
+  </div>
+</div>
+
+<script src="aviation.js"></script>
+<script>
+// ── Populate selects ──
+function populateSelects() {
+  ['srFrom','srTo'].forEach(id => {
+    const sel = document.getElementById(id);
+    Object.entries(AW_AIRPORTS).forEach(([code, ap]) => {
+      const opt = document.createElement('option');
+      opt.value = code;
+      opt.textContent = `${code} — ${ap.city}`;
+      sel.appendChild(opt);
+    });
+  });
+}
+
+// ── Load URL params ──
+function loadParams() {
+  const p = new URLSearchParams(location.search);
+  if (p.get('from')) document.getElementById('srFrom').value = p.get('from');
+  if (p.get('to'))   document.getElementById('srTo').value   = p.get('to');
+  if (p.get('date')) document.getElementById('srDate').value = p.get('date');
+}
+
+// ── Render flights ──
+let currentFilter = 'all';
+let currentFlights = [];
+
+function renderFlights(flights) {
+  currentFlights = flights;
+  const el = document.getElementById('flightResults');
+  const countEl = document.getElementById('resultsCount');
+
+  const filtered = currentFilter === 'all' ? flights : flights.filter(f => f.status === currentFilter);
+
+  countEl.textContent = `${filtered.length} flight${filtered.length !== 1 ? 's' : ''} found`;
+
+  if (!filtered.length) {
+    el.innerHTML = `<div class="aw-empty"><i class="fas fa-plane-slash"></i><p>No flights found matching your search.</p><a href="flights.html" class="aw-btn aw-btn-outline">Clear Search</a></div>`;
+    return;
+  }
+
+  el.style.cssText = 'display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px';
+  el.innerHTML = filtered.map(f => {
+    const ap = AW_AIRPORTS;
+    const seatsTxt = `<span style="color:var(--aw-muted);font-size:.8rem"><i class="fas fa-chair"></i> ${f.eco} economy · ${f.biz} business</span>`;
+    return `<div class="aw-flight-card aw-animate">
+      <div class="aw-flight-card-top">
+        <span class="aw-flight-num"><i class="fas fa-plane"></i> ${f.id}</span>
+        ${awStatusBadge(f.status)}
+      </div>
+      <div class="aw-flight-body">
+        <div class="aw-flight-route">
+          <div class="aw-flight-point">
+            <span class="aw-fp-time">${f.dep}</span>
+            <div class="aw-fp-iata">${f.from}</div>
+            <div class="aw-fp-city">${ap[f.from]?.city||f.from}</div>
+          </div>
+          <div class="aw-flight-mid">
+            <div class="aw-flight-duration">${f.dur}</div>
+            <div class="aw-flight-line"></div>
+          </div>
+          <div class="aw-flight-point">
+            <span class="aw-fp-time">${f.arr}</span>
+            <div class="aw-fp-iata">${f.to}</div>
+            <div class="aw-fp-city">${ap[f.to]?.city||f.to}</div>
+          </div>
+        </div>
+        <div style="font-size:.8rem;color:var(--aw-muted);margin-bottom:10px">
+          <i class="fas fa-plane-departure"></i> ${f.aircraft} &nbsp;·&nbsp;
+          <i class="fas fa-sign-in-alt"></i> Gate ${f.gate} ${f.terminal ? '· ' + f.terminal : ''}
+        </div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px">
+          ${f.dates.slice(0,3).map(d => `<span style="background:var(--aw-light);color:var(--aw-blue);font-size:.75rem;padding:3px 8px;border-radius:4px;font-weight:600">${d}</span>`).join('')}
+          ${f.dates.length > 3 ? `<span style="font-size:.75rem;color:var(--aw-muted);padding:3px 0">+${f.dates.length-3} more</span>` : ''}
+        </div>
+        <div class="aw-flight-footer">
+          ${seatsTxt}
+          <div style="display:flex;align-items:center;gap:10px">
+            <span class="aw-flight-price-lbl">from £${f.priceEco}</span>
+            ${f.status === 'Cancelled'
+              ? `<span class="aw-badge aw-badge-red">Not Available</span>`
+              : `<button class="aw-btn aw-btn-primary aw-btn-sm" onclick="openBooking('${f.id}')"><i class="fas fa-ticket-alt"></i> Book</button>`
+            }
+          </div>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+
+  awInitAnimations();
+}
+
+function searchFlights() {
+  const from = document.getElementById('srFrom').value;
+  const to   = document.getElementById('srTo').value;
+  const date = document.getElementById('srDate').value;
+
+  let results = AW_FLIGHTS;
+  if (from) results = results.filter(f => f.from === from);
+  if (to)   results = results.filter(f => f.to   === to);
+  if (date) results = results.filter(f => f.dates.includes(date));
+
+  renderFlights(results);
+}
+
+// filter buttons
+document.querySelectorAll('.aw-filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.aw-filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentFilter = btn.dataset.filter;
+    renderFlights(currentFlights);
+  });
+});
+
+// form submit
+document.getElementById('flightSearch').addEventListener('submit', e => {
+  e.preventDefault();
+  searchFlights();
+});
+
+// ── Booking Modal ──
+let selectedFlight = null;
+
+function openBooking(flightId) {
+  selectedFlight = AW_FLIGHTS.find(f => f.id === flightId);
+  if (!selectedFlight) return;
+  const f = selectedFlight;
+  const ap = AW_AIRPORTS;
+
+  document.getElementById('modalTitle').textContent = `Book ${f.id}: ${f.from} → ${f.to}`;
+  document.getElementById('modalSubtitle').textContent = `${ap[f.from]?.city} to ${ap[f.to]?.city} · ${f.dep} – ${f.arr} · ${f.dur}`;
+
+  document.getElementById('modalContent').innerHTML = `
+    <form id="bookForm" onsubmit="submitBooking(event)">
+      <div class="aw-form-row">
+        <div class="aw-form-group">
+          <label>First Name</label>
+          <input type="text" id="bkFirst" placeholder="e.g. James" required>
+        </div>
+        <div class="aw-form-group">
+          <label>Last Name</label>
+          <input type="text" id="bkLast" placeholder="e.g. Anderson" required>
+        </div>
+      </div>
+      <div class="aw-form-group">
+        <label>Username / Roblox Name</label>
+        <input type="text" id="bkUser" placeholder="Your community username" required>
+      </div>
+      <div class="aw-form-group">
+        <label>Travel Date</label>
+        <select id="bkDate" required>
+          ${f.dates.map(d => `<option value="${d}">${awFmtDate(d)}</option>`).join('')}
+        </select>
+      </div>
+      <div class="aw-form-group">
+        <label>Class</label>
+        <select id="bkClass">
+          <option value="economy">Economy — £${f.priceEco}</option>
+          <option value="business">Business Class — £${f.priceBiz}</option>
+        </select>
+      </div>
+      <div class="aw-form-group">
+        <label>Special Requests <span style="font-weight:400;color:var(--aw-muted)">(optional)</span></label>
+        <input type="text" id="bkSpecial" placeholder="e.g. window seat, accessibility requirement">
+      </div>
+      <div style="background:var(--aw-light);border-radius:8px;padding:14px;font-size:.82rem;color:var(--aw-muted);margin-bottom:20px;line-height:1.7">
+        <strong style="color:var(--aw-blue)"><i class="fas fa-info-circle"></i> Roleplay Notice</strong><br>
+        This is a fictional booking for entertainment purposes only within the OpenWorlds Aviation roleplay community. No real money, real ticket, or real travel is involved.
+      </div>
+      <button type="submit" class="aw-btn aw-btn-primary aw-btn-full aw-btn-lg">
+        <i class="fas fa-check-circle"></i> Confirm Booking
+      </button>
+    </form>`;
+
+  document.getElementById('bookingOverlay').classList.add('open');
+}
+
+function closeModal() {
+  document.getElementById('bookingOverlay').classList.remove('open');
+}
+
+function closeConfirm() {
+  document.getElementById('confirmOverlay').classList.remove('open');
+}
+
+// close overlays on backdrop click
+['bookingOverlay','confirmOverlay'].forEach(id => {
+  document.getElementById(id).addEventListener('click', e => {
+    if (e.target.id === id) { document.getElementById(id).classList.remove('open'); }
+  });
+});
+
+function submitBooking(e) {
+  e.preventDefault();
+  if (!selectedFlight) return;
+  const f = selectedFlight;
+
+  const booking = {
+    ref:     awGenRef(),
+    flightId: f.id,
+    from:    f.from, to: f.to,
+    dep:     f.dep,  arr: f.arr, dur: f.dur,
+    aircraft: f.aircraft,
+    date:    document.getElementById('bkDate').value,
+    seatClass: document.getElementById('bkClass').value,
+    passenger: {
+      first:   document.getElementById('bkFirst').value,
+      last:    document.getElementById('bkLast').value,
+      user:    document.getElementById('bkUser').value,
+      special: document.getElementById('bkSpecial').value,
+    },
+    gate:   f.gate, terminal: f.terminal,
+    status: 'Confirmed',
+    bookedAt: new Date().toISOString(),
+    price:  document.getElementById('bkClass').value === 'business' ? f.priceBiz : f.priceEco,
+  };
+
+  AW_STORE.addBooking(booking);
+  closeModal();
+  showConfirmation(booking);
+  awToast('Booking Confirmed!', `Reference: ${booking.ref}`, 'success');
+}
+
+function showConfirmation(b) {
+  const ap = AW_AIRPORTS;
+  const barcodeStr = awBarcode(b.ref);
+  document.getElementById('confirmBody').innerHTML = `
+    <div class="aw-bpass">
+      <div class="aw-bpass-top">
+        <div class="aw-bpass-airline">OpenWorlds Airways — Boarding Pass (Roleplay)</div>
+        <div class="aw-bpass-route">
+          <div><div class="aw-bpass-iata">${awEsc(b.from)}</div><div class="aw-bpass-city">${awEsc(ap[b.from]?.city)}</div></div>
+          <div class="aw-bpass-arrow">→</div>
+          <div><div class="aw-bpass-iata">${awEsc(b.to)}</div><div class="aw-bpass-city">${awEsc(ap[b.to]?.city)}</div></div>
+        </div>
+      </div>
+      <div class="aw-bpass-body">
+        <div class="aw-bpass-row">
+          <div class="aw-bpass-field"><label>Passenger</label><span>${awEsc(b.passenger.first)} ${awEsc(b.passenger.last)}</span></div>
+          <div class="aw-bpass-field"><label>Flight</label><span>${awEsc(b.flightId)}</span></div>
+          <div class="aw-bpass-field"><label>Date</label><span>${awEsc(b.date)}</span></div>
+        </div>
+        <div class="aw-bpass-row">
+          <div class="aw-bpass-field"><label>Departs</label><span>${awEsc(b.dep)}</span></div>
+          <div class="aw-bpass-field"><label>Gate</label><span>${awEsc(b.gate)}</span></div>
+          <div class="aw-bpass-field"><label>Class</label><span>${b.seatClass === 'business' ? 'BIZ' : 'ECO'}</span></div>
+        </div>
+        <hr class="aw-bpass-sep">
+        <div class="aw-bpass-row">
+          <div class="aw-bpass-field"><label>Booking Ref</label><span>${awEsc(b.ref)}</span></div>
+          <div class="aw-bpass-field"><label>Aircraft</label><span style="font-size:.78rem">${awEsc(b.aircraft)}</span></div>
+          <div class="aw-bpass-field"><label>Status</label><span style="color:#27ae60">CONFIRMED</span></div>
+        </div>
+        <div class="aw-bpass-barcode">${awEsc(barcodeStr)}</div>
+        <hr class="aw-bpass-sep">
+        <div style="text-align:center;font-size:.72rem;color:var(--aw-muted);line-height:1.7">
+          <strong>ROLEPLAY DOCUMENT — NOT A REAL BOARDING PASS</strong><br>
+          OpenWorlds Aviation · Non-commercial flight simulation community<br>
+          For entertainment only. No real travel involved.
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:18px;display:flex;gap:10px;justify-content:center">
+      <a href="my-account.html" class="aw-btn aw-btn-primary"><i class="fas fa-user"></i> View My Bookings</a>
+      <button onclick="closeConfirm()" class="aw-btn aw-btn-outline">Close</button>
+    </div>`;
+  document.getElementById('confirmOverlay').classList.add('open');
+}
+
+// ── Init ──
+populateSelects();
+document.getElementById('srDate').min = new Date().toISOString().split('T')[0];
+
+// Check for direct flight link
+const urlFlight = new URLSearchParams(location.search).get('flight');
+if (urlFlight) {
+  loadParams();
+  searchFlights();
+  setTimeout(() => openBooking(urlFlight), 200);
+} else {
+  loadParams();
+  searchFlights();
+}
+</script>
+</body>
+</html>

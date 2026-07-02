@@ -1,114 +1,442 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OpenWorlds - UGC Platform</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        .brand-wrap { display: flex; align-items: center; gap: 0.8rem; }
-        .ow-logo { width: 42px; height: 42px; border-radius: 10px; object-fit: cover; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OpenWorlds Aviation — Realistic Aviation Roleplay Community</title>
+  <link rel="stylesheet" href="aviation.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="brand-wrap">
-                <img src="assets/openworlds-logo.png" alt="OpenWorlds logo" class="ow-logo">
-                <div class="nav-brand">OpenWorlds</div>
-            </div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="careers.html">Careers</a></li>
-                <li><a href="community.html">Community</a></li>
-            </ul>
-        </div>
-    </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>Welcome to OpenWorlds</h1>
-            <p class="hero-description">OpenWorlds is a community where we share our creativity and passion with each other for the best possible experience.</p>
-        </div>
-    </section>
+<!-- ── Navigation ── -->
+<nav class="aw-nav">
+  <div class="aw-nav-inner">
+    <a href="index.html" class="aw-nav-brand">
+      <img src="assets/openworlds-logo.png" alt="OpenWorlds" class="aw-nav-logo">
+      <div class="aw-nav-name">
+        <strong>OpenWorlds</strong>
+        <span>Aviation Community</span>
+      </div>
+    </a>
+    <ul class="aw-nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="flights.html">Flights</a></li>
+      <li><a href="flight-status.html">Live Status</a></li>
+      <li><a href="training.html">Training</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="community.html">Community</a></li>
+      <li><a href="careers.html">Careers</a></li>
+      <li class="aw-nav-cta"><a href="my-account.html">My Account</a></li>
+    </ul>
+    <button class="aw-hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
 
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <h2>About OpenWorlds</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>OpenWorlds is a cutting-edge User-Generated Content (UGC) platform designed for creators and communities. We empower users to create, publish, and monetize their content while building meaningful connections with players worldwide.</p>
-                    <p>Our mission is to democratize content creation and provide tools that make it easy for anyone to bring their ideas to life.</p>
-                    <p style="margin-top: 1.5rem; font-weight: 600; color: var(--primary-blue);">OpenWorlds is a community where we share our creativity and passion with each other for the best possible experience.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- ── Hero ── -->
+<section class="aw-hero" id="home">
+  <div class="aw-hero-bg-dots"></div>
+  <div class="aw-hero-content">
+    <div class="aw-hero-badge">
+      <i class="fas fa-plane"></i> Realistic Aviation Roleplay Community
+    </div>
+    <h1 class="aw-hero-title">
+      Your Runway to<br><span class="aw-highlight">Immersive Aviation</span>
+    </h1>
+    <p class="aw-hero-sub">
+      Join OpenWorlds Aviation — a free flight simulator roleplay community where
+      passengers book real flights and staff operate every aspect of airline
+      and airport operations together. Pure entertainment, zero real-world commitment.
+    </p>
+    <div class="aw-hero-actions">
+      <a href="flights.html" class="aw-btn aw-btn-primary aw-btn-lg">
+        <i class="fas fa-search"></i> Search Flights
+      </a>
+      <a href="about.html" class="aw-btn aw-btn-secondary aw-btn-lg">
+        <i class="fas fa-info-circle"></i> How It Works
+      </a>
+    </div>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2>Get in Touch</h2>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <div>
-                            <h3>Email</h3>
-                            <p><a href="mailto:opwnworldssupport@gmail.com">opwnworldssupport@gmail.com</a></p>
-                        </div>
-                    </div>
-                </div>
-                <form class="contact-form">
-                    <input type="text" placeholder="Your Name" required>
-                    <input type="email" placeholder="Your Email" required>
-                    <textarea placeholder="Your Message" rows="5" required></textarea>
-                    <button type="submit" class="btn btn-primary">Send Message</button>
-                </form>
-            </div>
+    <!-- Quick Search Widget -->
+    <div class="aw-search-widget">
+      <div class="aw-search-label"><i class="fas fa-plane-departure"></i> Quick Flight Search</div>
+      <form class="aw-search-form" id="homeSearch" onsubmit="homeSearchSubmit(event)">
+        <div class="aw-sf-group">
+          <label for="hs-from">From</label>
+          <select id="hs-from">
+            <option value="">Any Airport</option>
+            <option value="LHR">LHR — London</option>
+            <option value="JFK">JFK — New York</option>
+            <option value="LAX">LAX — Los Angeles</option>
+            <option value="DXB">DXB — Dubai</option>
+            <option value="SYD">SYD — Sydney</option>
+            <option value="CDG">CDG — Paris</option>
+            <option value="FRA">FRA — Frankfurt</option>
+            <option value="ORD">ORD — Chicago</option>
+            <option value="SIN">SIN — Singapore</option>
+            <option value="HND">HND — Tokyo</option>
+            <option value="AMS">AMS — Amsterdam</option>
+          </select>
         </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <div class="brand-wrap">
-                        <img src="assets/openworlds-logo.png" alt="OpenWorlds logo" class="ow-logo">
-                        <h4>OpenWorlds</h4>
-                    </div>
-                    <p>Empowering creators worldwide</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="careers.html">Careers</a></li>
-                        <li><a href="community.html">Community</a></li>
-                        <li><a href="#contact">Support</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Follow Us</h4>
-                    <div class="social-links">
-                        <a href="https://discord.gg/TRJ8ZmBKDS"><i class="fab fa-discord"></i></a>
-                        <a href="https://www.youtube.com/@Official-OpenWorlds"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 OpenWorlds. All rights reserved.</p>
-            </div>
+        <div class="aw-sf-group">
+          <label for="hs-to">To</label>
+          <select id="hs-to">
+            <option value="">Any Airport</option>
+            <option value="LHR">LHR — London</option>
+            <option value="JFK">JFK — New York</option>
+            <option value="LAX">LAX — Los Angeles</option>
+            <option value="DXB">DXB — Dubai</option>
+            <option value="SYD">SYD — Sydney</option>
+            <option value="CDG">CDG — Paris</option>
+            <option value="FRA">FRA — Frankfurt</option>
+            <option value="ORD">ORD — Chicago</option>
+            <option value="SIN">SIN — Singapore</option>
+            <option value="HND">HND — Tokyo</option>
+            <option value="AMS">AMS — Amsterdam</option>
+          </select>
         </div>
-    </footer>
+        <div class="aw-sf-group">
+          <label for="hs-date">Date</label>
+          <input type="date" id="hs-date" min="">
+        </div>
+        <button type="submit" class="aw-btn aw-btn-search">
+          <i class="fas fa-search"></i> Search
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
 
-    <script src="script.js"></script>
+<!-- ── Stats Bar ── -->
+<div class="aw-stats-bar">
+  <div class="aw-stats-inner">
+    <div class="aw-stat">
+      <span class="aw-stat-num" data-count-to="1240">0</span>
+      <span class="aw-stat-lbl">Community Members</span>
+    </div>
+    <div class="aw-stat">
+      <span class="aw-stat-num" data-count-to="8700">0</span>
+      <span class="aw-stat-lbl">Flights Operated</span>
+    </div>
+    <div class="aw-stat">
+      <span class="aw-stat-num" data-count-to="15">0</span>
+      <span class="aw-stat-lbl">Active Routes</span>
+    </div>
+    <div class="aw-stat">
+      <span class="aw-stat-num" data-count-to="210">0</span>
+      <span class="aw-stat-lbl">Active Staff</span>
+    </div>
+  </div>
+</div>
+
+<!-- ── How It Works ── -->
+<section class="aw-section aw-section-alt">
+  <div class="aw-container">
+    <div class="aw-section-header">
+      <span class="aw-eyebrow">Getting Started</span>
+      <h2>Two Ways to Participate</h2>
+      <p>Join as a passenger for a seamless booking experience, or apply as staff to help run the operation.</p>
+    </div>
+
+    <div class="aw-feature-grid">
+      <!-- Passenger Card -->
+      <div class="aw-feature-card aw-animate">
+        <div class="aw-feature-icon"><i class="fas fa-user-tie"></i></div>
+        <h3>✈️ Fly as a Passenger</h3>
+        <p>Create an account, search available flights, and book your seat. Receive boarding information, track your flight live, and enjoy a realistic airline experience from departure to arrival.</p>
+        <ul style="color:var(--aw-muted);font-size:.88rem;line-height:1.9;padding-left:1.2rem;margin-bottom:18px">
+          <li>Search &amp; book flights on 15+ routes</li>
+          <li>Receive boarding passes</li>
+          <li>Track flights live on the status board</li>
+          <li>View booking history &amp; upcoming trips</li>
+          <li>Get real-time delay &amp; gate notifications</li>
+        </ul>
+        <a href="flights.html" class="aw-feature-link">Browse flights <i class="fas fa-arrow-right"></i></a>
+      </div>
+
+      <!-- Staff Card -->
+      <div class="aw-feature-card aw-animate">
+        <div class="aw-feature-icon"><i class="fas fa-id-badge"></i></div>
+        <h3>🏢 Join as Staff</h3>
+        <p>Apply for a staff role, complete the required training, and operate flights as part of our ground crew, cabin crew, flight crew, or operations team. Every flight needs a full team.</p>
+        <ul style="color:var(--aw-muted);font-size:.88rem;line-height:1.9;padding-left:1.2rem;margin-bottom:18px">
+          <li>Multiple departments &amp; roles available</li>
+          <li>Structured training &amp; certifications</li>
+          <li>Manage flights, passengers &amp; operations</li>
+          <li>Issue announcements &amp; flight updates</li>
+          <li>Earn promotions &amp; senior permissions</li>
+        </ul>
+        <a href="careers.html" class="aw-feature-link">View open roles <i class="fas fa-arrow-right"></i></a>
+      </div>
+
+      <!-- Training Card -->
+      <div class="aw-feature-card aw-animate">
+        <div class="aw-feature-icon"><i class="fas fa-graduation-cap"></i></div>
+        <h3>🎓 Training Academy</h3>
+        <p>Every staff member must complete the appropriate training before receiving operational permissions. Our academy covers everything from safety procedures to advanced flight management.</p>
+        <ul style="color:var(--aw-muted);font-size:.88rem;line-height:1.9;padding-left:1.2rem;margin-bottom:18px">
+          <li>6 structured training modules</li>
+          <li>Lessons, exams &amp; assessments</li>
+          <li>Progress saved to your account</li>
+          <li>Certifications upon completion</li>
+          <li>Instructor-approved practical training</li>
+        </ul>
+        <a href="training.html" class="aw-feature-link">Enter academy <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Upcoming Flights Preview ── -->
+<section class="aw-section">
+  <div class="aw-container">
+    <div class="aw-section-header">
+      <span class="aw-eyebrow">Schedule</span>
+      <h2>Upcoming Flights</h2>
+      <p>Sample from our current schedule. All flights are roleplay simulations within a flight simulator environment.</p>
+    </div>
+
+    <div class="aw-flights-grid" id="featuredFlights"></div>
+
+    <div style="text-align:center;margin-top:32px">
+      <a href="flights.html" class="aw-btn aw-btn-primary">
+        <i class="fas fa-search"></i> View All Flights &amp; Book
+      </a>
+      <a href="flight-status.html" class="aw-btn aw-btn-outline" style="margin-left:12px">
+        <i class="fas fa-broadcast-tower"></i> Live Flight Status
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── Announcements ── -->
+<section class="aw-section aw-section-alt">
+  <div class="aw-container">
+    <div class="aw-section-header">
+      <span class="aw-eyebrow">Notices</span>
+      <h2>Community Announcements</h2>
+      <p>Important updates, schedule changes, and community news.</p>
+    </div>
+    <div id="homeAnnouncements" style="max-width:760px;margin:0 auto"></div>
+    <div style="text-align:center;margin-top:20px">
+      <a href="about.html#announcements" class="aw-btn aw-btn-ghost">View all announcements <i class="fas fa-arrow-right"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- ── Departments ── -->
+<section class="aw-section aw-section-dark">
+  <div class="aw-container">
+    <div class="aw-section-header">
+      <span class="aw-eyebrow">Operations</span>
+      <h2>Departments Working Together</h2>
+      <p>Every flight involves multiple departments collaborating in real time within the flight simulator.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px">
+      <div style="text-align:center;padding:24px;border:1px solid rgba(255,255,255,.1);border-radius:12px;background:rgba(255,255,255,.04)" class="aw-animate">
+        <div style="font-size:2rem;margin-bottom:10px">🛫</div>
+        <div style="font-weight:700;color:#fff;margin-bottom:6px">Flight Crew</div>
+        <div style="font-size:.82rem;color:rgba(255,255,255,.55)">Pilots operating the aircraft within the simulator</div>
+      </div>
+      <div style="text-align:center;padding:24px;border:1px solid rgba(255,255,255,.1);border-radius:12px;background:rgba(255,255,255,.04)" class="aw-animate">
+        <div style="font-size:2rem;margin-bottom:10px">🏢</div>
+        <div style="font-weight:700;color:#fff;margin-bottom:6px">Ground Operations</div>
+        <div style="font-size:.82rem;color:rgba(255,255,255,.55)">Check-in, boarding, and ramp management</div>
+      </div>
+      <div style="text-align:center;padding:24px;border:1px solid rgba(255,255,255,.1);border-radius:12px;background:rgba(255,255,255,.04)" class="aw-animate">
+        <div style="font-size:2rem;margin-bottom:10px">🎫</div>
+        <div style="font-weight:700;color:#fff;margin-bottom:6px">Passenger Services</div>
+        <div style="font-size:.82rem;color:rgba(255,255,255,.55)">Customer-facing staff handling bookings &amp; boarding</div>
+      </div>
+      <div style="text-align:center;padding:24px;border:1px solid rgba(255,255,255,.1);border-radius:12px;background:rgba(255,255,255,.04)" class="aw-animate">
+        <div style="font-size:2rem;margin-bottom:10px">📋</div>
+        <div style="font-weight:700;color:#fff;margin-bottom:6px">Flight Operations</div>
+        <div style="font-size:.82rem;color:rgba(255,255,255,.55)">Scheduling, slot management, and flight control</div>
+      </div>
+      <div style="text-align:center;padding:24px;border:1px solid rgba(255,255,255,.1);border-radius:12px;background:rgba(255,255,255,.04)" class="aw-animate">
+        <div style="font-size:2rem;margin-bottom:10px">📢</div>
+        <div style="font-weight:700;color:#fff;margin-bottom:6px">Communications</div>
+        <div style="font-size:.82rem;color:rgba(255,255,255,.55)">Announcements, delays, and passenger notifications</div>
+      </div>
+      <div style="text-align:center;padding:24px;border:1px solid rgba(255,255,255,.1);border-radius:12px;background:rgba(255,255,255,.04)" class="aw-animate">
+        <div style="font-size:2rem;margin-bottom:10px">🎓</div>
+        <div style="font-weight:700;color:#fff;margin-bottom:6px">Training &amp; HR</div>
+        <div style="font-size:.82rem;color:rgba(255,255,255,.55)">Recruitment, onboarding, and staff development</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="aw-section" style="background:linear-gradient(135deg,#e8f4fd,#f0f8ff)">
+  <div class="aw-container" style="text-align:center">
+    <span class="aw-eyebrow">Ready to take off?</span>
+    <h2 style="font-size:2.2rem;font-weight:800;margin:12px 0 14px;color:var(--aw-text)">Start Your Aviation Journey Today</h2>
+    <p style="color:var(--aw-muted);max-width:500px;margin:0 auto 30px;line-height:1.75">
+      No real-world experience needed. Whether you want to book a simulated flight or join our staff team, there's a place for everyone in OpenWorlds Aviation.
+    </p>
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+      <a href="flights.html" class="aw-btn aw-btn-primary aw-btn-lg">
+        <i class="fas fa-ticket-alt"></i> Book a Flight
+      </a>
+      <a href="careers.html" class="aw-btn aw-btn-outline aw-btn-lg">
+        <i class="fas fa-briefcase"></i> Join as Staff
+      </a>
+      <a href="community.html" class="aw-btn aw-btn-ghost aw-btn-lg">
+        <i class="fab fa-discord"></i> Join Discord
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── Disclaimer ── -->
+<div class="aw-disclaimer">
+  <div class="aw-container">
+    <span class="aw-disclaimer-title"><i class="fas fa-info-circle"></i> Important Disclaimer</span>
+    <strong>OpenWorlds Aviation is a fictional, non-commercial aviation roleplay community for entertainment purposes only.</strong><br>
+    This website simulates airline and airport operations within a flight simulator environment. It is not affiliated with, and does not represent, any real airline, airport, aviation authority, or commercial aviation service.
+    All flights, bookings, schedules, and operations shown here are entirely fictional and exist solely for the enjoyment of our community members.
+    No real travel, real tickets, or real money are involved. All content is provided for entertainment and educational roleplay purposes only.
+  </div>
+</div>
+
+<!-- ── Footer ── -->
+<footer class="aw-footer">
+  <div class="aw-container">
+    <div class="aw-footer-grid">
+      <div class="aw-footer-brand">
+        <strong>
+          <img src="assets/openworlds-logo.png" alt="OpenWorlds">
+          OpenWorlds Aviation
+        </strong>
+        <p>A realistic aviation roleplay community built around the passion for flight simulation. For entertainment only — not a real airline.</p>
+        <div class="aw-footer-socials" style="margin-top:14px">
+          <a href="https://discord.gg/TRJ8ZmBKDS" title="Discord"><i class="fab fa-discord"></i></a>
+          <a href="https://www.youtube.com/@Official-OpenWorlds" title="YouTube"><i class="fab fa-youtube"></i></a>
+          <a href="#" title="Twitter (placeholder)"><i class="fab fa-twitter"></i></a>
+          <a href="#" title="Instagram (placeholder)"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+      <div class="aw-footer-col">
+        <h4>Passengers</h4>
+        <ul>
+          <li><a href="flights.html">Search Flights</a></li>
+          <li><a href="my-account.html">My Bookings</a></li>
+          <li><a href="flight-status.html">Live Status</a></li>
+          <li><a href="my-account.html">My Account</a></li>
+        </ul>
+      </div>
+      <div class="aw-footer-col">
+        <h4>Staff</h4>
+        <ul>
+          <li><a href="careers.html">Open Roles</a></li>
+          <li><a href="training.html">Training Academy</a></li>
+          <li><a href="staff-portal.html">Staff Portal</a></li>
+          <li><a href="apply.html">Apply Now</a></li>
+        </ul>
+      </div>
+      <div class="aw-footer-col">
+        <h4>Community</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="community.html">Community Hub</a></li>
+          <li><a href="about.html#contact">Contact</a></li>
+          <li><a href="about.html#faq">FAQ</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="aw-footer-bottom">
+      <span>&copy; 2026 OpenWorlds Aviation Community. For entertainment only — not a real airline.</span>
+      <span>Roleplay simulation &bull; Non-commercial &bull; Not affiliated with any real carrier</span>
+    </div>
+  </div>
+</footer>
+
+<script src="aviation.js"></script>
+<script>
+/* Set minimum date for search */
+document.getElementById('hs-date').min = new Date().toISOString().split('T')[0];
+
+/* Home search redirect */
+function homeSearchSubmit(e) {
+  e.preventDefault();
+  const from = document.getElementById('hs-from').value;
+  const to   = document.getElementById('hs-to').value;
+  const date = document.getElementById('hs-date').value;
+  const params = new URLSearchParams();
+  if (from) params.set('from', from);
+  if (to)   params.set('to',   to);
+  if (date) params.set('date', date);
+  window.location.href = 'flights.html' + (params.toString() ? '?' + params : '');
+}
+
+/* Render featured flights */
+function renderFeatured() {
+  const upcoming = AW_FLIGHTS.filter(f => f.status !== 'Cancelled' && f.status !== 'Arrived').slice(0, 4);
+  const el = document.getElementById('featuredFlights');
+  if (!el) return;
+
+  el.style.cssText = 'display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px';
+  el.innerHTML = upcoming.map(f => {
+    const ap = AW_AIRPORTS;
+    return `<div class="aw-flight-card aw-animate">
+      <div class="aw-flight-card-top">
+        <span class="aw-flight-num"><i class="fas fa-plane"></i> ${f.id}</span>
+        ${awStatusBadge(f.status)}
+      </div>
+      <div class="aw-flight-body">
+        <div class="aw-flight-route">
+          <div class="aw-flight-point">
+            <span class="aw-fp-time">${f.dep}</span>
+            <div class="aw-fp-iata">${f.from}</div>
+            <div class="aw-fp-city">${ap[f.from]?.city || f.from}</div>
+          </div>
+          <div class="aw-flight-mid">
+            <div class="aw-flight-duration">${f.dur}</div>
+            <div class="aw-flight-line"></div>
+          </div>
+          <div class="aw-flight-point">
+            <span class="aw-fp-time">${f.arr}</span>
+            <div class="aw-fp-iata">${f.to}</div>
+            <div class="aw-fp-city">${ap[f.to]?.city || f.to}</div>
+          </div>
+        </div>
+        <div class="aw-flight-footer">
+          <span class="aw-flight-date-lbl"><i class="far fa-calendar"></i> ${f.dates[0]}</span>
+          <span class="aw-flight-price-lbl">from £${f.priceEco}</span>
+          <a href="flights.html?flight=${f.id}" class="aw-btn aw-btn-primary aw-btn-sm">Book</a>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+/* Render announcements */
+function renderAnnouncements() {
+  const el = document.getElementById('homeAnnouncements');
+  if (!el) return;
+  const pinned = AW_ANNOUNCEMENTS.filter(a => a.pinned).slice(0, 3);
+  el.innerHTML = pinned.map(a => {
+    const typeMap = { urgent:'red', info:'orange', general:'blue' };
+    const cls = typeMap[a.type] || 'blue';
+    return `<div class="aw-announce ${a.type === 'urgent' ? 'urgent' : a.type === 'info' ? 'info' : ''}">
+      <div class="aw-announce-top">
+        <span class="aw-announce-title">${a.title}</span>
+        <span class="aw-badge aw-badge-${cls}">${a.type === 'urgent' ? '⚠ Urgent' : a.type === 'info' ? 'ℹ Info' : '📢 Notice'}</span>
+      </div>
+      <div class="aw-announce-body">${a.body}</div>
+      <div class="aw-announce-meta">
+        <span><i class="fas fa-user"></i> ${a.author}</span>
+        <span><i class="far fa-calendar"></i> ${awFmtDate(a.date)}</span>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+renderFeatured();
+renderAnnouncements();
+</script>
 </body>
 </html>

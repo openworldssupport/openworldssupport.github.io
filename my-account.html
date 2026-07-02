@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Account — OpenWorlds Aviation</title>
+  <link rel="stylesheet" href="aviation.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<nav class="aw-nav">
+  <div class="aw-nav-inner">
+    <a href="index.html" class="aw-nav-brand">
+      <img src="assets/openworlds-logo.png" alt="OpenWorlds" class="aw-nav-logo">
+      <div class="aw-nav-name"><strong>OpenWorlds</strong><span>Aviation Community</span></div>
+    </a>
+    <ul class="aw-nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="flights.html">Flights</a></li>
+      <li><a href="flight-status.html">Live Status</a></li>
+      <li><a href="training.html">Training</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="community.html">Community</a></li>
+      <li><a href="careers.html">Careers</a></li>
+      <li class="aw-nav-cta"><a href="my-account.html">My Account</a></li>
+    </ul>
+    <button class="aw-hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- ── Sign-in screen (shown when no profile) ── -->
+<div id="signInScreen" style="display:none">
+  <section class="aw-page-hero">
+    <div class="aw-container">
+      <p class="aw-eyebrow" style="color:var(--aw-sky)"><i class="fas fa-user-circle"></i> My Account</p>
+      <h1>Passenger Portal</h1>
+      <p>Enter your community name to access your bookings and account.</p>
+    </div>
+  </section>
+  <section class="aw-section">
+    <div class="aw-container" style="max-width:480px">
+      <div class="aw-card">
+        <div style="text-align:center;margin-bottom:24px">
+          <div style="width:64px;height:64px;background:var(--aw-light);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;font-size:1.8rem;color:var(--aw-blue)">
+            <i class="fas fa-user-circle"></i>
+          </div>
+          <h2 style="font-size:1.4rem;font-weight:800;margin-bottom:6px">Welcome Back</h2>
+          <p style="color:var(--aw-muted);font-size:.9rem">Enter your details to continue</p>
+        </div>
+        <form id="signInForm">
+          <div class="aw-form-group">
+            <label>Your Name</label>
+            <input type="text" id="siName" placeholder="e.g. James Anderson" required>
+          </div>
+          <div class="aw-form-group">
+            <label>Username / Roblox Name</label>
+            <input type="text" id="siUser" placeholder="Your community username" required>
+          </div>
+          <div style="background:var(--aw-light);border-radius:8px;padding:12px 14px;font-size:.8rem;color:var(--aw-muted);margin-bottom:18px;line-height:1.7">
+            <i class="fas fa-info-circle" style="color:var(--aw-blue)"></i>
+            This is a local profile saved to your browser. No real account registration is required for this roleplay community site.
+          </div>
+          <button type="submit" class="aw-btn aw-btn-primary aw-btn-full aw-btn-lg">
+            <i class="fas fa-sign-in-alt"></i> Continue to My Account
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ── Dashboard (shown when profile exists) ── -->
+<div id="dashboardScreen" style="display:none">
+  <section class="aw-page-hero">
+    <div class="aw-container">
+      <p class="aw-eyebrow" style="color:var(--aw-sky)"><i class="fas fa-user-circle"></i> Passenger Dashboard</p>
+      <h1 id="dashGreeting">Welcome back!</h1>
+      <p id="dashSubtitle">Manage your bookings and account.</p>
+    </div>
+  </section>
+
+  <div class="aw-dashboard-wrap">
+    <div class="aw-dash-body">
+      <div class="aw-dash-grid">
+
+        <!-- Sidebar -->
+        <aside class="aw-sidebar">
+          <div style="padding:18px;border-bottom:1px solid #f0f3f7;display:flex;align-items:center;gap:12px">
+            <div style="width:42px;height:42px;background:var(--aw-blue);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.1rem;font-weight:700" id="avatarInitial">J</div>
+            <div>
+              <div style="font-weight:700;font-size:.92rem" id="sidebarName">James</div>
+              <div style="font-size:.75rem;color:var(--aw-muted)" id="sidebarUser">@user</div>
+            </div>
+          </div>
+          <div class="aw-sidebar-section">
+            <button class="aw-sidebar-link active" data-panel="upcoming">
+              <i class="fas fa-calendar-check"></i> Upcoming Flights
+            </button>
+            <button class="aw-sidebar-link" data-panel="history">
+              <i class="fas fa-history"></i> Booking History
+            </button>
+            <button class="aw-sidebar-link" data-panel="search">
+              <i class="fas fa-search"></i> Search Flights
+            </button>
+          </div>
+          <div class="aw-sidebar-section">
+            <div class="aw-sidebar-heading">Quick Links</div>
+            <a href="flights.html" class="aw-sidebar-link"><i class="fas fa-ticket-alt"></i> Book a Flight</a>
+            <a href="flight-status.html" class="aw-sidebar-link"><i class="fas fa-broadcast-tower"></i> Live Status</a>
+            <a href="training.html" class="aw-sidebar-link"><i class="fas fa-graduation-cap"></i> Training</a>
+          </div>
+          <div class="aw-sidebar-section">
+            <button class="aw-sidebar-link" id="signOutBtn" style="color:var(--aw-red)">
+              <i class="fas fa-sign-out-alt"></i> Sign Out
+            </button>
+          </div>
+        </aside>
+
+        <!-- Main content -->
+        <main>
+          <!-- Upcoming panel -->
+          <div id="panel-upcoming">
+            <div class="aw-card" style="margin-bottom:20px">
+              <div class="aw-card-title">
+                <span><i class="fas fa-calendar-check" style="color:var(--aw-blue);margin-right:8px"></i>Upcoming Flights</span>
+                <a href="flights.html" class="aw-btn aw-btn-sm aw-btn-primary"><i class="fas fa-plus"></i> Book New</a>
+              </div>
+              <div id="upcomingList"></div>
+            </div>
+          </div>
+
+          <!-- History panel -->
+          <div id="panel-history" style="display:none">
+            <div class="aw-card">
+              <div class="aw-card-title">
+                <span><i class="fas fa-history" style="color:var(--aw-blue);margin-right:8px"></i>All Bookings</span>
+              </div>
+              <div class="aw-table-wrap">
+                <table class="aw-table" id="historyTable">
+                  <thead>
+                    <tr>
+                      <th>Ref</th>
+                      <th>Route</th>
+                      <th>Date</th>
+                      <th>Class</th>
+                      <th>Status</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody id="historyBody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Search panel -->
+          <div id="panel-search" style="display:none">
+            <div class="aw-card">
+              <div class="aw-card-title"><i class="fas fa-search" style="color:var(--aw-blue);margin-right:8px"></i>Search Flights</div>
+              <p style="color:var(--aw-muted);font-size:.9rem;margin-bottom:18px">Browse available flights and book your next roleplay journey.</p>
+              <a href="flights.html" class="aw-btn aw-btn-primary aw-btn-lg"><i class="fas fa-plane"></i> Go to Flight Search</a>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Boarding Pass Modal ── -->
+<div class="aw-overlay" id="bpassOverlay">
+  <div class="aw-modal" style="max-width:500px">
+    <div class="aw-modal-head" style="background:linear-gradient(135deg,var(--aw-dark),var(--aw-blue))">
+      <button class="aw-modal-close" onclick="closeBpass()"><i class="fas fa-times"></i></button>
+      <h2><i class="fas fa-ticket-alt"></i> Boarding Pass</h2>
+      <p>Your roleplay boarding document</p>
+    </div>
+    <div class="aw-modal-body" id="bpassBody"></div>
+  </div>
+</div>
+
+<!-- ── Cancel Confirm Modal ── -->
+<div class="aw-overlay" id="cancelOverlay">
+  <div class="aw-modal" style="max-width:420px">
+    <div class="aw-modal-head" style="background:linear-gradient(135deg,#7f0000,var(--aw-red))">
+      <button class="aw-modal-close" onclick="closeCancel()"><i class="fas fa-times"></i></button>
+      <h2><i class="fas fa-times-circle"></i> Cancel Booking</h2>
+      <p>This action cannot be undone.</p>
+    </div>
+    <div class="aw-modal-body">
+      <p style="color:var(--aw-muted);margin-bottom:20px">Are you sure you want to cancel this booking? This is a roleplay cancellation — no real action is taken.</p>
+      <div style="display:flex;gap:10px">
+        <button class="aw-btn aw-btn-danger" id="confirmCancelBtn"><i class="fas fa-times-circle"></i> Yes, Cancel</button>
+        <button class="aw-btn aw-btn-outline" onclick="closeCancel()">Keep Booking</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="aw-disclaimer">
+  <div class="aw-container">
+    <span class="aw-disclaimer-title"><i class="fas fa-info-circle"></i> Account Notice</span>
+    Your account data is stored locally in your browser using localStorage. This is a roleplay simulation — no real personal account system is active.
+  </div>
+</div>
+
+<footer class="aw-footer">
+  <div class="aw-container">
+    <div class="aw-footer-grid">
+      <div class="aw-footer-brand"><strong><img src="assets/openworlds-logo.png" alt=""> OpenWorlds Aviation</strong><p>Realistic aviation roleplay for entertainment only.</p></div>
+      <div class="aw-footer-col"><h4>Passengers</h4><ul><li><a href="flights.html">Search Flights</a></li><li><a href="my-account.html">My Bookings</a></li><li><a href="flight-status.html">Live Status</a></li></ul></div>
+      <div class="aw-footer-col"><h4>Staff</h4><ul><li><a href="careers.html">Open Roles</a></li><li><a href="training.html">Training</a></li><li><a href="staff-portal.html">Staff Portal</a></li></ul></div>
+      <div class="aw-footer-col"><h4>Community</h4><ul><li><a href="about.html">About</a></li><li><a href="community.html">Community Hub</a></li></ul></div>
+    </div>
+    <div class="aw-footer-bottom"><span>&copy; 2026 OpenWorlds Aviation. For entertainment only.</span></div>
+  </div>
+</footer>
+
+<script src="aviation.js"></script>
+<script>
+const ap = AW_AIRPORTS;
+let cancelRef = null;
+
+function getProfile() { return AW_STORE.getProfile(); }
+function getBookings(){ return AW_STORE.getBookings(); }
+
+function init() {
+  const profile = getProfile();
+  if (!profile) {
+    document.getElementById('signInScreen').style.display = '';
+    document.getElementById('dashboardScreen').style.display = 'none';
+  } else {
+    document.getElementById('signInScreen').style.display = 'none';
+    document.getElementById('dashboardScreen').style.display = '';
+    loadDashboard(profile);
+  }
+}
+
+// Sign-in
+document.getElementById('signInForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const name = document.getElementById('siName').value.trim();
+  const user = document.getElementById('siUser').value.trim();
+  AW_STORE.setProfile({ name, user, joinedAt: new Date().toISOString() });
+  awToast('Welcome!', `Hello, ${name}!`, 'success');
+  init();
+});
+
+// Sign-out
+document.getElementById('signOutBtn').addEventListener('click', () => {
+  AW_STORE.remove('profile');
+  init();
+  awToast('Signed out', 'Your local profile has been cleared.', 'info');
+});
+
+// Sidebar navigation
+document.querySelectorAll('.aw-sidebar-link[data-panel]').forEach(link => {
+  link.addEventListener('click', () => {
+    document.querySelectorAll('.aw-sidebar-link[data-panel]').forEach(l => l.classList.remove('active'));
+    link.classList.add('active');
+    const panel = link.dataset.panel;
+    ['upcoming','history','search'].forEach(p => {
+      const el = document.getElementById('panel-' + p);
+      if (el) el.style.display = p === panel ? '' : 'none';
+    });
+    if (panel === 'history') renderHistory();
+  });
+});
+
+function loadDashboard(profile) {
+  const initial = profile.name.charAt(0).toUpperCase();
+  document.getElementById('avatarInitial').textContent = initial;
+  document.getElementById('sidebarName').textContent = profile.name;
+  document.getElementById('sidebarUser').textContent = '@' + profile.user;
+  document.getElementById('dashGreeting').textContent = 'Welcome back, ' + profile.name + '!';
+  document.getElementById('dashSubtitle').textContent = 'Here are your upcoming flights and bookings.';
+  renderUpcoming();
+}
+
+function renderUpcoming() {
+  const bookings = getBookings().filter(b => b.status !== 'Cancelled');
+  const el = document.getElementById('upcomingList');
+
+  if (!bookings.length) {
+    el.innerHTML = `<div class="aw-empty"><i class="fas fa-plane"></i><p>You have no upcoming bookings.</p><a href="flights.html" class="aw-btn aw-btn-primary">Search Flights</a></div>`;
+    return;
+  }
+
+  el.innerHTML = bookings.map(b => `
+    <div style="border:1px solid var(--aw-border);border-radius:10px;overflow:hidden;margin-bottom:14px">
+      <div style="background:var(--aw-dark);color:#fff;padding:10px 16px;display:flex;justify-content:space-between;align-items:center">
+        <span style="font-size:.9rem;font-weight:700;color:var(--aw-sky)"><i class="fas fa-plane"></i> ${awEsc(b.flightId)}</span>
+        <div style="display:flex;gap:8px;align-items:center">
+          ${awStatusBadge(b.status)}
+        </div>
+      </div>
+      <div style="padding:16px">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px">
+          <div style="text-align:center">
+            <div style="font-size:1.6rem;font-weight:800;color:var(--aw-text)">${awEsc(b.dep)}</div>
+            <div style="font-weight:700;color:var(--aw-blue)">${awEsc(b.from)}</div>
+            <div style="font-size:.75rem;color:var(--aw-muted)">${awEsc(ap[b.from]?.city||b.from)}</div>
+          </div>
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px">
+            <div style="font-size:.75rem;color:var(--aw-muted)">${awEsc(b.dur)}</div>
+            <div style="width:100%;height:1px;background:#ddd;position:relative">
+              <span style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:#fff;padding:0 4px;font-size:.9rem">✈</span>
+            </div>
+          </div>
+          <div style="text-align:center">
+            <div style="font-size:1.6rem;font-weight:800;color:var(--aw-text)">${awEsc(b.arr)}</div>
+            <div style="font-weight:700;color:var(--aw-blue)">${awEsc(b.to)}</div>
+            <div style="font-size:.75rem;color:var(--aw-muted)">${awEsc(ap[b.to]?.city||b.to)}</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:16px;font-size:.82rem;color:var(--aw-muted);margin-bottom:14px;flex-wrap:wrap">
+          <span><i class="far fa-calendar"></i> ${awFmtDate(awEsc(b.date))}</span>
+          <span><i class="fas fa-chair"></i> ${b.seatClass === 'business' ? 'Business Class' : 'Economy'}</span>
+          <span><i class="fas fa-tag"></i> ${awEsc(b.ref)}</span>
+          ${b.gate ? `<span><i class="fas fa-sign-in-alt"></i> Gate ${awEsc(b.gate)}</span>` : ''}
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button class="aw-btn aw-btn-primary aw-btn-sm" onclick="showBpass('${awEsc(b.ref)}')">
+            <i class="fas fa-ticket-alt"></i> Boarding Pass
+          </button>
+          <a href="flight-status.html" class="aw-btn aw-btn-outline aw-btn-sm">
+            <i class="fas fa-broadcast-tower"></i> Track Flight
+          </a>
+          <button class="aw-btn aw-btn-sm" style="background:#fde8e8;color:var(--aw-red);border:1px solid #f5c6c6" onclick="promptCancel('${awEsc(b.ref)}')">
+            <i class="fas fa-times"></i> Cancel
+          </button>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+function renderHistory() {
+  const bookings = getBookings();
+  const tbody = document.getElementById('historyBody');
+
+  if (!bookings.length) {
+    tbody.innerHTML = `<tr><td colspan="6" style="text-align:center;padding:40px;color:var(--aw-muted)"><i class="fas fa-history" style="font-size:1.8rem;display:block;margin-bottom:10px;opacity:.3"></i>No booking history yet</td></tr>`;
+    return;
+  }
+
+  tbody.innerHTML = bookings.map(b => `
+    <tr>
+      <td style="font-family:'Courier New',monospace;font-size:.82rem;font-weight:700;color:var(--aw-blue)">${awEsc(b.ref)}</td>
+      <td><strong>${awEsc(b.from)}</strong> → <strong>${awEsc(b.to)}</strong></td>
+      <td>${awFmtDate(awEsc(b.date))}</td>
+      <td>${b.seatClass === 'business' ? 'Business' : 'Economy'}</td>
+      <td>${awStatusBadge(b.status)}</td>
+      <td>
+        <button class="aw-btn aw-btn-ghost aw-btn-sm" onclick="showBpass('${awEsc(b.ref)}')"><i class="fas fa-ticket-alt"></i></button>
+        ${b.status !== 'Cancelled' ? `<button class="aw-btn aw-btn-sm" style="background:#fde8e8;color:var(--aw-red);border:none" onclick="promptCancel('${awEsc(b.ref)}')"><i class="fas fa-times"></i></button>` : ''}
+      </td>
+    </tr>`).join('');
+}
+
+function showBpass(ref) {
+  const b = getBookings().find(x => x.ref === ref);
+  if (!b) return;
+  const barcodeStr = awBarcode(b.ref);
+  document.getElementById('bpassBody').innerHTML = `
+    <div class="aw-bpass">
+      <div class="aw-bpass-top">
+        <div class="aw-bpass-airline">OpenWorlds Airways — Boarding Pass (Roleplay)</div>
+        <div class="aw-bpass-route">
+          <div><div class="aw-bpass-iata">${awEsc(b.from)}</div><div class="aw-bpass-city">${awEsc(ap[b.from]?.city)}</div></div>
+          <div class="aw-bpass-arrow">→</div>
+          <div><div class="aw-bpass-iata">${awEsc(b.to)}</div><div class="aw-bpass-city">${awEsc(ap[b.to]?.city)}</div></div>
+        </div>
+      </div>
+      <div class="aw-bpass-body">
+        <div class="aw-bpass-row">
+          <div class="aw-bpass-field"><label>Passenger</label><span>${awEsc(b.passenger.first)} ${awEsc(b.passenger.last)}</span></div>
+          <div class="aw-bpass-field"><label>Flight</label><span>${awEsc(b.flightId)}</span></div>
+          <div class="aw-bpass-field"><label>Date</label><span>${awEsc(b.date)}</span></div>
+        </div>
+        <div class="aw-bpass-row">
+          <div class="aw-bpass-field"><label>Departs</label><span>${awEsc(b.dep)}</span></div>
+          <div class="aw-bpass-field"><label>Gate</label><span>${awEsc(b.gate)}</span></div>
+          <div class="aw-bpass-field"><label>Class</label><span>${b.seatClass === 'business' ? 'BIZ' : 'ECO'}</span></div>
+        </div>
+        <hr class="aw-bpass-sep">
+        <div class="aw-bpass-row">
+          <div class="aw-bpass-field"><label>Reference</label><span>${awEsc(b.ref)}</span></div>
+          <div class="aw-bpass-field"><label>Aircraft</label><span style="font-size:.72rem">${awEsc(b.aircraft)}</span></div>
+          <div class="aw-bpass-field"><label>Status</label><span style="color:${b.status==='Cancelled'?'#e74c3c':'#27ae60'}">${awEsc(b.status).toUpperCase()}</span></div>
+        </div>
+        <div class="aw-bpass-barcode">${awEsc(barcodeStr)}</div>
+        <hr class="aw-bpass-sep">
+        <div style="text-align:center;font-size:.7rem;color:var(--aw-muted);line-height:1.6">
+          ROLEPLAY DOCUMENT — NOT A REAL BOARDING PASS<br>
+          OpenWorlds Aviation · Non-commercial entertainment community
+        </div>
+      </div>
+    </div>`;
+  document.getElementById('bpassOverlay').classList.add('open');
+}
+
+function closeBpass() { document.getElementById('bpassOverlay').classList.remove('open'); }
+
+function promptCancel(ref) {
+  cancelRef = ref;
+  document.getElementById('cancelOverlay').classList.add('open');
+}
+
+function closeCancel() { document.getElementById('cancelOverlay').classList.remove('open'); cancelRef = null; }
+
+document.getElementById('confirmCancelBtn').addEventListener('click', () => {
+  if (!cancelRef) return;
+  AW_STORE.cancelBooking(cancelRef);
+  closeCancel();
+  awToast('Booking Cancelled', 'Your booking has been cancelled.', 'warning');
+  renderUpcoming();
+  renderHistory();
+});
+
+['bpassOverlay','cancelOverlay'].forEach(id => {
+  document.getElementById(id).addEventListener('click', e => {
+    if (e.target.id === id) document.getElementById(id).classList.remove('open');
+  });
+});
+
+init();
+</script>
+</body>
+</html>

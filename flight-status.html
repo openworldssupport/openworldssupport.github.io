@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Live Flight Status — OpenWorlds Aviation</title>
+  <link rel="stylesheet" href="aviation.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<nav class="aw-nav">
+  <div class="aw-nav-inner">
+    <a href="index.html" class="aw-nav-brand">
+      <img src="assets/openworlds-logo.png" alt="OpenWorlds" class="aw-nav-logo">
+      <div class="aw-nav-name"><strong>OpenWorlds</strong><span>Aviation Community</span></div>
+    </a>
+    <ul class="aw-nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="flights.html">Flights</a></li>
+      <li><a href="flight-status.html">Live Status</a></li>
+      <li><a href="training.html">Training</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="community.html">Community</a></li>
+      <li><a href="careers.html">Careers</a></li>
+      <li class="aw-nav-cta"><a href="my-account.html">My Account</a></li>
+    </ul>
+    <button class="aw-hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- ── Page Hero ── -->
+<section class="aw-page-hero">
+  <div class="aw-container">
+    <p class="aw-eyebrow" style="color:var(--aw-sky)"><i class="fas fa-broadcast-tower"></i> Live Flight Information</p>
+    <h1>Flight Status Board</h1>
+    <p>Simulated departure and arrival information for all OpenWorlds Aviation routes.</p>
+    <div style="display:flex;align-items:center;gap:14px;margin-top:18px;flex-wrap:wrap">
+      <div style="display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:8px;padding:8px 16px">
+        <span style="width:8px;height:8px;background:#4db8ff;border-radius:50%;animation:pulse 2s infinite"></span>
+        <span style="font-size:.85rem;color:rgba(255,255,255,.8)">Simulated Live — Updates every 30s</span>
+      </div>
+      <div style="font-size:1.2rem;font-weight:700;color:#fff;font-family:'Courier New',monospace" id="heroTime"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Controls ── -->
+<section style="background:var(--aw-gray);padding:20px 0 0">
+  <div class="aw-container">
+    <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;padding-bottom:18px">
+      <!-- Departures / Arrivals toggle -->
+      <div class="aw-tabs" style="max-width:300px;margin:0">
+        <button class="aw-tab active" data-board="departures">
+          <i class="fas fa-plane-departure"></i> Departures
+        </button>
+        <button class="aw-tab" data-board="arrivals">
+          <i class="fas fa-plane-arrival"></i> Arrivals
+        </button>
+      </div>
+
+      <!-- Airport selector -->
+      <div style="display:flex;gap:6px;align-items:center">
+        <label style="font-size:.8rem;font-weight:700;color:var(--aw-muted);white-space:nowrap">Airport:</label>
+        <select id="airportSelect" style="padding:8px 12px;border:1.5px solid var(--aw-border);border-radius:6px;font-size:.88rem;font-family:inherit;background:#fff;color:var(--aw-text)">
+          <option value="all">All Airports</option>
+        </select>
+      </div>
+
+      <!-- Status filter -->
+      <div class="aw-filter-bar" style="margin:0;background:none;box-shadow:none;padding:0">
+        <span class="aw-filter-lbl">Status:</span>
+        <button class="aw-filter-btn active" data-sf="all">All</button>
+        <button class="aw-filter-btn" data-sf="On Time">On Time</button>
+        <button class="aw-filter-btn" data-sf="Delayed">Delayed</button>
+        <button class="aw-filter-btn" data-sf="Boarding">Boarding</button>
+        <button class="aw-filter-btn" data-sf="Cancelled">Cancelled</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FIDS Board ── -->
+<section class="aw-section aw-section-alt" style="padding-top:20px">
+  <div class="aw-container">
+
+    <!-- Announcements strip -->
+    <div id="activeAlerts" style="margin-bottom:20px"></div>
+
+    <!-- FIDS -->
+    <div class="aw-fids">
+      <div class="aw-fids-head">
+        <span class="aw-fids-heading" id="fidsTitle"><i class="fas fa-plane-departure"></i> Departures</span>
+        <span class="aw-fids-clock" id="fidsTime"></span>
+      </div>
+      <div style="overflow-x:auto">
+        <table class="aw-fids" style="border-radius:0">
+          <thead>
+            <tr>
+              <th>Flight</th>
+              <th>Destination / Origin</th>
+              <th>Scheduled</th>
+              <th>Estimated</th>
+              <th>Aircraft</th>
+              <th>Terminal</th>
+              <th>Gate</th>
+              <th>Status</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="fidsBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div style="font-size:.78rem;color:var(--aw-muted);text-align:center;margin-top:14px">
+      <i class="fas fa-info-circle"></i> All information is simulated roleplay data. Not a real flight information service.
+    </div>
+  </div>
+</section>
+
+<!-- ── Flight Detail Modal ── -->
+<div class="aw-overlay" id="detailOverlay">
+  <div class="aw-modal" style="max-width:580px">
+    <div class="aw-modal-head">
+      <button class="aw-modal-close" onclick="closeDetail()"><i class="fas fa-times"></i></button>
+      <h2 id="detailTitle">Flight Details</h2>
+      <p id="detailSub"></p>
+    </div>
+    <div class="aw-modal-body" id="detailBody"></div>
+  </div>
+</div>
+
+<div class="aw-disclaimer">
+  <div class="aw-container">
+    <span class="aw-disclaimer-title"><i class="fas fa-info-circle"></i> Simulation Notice</span>
+    This flight information board displays simulated data for the OpenWorlds Aviation roleplay community. No real-world flights are represented here.
+  </div>
+</div>
+
+<footer class="aw-footer">
+  <div class="aw-container">
+    <div class="aw-footer-grid">
+      <div class="aw-footer-brand"><strong><img src="assets/openworlds-logo.png" alt=""> OpenWorlds Aviation</strong><p>Realistic aviation roleplay for entertainment only.</p></div>
+      <div class="aw-footer-col"><h4>Passengers</h4><ul><li><a href="flights.html">Search Flights</a></li><li><a href="my-account.html">My Bookings</a></li><li><a href="flight-status.html">Live Status</a></li></ul></div>
+      <div class="aw-footer-col"><h4>Staff</h4><ul><li><a href="careers.html">Open Roles</a></li><li><a href="training.html">Training</a></li><li><a href="staff-portal.html">Staff Portal</a></li></ul></div>
+      <div class="aw-footer-col"><h4>Community</h4><ul><li><a href="about.html">About</a></li><li><a href="community.html">Community Hub</a></li></ul></div>
+    </div>
+    <div class="aw-footer-bottom"><span>&copy; 2026 OpenWorlds Aviation. For entertainment only.</span></div>
+  </div>
+</footer>
+
+<style>
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+.aw-fids tbody tr { cursor:pointer; }
+</style>
+
+<script src="aviation.js"></script>
+<script>
+let boardMode = 'departures';
+let statusFilter = 'all';
+let airportFilter = 'all';
+
+// Start clocks
+awStartClock(document.getElementById('heroTime'));
+awStartClock(document.getElementById('fidsTime'));
+
+// Populate airport selector
+const apSel = document.getElementById('airportSelect');
+Object.entries(AW_AIRPORTS).forEach(([code, ap]) => {
+  const o = document.createElement('option');
+  o.value = code;
+  o.textContent = `${code} — ${ap.city}`;
+  apSel.appendChild(o);
+});
+
+// Check URL
+const urlAp = new URLSearchParams(location.search).get('airport');
+if (urlAp) apSel.value = urlAp;
+
+// Tabs
+document.querySelectorAll('.aw-tab[data-board]').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.aw-tab[data-board]').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    boardMode = tab.dataset.board;
+    document.getElementById('fidsTitle').innerHTML = boardMode === 'departures'
+      ? '<i class="fas fa-plane-departure"></i> Departures'
+      : '<i class="fas fa-plane-arrival"></i> Arrivals';
+    renderFids();
+  });
+});
+
+// Status filter
+document.querySelectorAll('[data-sf]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('[data-sf]').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    statusFilter = btn.dataset.sf;
+    renderFids();
+  });
+});
+
+// Airport filter
+apSel.addEventListener('change', () => {
+  airportFilter = apSel.value;
+  renderFids();
+});
+
+// Render alerts
+function renderAlerts() {
+  const el = document.getElementById('activeAlerts');
+  const urgent = AW_ANNOUNCEMENTS.filter(a => a.type === 'urgent' && a.pinned);
+  if (!urgent.length) { el.innerHTML = ''; return; }
+  el.innerHTML = urgent.map(a => `
+    <div style="background:#fff3cd;border:1px solid #f5a623;border-radius:8px;padding:12px 16px;margin-bottom:10px;display:flex;align-items:flex-start;gap:10px">
+      <i class="fas fa-exclamation-triangle" style="color:#f39c12;margin-top:2px"></i>
+      <div><strong style="font-size:.9rem">${a.title}</strong><div style="font-size:.82rem;color:#666;margin-top:3px">${a.body}</div></div>
+    </div>`).join('');
+}
+
+// Render FIDS table
+function renderFids() {
+  let flights = AW_FLIGHTS;
+
+  if (boardMode === 'departures') {
+    if (airportFilter !== 'all') flights = flights.filter(f => f.from === airportFilter);
+  } else {
+    if (airportFilter !== 'all') flights = flights.filter(f => f.to === airportFilter);
+  }
+
+  if (statusFilter !== 'all') flights = flights.filter(f => f.status === statusFilter);
+
+  const ap = AW_AIRPORTS;
+  const tbody = document.getElementById('fidsBody');
+
+  if (!flights.length) {
+    tbody.innerHTML = `<tr><td colspan="9" style="text-align:center;padding:40px;color:rgba(255,255,255,.4)"><i class="fas fa-plane-slash" style="font-size:2rem;display:block;margin-bottom:10px;opacity:.3"></i>No flights found</td></tr>`;
+    return;
+  }
+
+  tbody.innerHTML = flights.map(f => {
+    const dest = boardMode === 'departures' ? f.to : f.from;
+    const destName = ap[dest]?.city || dest;
+    const time = boardMode === 'departures' ? f.dep : f.arr;
+    const estTime = f.status === 'Delayed' ? bumpTime(time, 30) : time;
+    const estColor = f.status === 'Delayed' ? '#f39c12' : 'rgba(255,255,255,.7)';
+
+    return `<tr onclick="showDetail('${f.id}')">
+      <td class="fids-fn">${f.id}</td>
+      <td><span class="fids-dst">${dest}</span> <span style="color:rgba(255,255,255,.45);font-size:.8rem;font-family:inherit"> ${destName}</span></td>
+      <td class="fids-time">${time}</td>
+      <td style="color:${estColor};font-family:'Courier New',monospace">${estTime}${f.status==='Delayed'?' (+30)':''}</td>
+      <td style="color:rgba(255,255,255,.55);font-size:.8rem;font-family:inherit">${f.aircraft}</td>
+      <td style="color:rgba(255,255,255,.6)">${f.terminal||'—'}</td>
+      <td class="fids-gate">${f.gate}</td>
+      <td>${awStatusBadge(f.status)}</td>
+      <td><button class="aw-btn aw-btn-sm" style="background:rgba(255,255,255,.08);color:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.15)" onclick="event.stopPropagation();showDetail('${f.id}')"><i class="fas fa-info"></i></button></td>
+    </tr>`;
+  }).join('');
+}
+
+function bumpTime(t, mins) {
+  const [h,m] = t.split(':').map(Number);
+  const total = h*60+m+mins;
+  return `${String(Math.floor(total/60)%24).padStart(2,'0')}:${String(total%60).padStart(2,'0')}`;
+}
+
+function showDetail(flightId) {
+  const f = AW_FLIGHTS.find(x => x.id === flightId);
+  if (!f) return;
+  const ap = AW_AIRPORTS;
+
+  document.getElementById('detailTitle').textContent = `Flight ${f.id}`;
+  document.getElementById('detailSub').textContent = `${ap[f.from]?.city} (${f.from}) → ${ap[f.to]?.city} (${f.to})`;
+
+  document.getElementById('detailBody').innerHTML = `
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px">
+      <div>
+        <div style="font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--aw-muted);margin-bottom:3px">Departure</div>
+        <div style="font-size:1.8rem;font-weight:800;color:var(--aw-text)">${f.dep}</div>
+        <div style="font-weight:700;color:var(--aw-blue)">${f.from} — ${ap[f.from]?.city}</div>
+        <div style="font-size:.82rem;color:var(--aw-muted)">${ap[f.from]?.name}</div>
+        <div style="margin-top:8px;font-size:.85rem"><strong>Terminal:</strong> ${f.terminal||'—'} &nbsp; <strong>Gate:</strong> ${f.gate}</div>
+      </div>
+      <div>
+        <div style="font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--aw-muted);margin-bottom:3px">Arrival</div>
+        <div style="font-size:1.8rem;font-weight:800;color:var(--aw-text)">${f.arr}</div>
+        <div style="font-weight:700;color:var(--aw-blue)">${f.to} — ${ap[f.to]?.city}</div>
+        <div style="font-size:.82rem;color:var(--aw-muted)">${ap[f.to]?.name}</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:20px">
+      <div style="background:var(--aw-light);padding:12px;border-radius:8px;text-align:center">
+        <div style="font-size:.7rem;color:var(--aw-muted);font-weight:700;text-transform:uppercase">Duration</div>
+        <div style="font-size:1.1rem;font-weight:800;color:var(--aw-text)">${f.dur}</div>
+      </div>
+      <div style="background:var(--aw-light);padding:12px;border-radius:8px;text-align:center">
+        <div style="font-size:.7rem;color:var(--aw-muted);font-weight:700;text-transform:uppercase">Status</div>
+        <div>${awStatusBadge(f.status)}</div>
+      </div>
+      <div style="background:var(--aw-light);padding:12px;border-radius:8px;text-align:center">
+        <div style="font-size:.7rem;color:var(--aw-muted);font-weight:700;text-transform:uppercase">Aircraft</div>
+        <div style="font-size:.82rem;font-weight:700;color:var(--aw-text)">${f.aircraft}</div>
+      </div>
+    </div>
+    ${f.status === 'Delayed' ? `<div style="background:#fff3cd;border-radius:8px;padding:12px 14px;margin-bottom:14px;font-size:.85rem"><i class="fas fa-clock" style="color:#f39c12"></i> <strong>Delay Notice:</strong> This flight is experiencing a delay of approximately 30 minutes. We apologise for any inconvenience.</div>` : ''}
+    ${f.status === 'Cancelled' ? `<div style="background:#fde8e8;border-radius:8px;padding:12px 14px;margin-bottom:14px;font-size:.85rem"><i class="fas fa-times-circle" style="color:#e74c3c"></i> <strong>Cancellation Notice:</strong> This flight has been cancelled. Passengers will be rebooked on the next available service.</div>` : ''}
+    <div style="font-size:.82rem;color:var(--aw-muted);margin-bottom:16px">
+      <strong>Scheduled dates:</strong> ${f.dates.map(d => `<span style="background:var(--aw-light);color:var(--aw-blue);padding:2px 8px;border-radius:4px;margin:2px;display:inline-block;font-size:.78rem;font-weight:600">${d}</span>`).join('')}
+    </div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <a href="flights.html?flight=${f.id}" class="aw-btn aw-btn-primary aw-btn-sm"><i class="fas fa-ticket-alt"></i> Book This Flight</a>
+      <button onclick="closeDetail()" class="aw-btn aw-btn-outline aw-btn-sm">Close</button>
+    </div>`;
+
+  document.getElementById('detailOverlay').classList.add('open');
+}
+
+function closeDetail() {
+  document.getElementById('detailOverlay').classList.remove('open');
+}
+
+document.getElementById('detailOverlay').addEventListener('click', e => {
+  if (e.target.id === 'detailOverlay') closeDetail();
+});
+
+// Init
+airportFilter = apSel.value;
+renderAlerts();
+renderFids();
+
+// Auto-refresh simulation every 30s
+setInterval(() => {
+  renderFids();
+}, 30000);
+</script>
+</body>
+</html>

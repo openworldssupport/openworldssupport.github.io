@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Staff Portal — OpenWorlds Aviation</title>
+  <link rel="stylesheet" href="aviation.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body { background: #0a1628; }
+    .sp-nav-bar { background: #06101f; }
+    .sp-content { background: #0a1628; min-height:calc(100vh - 64px); padding:0 0 60px; }
+    .sp-header { background: linear-gradient(135deg,#06101f,#0d2137); padding:40px 0 56px; }
+    .sp-body { max-width:1200px;margin:0 auto;padding:0 20px;margin-top:-30px; }
+    .sp-grid { display:grid; grid-template-columns:240px 1fr; gap:20px; align-items:start; }
+    .sp-sidebar { background:#0d2137; border:1px solid rgba(255,255,255,.08); border-radius:12px; overflow:hidden; position:sticky; top:80px; }
+    .sp-sidebar-item { display:flex;align-items:center;gap:11px;padding:12px 18px;color:rgba(255,255,255,.65);text-decoration:none;font-size:.88rem;font-weight:500;transition:all .3s;border-left:3px solid transparent;cursor:pointer;background:none;border-top:none;border-right:none;border-bottom:none;width:100%;font-family:inherit;text-align:left; }
+    .sp-sidebar-item i { width:16px;text-align:center;font-size:.85rem; }
+    .sp-sidebar-item:hover { background:rgba(255,255,255,.06);color:#fff; }
+    .sp-sidebar-item.active { background:rgba(0,102,204,.2);color:var(--aw-sky);border-left-color:var(--aw-blue); }
+    .sp-card { background:#0d2137;border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:22px; }
+    .sp-table { width:100%;border-collapse:collapse;font-size:.85rem; }
+    .sp-table th { padding:10px 14px;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--aw-sky);background:rgba(0,0,0,.25);border-bottom:1px solid rgba(255,255,255,.08);text-align:left; }
+    .sp-table td { padding:12px 14px;border-bottom:1px solid rgba(255,255,255,.05);color:rgba(255,255,255,.8); }
+    .sp-table tr:hover td { background:rgba(255,255,255,.03); }
+    @media(max-width:768px){ .sp-grid{grid-template-columns:1fr;} .sp-sidebar{position:static;} }
+  </style>
+</head>
+<body>
+
+<nav class="aw-nav sp-nav-bar">
+  <div class="aw-nav-inner">
+    <a href="index.html" class="aw-nav-brand">
+      <img src="assets/openworlds-logo.png" alt="OpenWorlds" class="aw-nav-logo">
+      <div class="aw-nav-name"><strong>OpenWorlds</strong><span>Staff Portal</span></div>
+    </a>
+    <ul class="aw-nav-links">
+      <li><a href="index.html">← Public Site</a></li>
+      <li><a href="flights.html">Flights</a></li>
+      <li><a href="flight-status.html">Live Status</a></li>
+      <li><a href="training.html">Training</a></li>
+      <li><a href="careers.html">Careers</a></li>
+      <li class="aw-nav-cta"><a href="my-account.html">Passenger Account</a></li>
+    </ul>
+    <button class="aw-hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- ── Staff Login screen ── -->
+<div id="loginScreen">
+  <section style="background:linear-gradient(160deg,#06101f,#0a1628);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px 20px">
+    <div style="background:#0d2137;border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:40px;width:100%;max-width:420px;text-align:center">
+      <div style="width:64px;height:64px;background:rgba(0,102,204,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-size:1.6rem;color:var(--aw-sky)">
+        <i class="fas fa-id-badge"></i>
+      </div>
+      <h2 style="color:#fff;font-size:1.5rem;font-weight:800;margin-bottom:6px">Staff Portal</h2>
+      <p style="color:rgba(255,255,255,.5);font-size:.88rem;margin-bottom:24px">OpenWorlds Aviation — Operations Centre</p>
+      <form id="loginForm">
+        <div style="text-align:left;margin-bottom:14px">
+          <label style="font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--aw-sky);display:block;margin-bottom:5px">Staff Username</label>
+          <input type="text" id="loginUser" placeholder="Your community username" required style="width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);color:#fff;padding:10px 14px;border-radius:6px;font-size:.93rem;font-family:inherit">
+        </div>
+        <div style="text-align:left;margin-bottom:14px">
+          <label style="font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--aw-sky);display:block;margin-bottom:5px">Staff Code</label>
+          <input type="password" id="loginCode" placeholder="Enter staff code" required style="width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);color:#fff;padding:10px 14px;border-radius:6px;font-size:.93rem;font-family:inherit">
+          <div style="font-size:.75rem;color:rgba(255,255,255,.4);margin-top:5px">Demo code: <strong style="color:var(--aw-sky)">OWSTAFF2026</strong></div>
+        </div>
+        <div style="background:rgba(77,184,255,.08);border:1px solid rgba(77,184,255,.15);border-radius:8px;padding:12px;font-size:.78rem;color:rgba(255,255,255,.5);margin-bottom:18px;line-height:1.7;text-align:left">
+          <i class="fas fa-info-circle" style="color:var(--aw-sky)"></i>
+          This is a roleplay staff portal for the OpenWorlds Aviation community. Staff access is managed by community administrators via Discord.
+        </div>
+        <button type="submit" class="aw-btn aw-btn-primary aw-btn-full aw-btn-lg">
+          <i class="fas fa-sign-in-alt"></i> Access Staff Portal
+        </button>
+      </form>
+    </div>
+  </section>
+</div>
+
+<!-- ── Staff Dashboard ── -->
+<div id="dashScreen" style="display:none" class="sp-content">
+  <div class="sp-header">
+    <div style="max-width:1200px;margin:0 auto;padding:0 20px">
+      <p style="font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--aw-sky);margin-bottom:8px"><i class="fas fa-broadcast-tower"></i> Operations Centre</p>
+      <h1 style="color:#fff;font-size:2rem;font-weight:800;margin-bottom:6px" id="spGreeting">Welcome, Staff</h1>
+      <p style="color:rgba(255,255,255,.55);font-size:.92rem">OpenWorlds Aviation — Roleplay Operations Dashboard</p>
+    </div>
+  </div>
+
+  <div class="sp-body">
+    <div class="sp-grid">
+
+      <!-- Sidebar -->
+      <aside class="sp-sidebar">
+        <div style="padding:16px 18px;border-bottom:1px solid rgba(255,255,255,.07)">
+          <div style="font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:rgba(255,255,255,.35);margin-bottom:2px">Signed in as</div>
+          <div style="font-weight:700;color:#fff" id="spSidebarUser">Staff Member</div>
+          <div style="font-size:.75rem;color:rgba(255,255,255,.4)">Operations Staff</div>
+        </div>
+        <div style="padding:8px 0">
+          <button class="sp-sidebar-item active" data-sp="overview"><i class="fas fa-tachometer-alt"></i> Overview</button>
+          <button class="sp-sidebar-item" data-sp="flights"><i class="fas fa-plane"></i> Flight Management</button>
+          <button class="sp-sidebar-item" data-sp="announcements"><i class="fas fa-bullhorn"></i> Announcements</button>
+          <button class="sp-sidebar-item" data-sp="passengers"><i class="fas fa-users"></i> Passenger Log</button>
+          <button class="sp-sidebar-item" data-sp="crew"><i class="fas fa-id-badge"></i> Crew Assignments</button>
+        </div>
+        <div style="padding:8px 0;border-top:1px solid rgba(255,255,255,.07)">
+          <a href="training.html" class="sp-sidebar-item"><i class="fas fa-graduation-cap"></i> Training Academy</a>
+          <a href="flight-status.html" class="sp-sidebar-item"><i class="fas fa-broadcast-tower"></i> Public FIDS</a>
+          <button class="sp-sidebar-item" id="spSignOut" style="color:rgba(231,76,60,.8)"><i class="fas fa-sign-out-alt"></i> Sign Out</button>
+        </div>
+      </aside>
+
+      <!-- Main panels -->
+      <main>
+
+        <!-- OVERVIEW panel -->
+        <div id="sp-overview">
+          <div class="aw-ops-grid">
+            <div class="aw-ops-stat"><span class="num" data-count-to="15">0</span><span class="lbl">Scheduled Flights</span></div>
+            <div class="aw-ops-stat"><span class="num" data-count-to="3">0</span><span class="lbl">Active Now</span></div>
+            <div class="aw-ops-stat"><span class="num" data-count-to="1">0</span><span class="lbl">Delayed</span></div>
+            <div class="aw-ops-stat"><span class="num" data-count-to="1">0</span><span class="lbl">Cancelled</span></div>
+            <div class="aw-ops-stat"><span class="num" data-count-to="210">0</span><span class="lbl">Active Staff</span></div>
+            <div class="aw-ops-stat"><span class="num" data-count-to="1240">0</span><span class="lbl">Passengers</span></div>
+          </div>
+
+          <!-- Live alerts -->
+          <div class="sp-card" style="margin-bottom:20px">
+            <div style="color:var(--aw-sky);font-size:.85rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px;margin-bottom:14px"><i class="fas fa-exclamation-circle"></i> Active Alerts</div>
+            <div id="spAlerts"></div>
+          </div>
+
+          <!-- Quick status board -->
+          <div class="sp-card" style="margin-bottom:20px">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+              <div style="color:var(--aw-sky);font-size:.85rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px"><i class="fas fa-plane"></i> Today's Flights</div>
+              <div style="font-family:'Courier New',monospace;color:#fff;font-weight:700" id="spClock"></div>
+            </div>
+            <div style="overflow-x:auto">
+              <table class="sp-table">
+                <thead>
+                  <tr><th>Flight</th><th>Route</th><th>Dep</th><th>Arr</th><th>Status</th><th>Gate</th><th>Aircraft</th></tr>
+                </thead>
+                <tbody id="spFlightsOverview"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Pinned announcements -->
+          <div class="sp-card">
+            <div style="color:var(--aw-sky);font-size:.85rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px;margin-bottom:14px"><i class="fas fa-thumbtack"></i> Pinned Notices</div>
+            <div id="spPinned"></div>
+          </div>
+        </div>
+
+        <!-- FLIGHT MANAGEMENT panel -->
+        <div id="sp-flights" style="display:none">
+          <div class="sp-card" style="margin-bottom:16px">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:10px">
+              <div style="color:var(--aw-sky);font-size:.85rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px"><i class="fas fa-plane"></i> Flight Management</div>
+              <button class="aw-btn aw-btn-sm" style="background:rgba(0,102,204,.3);color:var(--aw-sky);border:1px solid rgba(0,102,204,.4)" onclick="openFlightEdit(null)">
+                <i class="fas fa-plus"></i> Create Flight
+              </button>
+            </div>
+            <div style="overflow-x:auto">
+              <table class="sp-table">
+                <thead>
+                  <tr><th>Flight #</th><th>From</th><th>To</th><th>Dep</th><th>Status</th><th>Gate</th><th>Seats</th><th>Actions</th></tr>
+                </thead>
+                <tbody id="spFlightTable"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ANNOUNCEMENTS panel -->
+        <div id="sp-announcements" style="display:none">
+          <div class="sp-card" style="margin-bottom:16px">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
+              <div style="color:var(--aw-sky);font-size:.85rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px"><i class="fas fa-bullhorn"></i> Announcements</div>
+            </div>
+            <!-- Create form -->
+            <div style="background:rgba(0,0,0,.2);border-radius:10px;padding:18px;margin-bottom:20px">
+              <div style="color:rgba(255,255,255,.7);font-size:.88rem;font-weight:600;margin-bottom:14px"><i class="fas fa-plus-circle"></i> Post New Announcement</div>
+              <form id="announceForm" onsubmit="postAnnouncement(event)">
+                <div style="margin-bottom:12px">
+                  <label style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--aw-sky);display:block;margin-bottom:5px">Title</label>
+                  <input type="text" id="anTitle" placeholder="Announcement title" required style="width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);color:#fff;padding:9px 13px;border-radius:6px;font-size:.9rem;font-family:inherit">
+                </div>
+                <div style="margin-bottom:12px">
+                  <label style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--aw-sky);display:block;margin-bottom:5px">Message</label>
+                  <textarea id="anBody" rows="3" placeholder="Announcement content…" required style="width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);color:#fff;padding:9px 13px;border-radius:6px;font-size:.9rem;font-family:inherit;resize:vertical"></textarea>
+                </div>
+                <div style="display:flex;gap:12px;flex-wrap:wrap">
+                  <div style="flex:1;min-width:140px">
+                    <label style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--aw-sky);display:block;margin-bottom:5px">Type</label>
+                    <select id="anType" style="width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);color:#fff;padding:9px 13px;border-radius:6px;font-size:.9rem;font-family:inherit">
+                      <option value="general">General Notice</option>
+                      <option value="info">Info Update</option>
+                      <option value="urgent">Urgent</option>
+                    </select>
+                  </div>
+                  <div style="display:flex;align-items:flex-end;padding-bottom:2px">
+                    <button type="submit" class="aw-btn aw-btn-primary aw-btn-sm"><i class="fas fa-paper-plane"></i> Post</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div id="spAnnouncementsList"></div>
+          </div>
+        </div>
+
+        <!-- PASSENGERS panel -->
+        <div id="sp-passengers" style="display:none">
+          <div class="sp-card">
+            <div style="color:var(--aw-sky);font-size:.85rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px;margin-bottom:14px"><i class="fas fa-users"></i> Passenger Booking Log</div>
+            <p style="color:rgba(255,255,255,.4);font-size:.88rem;margin-bottom:16px">This view shows bookings made on this browser session. In a real community deployment, this would show all community bookings.</p>
+            <div style="overflow-x:auto">
+              <table class="sp-table">
+                <thead><tr><th>Ref</th><th>Passenger</th><th>Flight</th><th>Route</th><th>Date</th><th>Class</th><th>Status</th></tr></thead>
+                <tbody id="spPassengers"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- CREW ASSIGNMENTS panel -->
+        <div id="sp-crew" style="display:none">
+          <div class="sp-card">
+            <div style="color:var(--aw-sky);font-size:.85rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px;margin-bottom:18px"><i class="fas fa-id-badge"></i> Crew Assignments</div>
+            <div id="spCrewList"></div>
+          </div>
+        </div>
+
+      </main>
+    </div>
+  </div>
+</div>
+
+<!-- ── Flight Edit Modal ── -->
+<div class="aw-overlay" id="flightEditOverlay">
+  <div class="aw-modal" style="max-width:580px;background:#0d2137;border:1px solid rgba(255,255,255,.1)">
+    <div class="aw-modal-head">
+      <button class="aw-modal-close" onclick="closeFlightEdit()"><i class="fas fa-times"></i></button>
+      <h2 id="flightEditTitle">Flight Details</h2>
+      <p id="flightEditSub">Update flight status and information</p>
+    </div>
+    <div class="aw-modal-body" id="flightEditBody" style="background:#0d2137;border-radius:0 0 20px 20px"></div>
+  </div>
+</div>
+
+<div class="aw-disclaimer">
+  <div class="aw-container">
+    <span class="aw-disclaimer-title"><i class="fas fa-info-circle"></i> Staff Portal Notice</span>
+    This staff portal is a roleplay operations interface for the OpenWorlds Aviation community. All data is simulated. No real airline operations, real aircraft, or real passengers are involved. For entertainment only.
+  </div>
+</div>
+
+<script src="aviation.js"></script>
+<script>
+const SP_CODE = 'OWSTAFF2026';
+const ap = AW_AIRPORTS;
+
+// ── Login ──
+document.getElementById('loginForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const user = document.getElementById('loginUser').value.trim();
+  const code = document.getElementById('loginCode').value.trim();
+  if (code !== SP_CODE) {
+    awToast('Access Denied', 'Invalid staff code. Use OWSTAFF2026 for demo.', 'error');
+    return;
+  }
+  AW_STORE.set('staffUser', user);
+  AW_STORE.setStaffLogin(true);
+  showDashboard(user);
+});
+
+document.getElementById('spSignOut').addEventListener('click', () => {
+  AW_STORE.setStaffLogin(false);
+  document.getElementById('dashScreen').style.display = 'none';
+  document.getElementById('loginScreen').style.display = '';
+  awToast('Signed out', 'You have been signed out of the staff portal.', 'info');
+});
+
+function showDashboard(user) {
+  document.getElementById('loginScreen').style.display = 'none';
+  document.getElementById('dashScreen').style.display = '';
+  document.getElementById('spGreeting').textContent = 'Welcome, ' + user;
+  document.getElementById('spSidebarUser').textContent = user;
+  awStartClock(document.getElementById('spClock'));
+  renderOverview();
+  awInitCounters();
+}
+
+// ── Sidebar navigation ──
+document.querySelectorAll('.sp-sidebar-item[data-sp]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.sp-sidebar-item[data-sp]').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const panel = btn.dataset.sp;
+    ['overview','flights','announcements','passengers','crew'].forEach(p => {
+      const el = document.getElementById('sp-' + p);
+      if (el) el.style.display = p === panel ? '' : 'none';
+    });
+    if (panel === 'flights')       renderFlightTable();
+    if (panel === 'announcements') renderAnnouncements();
+    if (panel === 'passengers')    renderPassengers();
+    if (panel === 'crew')          renderCrew();
+  });
+});
+
+// ── Render Overview ──
+function renderOverview() {
+  // Alerts
+  const alertEl = document.getElementById('spAlerts');
+  const urgent = AW_ANNOUNCEMENTS.filter(a => a.type === 'urgent');
+  if (!urgent.length) {
+    alertEl.innerHTML = '<div style="color:rgba(255,255,255,.35);font-size:.85rem"><i class="fas fa-check-circle" style="color:#27ae60"></i> No active alerts</div>';
+  } else {
+    alertEl.innerHTML = urgent.map(a => `
+      <div style="background:rgba(231,76,60,.12);border:1px solid rgba(231,76,60,.3);border-radius:8px;padding:12px 14px;margin-bottom:10px">
+        <div style="font-weight:700;color:#ff6b6b;font-size:.88rem">${a.title}</div>
+        <div style="font-size:.8rem;color:rgba(255,255,255,.55);margin-top:4px">${a.body}</div>
+      </div>`).join('');
+  }
+
+  // Flights
+  const tbody = document.getElementById('spFlightsOverview');
+  tbody.innerHTML = AW_FLIGHTS.map(f => `
+    <tr>
+      <td style="font-weight:700;color:var(--aw-sky);font-family:'Courier New',monospace">${f.id}</td>
+      <td><span style="font-weight:700">${f.from}</span> → <span style="font-weight:700">${f.to}</span></td>
+      <td style="font-family:'Courier New',monospace">${f.dep}</td>
+      <td style="font-family:'Courier New',monospace">${f.arr}</td>
+      <td>${awStatusBadge(f.status)}</td>
+      <td style="color:var(--aw-gold);font-weight:700">${f.gate}</td>
+      <td style="color:rgba(255,255,255,.5);font-size:.8rem">${f.aircraft}</td>
+    </tr>`).join('');
+
+  // Pinned announcements
+  const pinnedEl = document.getElementById('spPinned');
+  const pinned = AW_ANNOUNCEMENTS.filter(a => a.pinned);
+  pinnedEl.innerHTML = pinned.map(a => `
+    <div style="background:rgba(0,0,0,.2);border-radius:8px;padding:12px 14px;margin-bottom:10px">
+      <div style="font-weight:700;color:rgba(255,255,255,.85);font-size:.88rem">${a.title}</div>
+      <div style="font-size:.8rem;color:rgba(255,255,255,.45);margin-top:4px">${a.body}</div>
+      <div style="font-size:.72rem;color:rgba(255,255,255,.3);margin-top:6px">${a.author} · ${awFmtDate(a.date)}</div>
+    </div>`).join('');
+}
+
+// ── Flight table ──
+function renderFlightTable() {
+  const tbody = document.getElementById('spFlightTable');
+  tbody.innerHTML = AW_FLIGHTS.map(f => `
+    <tr>
+      <td style="font-weight:700;color:var(--aw-sky);font-family:'Courier New',monospace">${f.id}</td>
+      <td>${f.from} <span style="color:rgba(255,255,255,.4);font-size:.78rem">${ap[f.from]?.city}</span></td>
+      <td>${f.to} <span style="color:rgba(255,255,255,.4);font-size:.78rem">${ap[f.to]?.city}</span></td>
+      <td style="font-family:'Courier New',monospace">${f.dep}</td>
+      <td>${awStatusBadge(f.status)}</td>
+      <td style="color:var(--aw-gold);font-weight:700">${f.gate}</td>
+      <td style="font-size:.8rem;color:rgba(255,255,255,.55)">${f.eco} eco / ${f.biz} biz</td>
+      <td>
+        <button class="aw-btn aw-btn-sm" style="background:rgba(0,102,204,.3);color:var(--aw-sky);border:1px solid rgba(0,102,204,.3)" onclick="openFlightEdit('${f.id}')">
+          <i class="fas fa-edit"></i> Edit
+        </button>
+      </td>
+    </tr>`).join('');
+}
+
+// ── Flight edit modal ──
+let editingFlightId = null;
+function openFlightEdit(flightId) {
+  editingFlightId = flightId;
+  const isNew = !flightId;
+  const f = isNew ? {} : AW_FLIGHTS.find(x => x.id === flightId);
+
+  document.getElementById('flightEditTitle').textContent = isNew ? 'Create New Flight' : `Edit Flight ${f.id}`;
+  document.getElementById('flightEditSub').textContent = isNew ? 'Add a new flight to the schedule' : `${ap[f.from]?.city} → ${ap[f.to]?.city}`;
+
+  document.getElementById('flightEditBody').innerHTML = `
+    <div style="color:rgba(77,184,255,.7);font-size:.8rem;margin-bottom:16px;line-height:1.6;background:rgba(77,184,255,.05);border-radius:8px;padding:10px 14px">
+      <i class="fas fa-info-circle"></i>
+      This is a roleplay simulation. Changes here are for demonstration only and do not persist between page reloads.
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px">
+      <div>
+        <label style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--aw-sky);display:block;margin-bottom:5px">Flight Number</label>
+        <input id="ef-id" value="${f.id||''}" placeholder="e.g. OW999" style="width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);color:#fff;padding:9px 13px;border-radius:6px;font-size:.9rem;font-family:inherit">
+      </div>
+      <div>
+        <label style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--aw-sky);display:block;margin-bottom:5px">Status</label>
+        <select id="ef-status" style="width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);color:#fff;padding:9px 13px;border-radius:6px;font-size:.9rem;font-family:inherit">
+          ${['On Time','Delayed','Boarding','Departed','Arrived','Cancelled','Scheduled'].map(s => `<option value="${s}" ${f.status===s?'selected':''}>${s}</option>`).join('')}
+        </select>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px">
+      <div>
+        <label style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--aw-sky);display:block;margin-bottom:5px">From (IATA)</label>
+        <input id="ef-from" value="${f.from||''}" placeholder="e.g. LHR" style="width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);color:#fff;padding:9px 13px;border-radius:6px;font-size:.9rem;font-family:inherit">
+      </div>
+      <div>
+        <label style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--aw-sky);display:block;margin-bottom:5px">To (IATA)</label>
+        <input id="ef-to" value="${f.to||''}" placeholder="e.g. JFK" style="width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);color:#fff;padding:9px 13px;border-radius:6px;font-size:.9rem;font-family:inherit">
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:14px">
+      <div>
+        <label style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--aw-sky);display:block;margin-bottom:5px">Departure</label>
+        <input id="ef-dep" value="${f.dep||''}" placeholder="e.g. 08:30" style="width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);color:#fff;padding:9px 13px;border-radius:6px;font-size:.9rem;font-family:inherit">
+      </div>
+      <div>
+        <label style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--aw-sky);display:block;margin-bottom:5px">Arrival</label>
+        <input id="ef-arr" value="${f.arr||''}" placeholder="e.g. 11:45" style="width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);color:#fff;padding:9px 13px;border-radius:6px;font-size:.9rem;font-family:inherit">
+      </div>
+      <div>
+        <label style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--aw-sky);display:block;margin-bottom:5px">Gate</label>
+        <input id="ef-gate" value="${f.gate||''}" placeholder="e.g. A12" style="width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);color:#fff;padding:9px 13px;border-radius:6px;font-size:.9rem;font-family:inherit">
+      </div>
+    </div>
+    <div style="margin-bottom:18px">
+      <label style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--aw-sky);display:block;margin-bottom:5px">Operational Notes</label>
+      <textarea placeholder="Add operational notes, crew instructions, or remarks…" rows="3" style="width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);color:#fff;padding:9px 13px;border-radius:6px;font-size:.9rem;font-family:inherit;resize:vertical"></textarea>
+    </div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <button class="aw-btn aw-btn-primary" onclick="saveFlightEdit()"><i class="fas fa-save"></i> Save Changes</button>
+      <button class="aw-btn" style="background:rgba(255,255,255,.08);color:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.1)" onclick="closeFlightEdit()">Cancel</button>
+    </div>`;
+
+  document.getElementById('flightEditOverlay').classList.add('open');
+}
+
+function saveFlightEdit() {
+  const status = document.getElementById('ef-status').value;
+  const gate   = document.getElementById('ef-gate').value;
+  if (editingFlightId) {
+    const f = AW_FLIGHTS.find(x => x.id === editingFlightId);
+    if (f) { f.status = status; f.gate = gate; }
+  }
+  closeFlightEdit();
+  renderFlightTable();
+  renderOverview();
+  awToast('Saved', 'Flight updated (session only — not persisted on reload).', 'success');
+}
+
+function closeFlightEdit() { document.getElementById('flightEditOverlay').classList.remove('open'); }
+
+document.getElementById('flightEditOverlay').addEventListener('click', e => {
+  if (e.target.id === 'flightEditOverlay') closeFlightEdit();
+});
+
+// ── Announcements ──
+let localAnnouncements = [...AW_ANNOUNCEMENTS];
+
+function renderAnnouncements() {
+  const el = document.getElementById('spAnnouncementsList');
+  el.innerHTML = localAnnouncements.map((a, i) => `
+    <div style="background:rgba(0,0,0,.2);border-radius:8px;padding:14px;margin-bottom:10px">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:6px">
+        <div style="font-weight:700;color:rgba(255,255,255,.85);font-size:.9rem">${a.title}</div>
+        <div style="display:flex;gap:6px;flex-shrink:0">
+          ${a.type==='urgent'?'<span class="aw-badge aw-badge-red">Urgent</span>':a.type==='info'?'<span class="aw-badge aw-badge-orange">Info</span>':'<span class="aw-badge aw-badge-blue">Notice</span>'}
+          ${a.pinned?'<span class="aw-badge aw-badge-sky">Pinned</span>':''}
+        </div>
+      </div>
+      <div style="font-size:.82rem;color:rgba(255,255,255,.45);line-height:1.6">${a.body}</div>
+      <div style="font-size:.72rem;color:rgba(255,255,255,.3);margin-top:8px">${a.author} · ${awFmtDate(a.date)}</div>
+    </div>`).join('');
+}
+
+function postAnnouncement(e) {
+  e.preventDefault();
+  const announce = {
+    id: Date.now(),
+    type: document.getElementById('anType').value,
+    title: document.getElementById('anTitle').value,
+    body:  document.getElementById('anBody').value,
+    author: AW_STORE.get('staffUser') || 'Staff Member',
+    date:   new Date().toISOString().split('T')[0],
+    pinned: false,
+  };
+  localAnnouncements.unshift(announce);
+  renderAnnouncements();
+  document.getElementById('announceForm').reset();
+  awToast('Posted', 'Announcement posted successfully.', 'success');
+}
+
+// ── Passengers ──
+function renderPassengers() {
+  const tbody = document.getElementById('spPassengers');
+  const bookings = AW_STORE.getBookings();
+  if (!bookings.length) {
+    tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;padding:30px;color:rgba(255,255,255,.3)">No bookings in local session</td></tr>`;
+    return;
+  }
+  tbody.innerHTML = bookings.map(b => `
+    <tr>
+      <td style="font-family:'Courier New',monospace;font-weight:700;color:var(--aw-sky)">${b.ref}</td>
+      <td style="color:rgba(255,255,255,.8)">${b.passenger?.first} ${b.passenger?.last}</td>
+      <td style="font-weight:700;color:var(--aw-sky)">${b.flightId}</td>
+      <td>${b.from} → ${b.to}</td>
+      <td>${awFmtDate(b.date)}</td>
+      <td>${b.seatClass==='business'?'Business':'Economy'}</td>
+      <td>${awStatusBadge(b.status)}</td>
+    </tr>`).join('');
+}
+
+// ── Crew Assignments ──
+const CREW = [
+  { flight:'OW101', captain:'Capt. J. Harrison', fo:'FO A. Mitchell', cc:'Senior Purser L. Chen', gc:'Agent M. Patel', ops:'Duty Mgr R. Thomson' },
+  { flight:'OW201', captain:'Capt. S. Williams', fo:'FO P. Evans',    cc:'Senior Purser K. Smith', gc:'Agent T. Brown', ops:'Duty Mgr R. Thomson' },
+  { flight:'OW301', captain:'Capt. D. Clarke',   fo:'FO N. Kumar',    cc:'Purser H. Davis',        gc:'Agent F. Adams', ops:'Duty Mgr C. Lee' },
+  { flight:'OW401', captain:'Capt. L. Foster',   fo:'FO B. Nelson',   cc:'Senior Purser M. Price', gc:'Agent J. Turner', ops:'Duty Mgr C. Lee' },
+  { flight:'OW501', captain:'Capt. G. Hughes',   fo:'FO E. Cooper',   cc:'Purser A. Parker',       gc:'Agent D. Hill', ops:'Duty Mgr T. White' },
+];
+
+function renderCrew() {
+  const el = document.getElementById('spCrewList');
+  el.innerHTML = `<div style="overflow-x:auto"><table class="sp-table"><thead>
+    <tr><th>Flight</th><th>Captain</th><th>First Officer</th><th>Cabin Crew Lead</th><th>Ground Agent</th><th>Ops</th></tr>
+  </thead><tbody>${CREW.map(c => `
+    <tr>
+      <td style="font-weight:700;color:var(--aw-sky)">${c.flight}</td>
+      <td style="color:rgba(255,255,255,.8)">${c.captain}</td>
+      <td style="color:rgba(255,255,255,.65)">${c.fo}</td>
+      <td style="color:rgba(255,255,255,.65)">${c.cc}</td>
+      <td style="color:rgba(255,255,255,.65)">${c.gc}</td>
+      <td style="color:rgba(255,255,255,.5)">${c.ops}</td>
+    </tr>`).join('')}
+  </tbody></table></div>`;
+}
+
+// ── Init ──
+if (AW_STORE.getStaffLogin()) {
+  const user = AW_STORE.get('staffUser') || 'Staff';
+  showDashboard(user);
+}
+</script>
+</body>
+</html>

@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Community - OpenWorlds</title>
+    <title>Community — OpenWorlds Aviation</title>
+    <link rel="stylesheet" href="aviation.css">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -114,20 +115,24 @@
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="brand-wrap">
-                <img src="assets/openworlds-logo.png" alt="OpenWorlds logo" class="ow-logo">
-                <div class="nav-brand">OpenWorlds</div>
-            </div>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="index.html#about">About</a></li>
-                <li><a href="index.html#contact">Contact</a></li>
-                <li><a href="careers.html">Careers</a></li>
-                <li><a href="community.html">Community</a></li>
-            </ul>
-        </div>
+    <nav class="aw-nav">
+      <div class="aw-nav-inner">
+        <a href="index.html" class="aw-nav-brand">
+          <img src="assets/openworlds-logo.png" alt="OpenWorlds" class="aw-nav-logo">
+          <div class="aw-nav-name"><strong>OpenWorlds</strong><span>Aviation Community</span></div>
+        </a>
+        <ul class="aw-nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="flights.html">Flights</a></li>
+          <li><a href="flight-status.html">Live Status</a></li>
+          <li><a href="training.html">Training</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="community.html">Community</a></li>
+          <li><a href="careers.html">Careers</a></li>
+          <li class="aw-nav-cta"><a href="my-account.html">My Account</a></li>
+        </ul>
+        <button class="aw-hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+      </div>
     </nav>
 
     <!-- Community Hero -->
@@ -192,37 +197,17 @@
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <div class="brand-wrap">
-                        <img src="assets/openworlds-logo.png" alt="OpenWorlds logo" class="ow-logo">
-                        <h4>OpenWorlds</h4>
-                    </div>
-                    <p>Empowering creators worldwide</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="careers.html">Careers</a></li>
-                        <li><a href="community.html">Community</a></li>
-                        <li><a href="index.html#contact">Support</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Follow Us</h4>
-                    <div class="social-links">
-                        <a href="https://discord.gg/TRJ8ZmBKDS"><i class="fab fa-discord"></i></a>
-                        <a href="https://www.youtube.com/@Official-OpenWorlds"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 OpenWorlds. All rights reserved.</p>
-            </div>
+    <footer class="aw-footer">
+      <div class="aw-container">
+        <div class="aw-footer-grid">
+          <div class="aw-footer-brand"><strong><img src="assets/openworlds-logo.png" alt="OpenWorlds"> OpenWorlds Aviation</strong><p>Realistic aviation roleplay for entertainment only.</p></div>
+          <div class="aw-footer-col"><h4>Passengers</h4><ul><li><a href="flights.html">Search Flights</a></li><li><a href="my-account.html">My Bookings</a></li><li><a href="flight-status.html">Live Status</a></li></ul></div>
+          <div class="aw-footer-col"><h4>Staff</h4><ul><li><a href="careers.html">Open Roles</a></li><li><a href="training.html">Training</a></li><li><a href="staff-portal.html">Staff Portal</a></li></ul></div>
+          <div class="aw-footer-col"><h4>Community</h4><ul><li><a href="about.html">About</a></li><li><a href="community.html">Community Hub</a></li></ul></div>
         </div>
+        <div class="aw-footer-bottom"><span>&copy; 2026 OpenWorlds Aviation. For entertainment only.</span></div>
+      </div>
     </footer>
+    <script src="aviation.js"></script>
 </body>
 </html>

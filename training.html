@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Training Academy — OpenWorlds Aviation</title>
+  <link rel="stylesheet" href="aviation.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<nav class="aw-nav">
+  <div class="aw-nav-inner">
+    <a href="index.html" class="aw-nav-brand">
+      <img src="assets/openworlds-logo.png" alt="OpenWorlds" class="aw-nav-logo">
+      <div class="aw-nav-name"><strong>OpenWorlds</strong><span>Aviation Community</span></div>
+    </a>
+    <ul class="aw-nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="flights.html">Flights</a></li>
+      <li><a href="flight-status.html">Live Status</a></li>
+      <li><a href="training.html">Training</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="community.html">Community</a></li>
+      <li><a href="careers.html">Careers</a></li>
+      <li class="aw-nav-cta"><a href="my-account.html">My Account</a></li>
+    </ul>
+    <button class="aw-hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- ── Page Hero ── -->
+<section class="aw-page-hero">
+  <div class="aw-container">
+    <p class="aw-eyebrow" style="color:var(--aw-sky)"><i class="fas fa-graduation-cap"></i> OpenWorlds Aviation</p>
+    <h1>Training Academy</h1>
+    <p>Complete structured training before receiving operational permissions. All courses must be passed before joining active operations.</p>
+    <div style="display:flex;gap:14px;margin-top:20px;flex-wrap:wrap">
+      <div style="background:rgba(255,255,255,.1);border-radius:8px;padding:10px 16px;font-size:.85rem;color:rgba(255,255,255,.8)">
+        <i class="fas fa-book"></i> <strong>6</strong> Training Modules
+      </div>
+      <div style="background:rgba(255,255,255,.1);border-radius:8px;padding:10px 16px;font-size:.85rem;color:rgba(255,255,255,.8)">
+        <i class="fas fa-check-circle"></i> <strong>4</strong> Examined Courses
+      </div>
+      <div style="background:rgba(255,255,255,.1);border-radius:8px;padding:10px 16px;font-size:.85rem;color:rgba(255,255,255,.8)">
+        <i class="fas fa-certificate"></i> Certifications Available
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Training Framework info ── -->
+<section class="aw-section aw-section-alt" style="padding:32px 0">
+  <div class="aw-container">
+    <div style="background:var(--aw-white);border-radius:12px;padding:22px 24px;border-left:4px solid var(--aw-blue);box-shadow:var(--shadow-sm)">
+      <div style="display:flex;gap:14px;align-items:flex-start">
+        <div style="color:var(--aw-blue);font-size:1.4rem;margin-top:2px"><i class="fas fa-info-circle"></i></div>
+        <div>
+          <strong style="font-size:.95rem;color:var(--aw-text)">How Training Works</strong>
+          <p style="color:var(--aw-muted);font-size:.88rem;line-height:1.7;margin-top:6px;margin-bottom:0">
+            All staff members must complete the required training modules for their role before receiving operational permissions.
+            Courses contain lessons, knowledge checks, and where noted, practical exams.
+            Progress is automatically saved to your local profile. Certified completions are reviewed and approved by an instructor before permissions are granted.
+            <strong style="color:var(--aw-blue)">This is a roleplay training system — all content relates to simulator-based aviation operations only.</strong>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Tabs ── -->
+<section class="aw-section" style="padding-top:32px">
+  <div class="aw-container">
+
+    <div class="aw-tabs" style="max-width:500px;margin-bottom:28px" data-tab-group="training">
+      <button class="aw-tab active" data-tab="catalog">Course Catalog</button>
+      <button class="aw-tab" data-tab="progress">My Progress</button>
+      <button class="aw-tab" data-tab="certs">Certifications</button>
+    </div>
+
+    <!-- Course Catalog -->
+    <div class="aw-tab-pane active" data-tab-pane="catalog" data-tab-group="training">
+      <!-- Department filter -->
+      <div class="aw-filter-bar">
+        <span class="aw-filter-lbl">Department:</span>
+        <button class="aw-filter-btn active" data-dept="all">All Courses</button>
+        <button class="aw-filter-btn" data-dept="Passenger Services">Passenger Services</button>
+        <button class="aw-filter-btn" data-dept="Ground Crew">Ground Crew</button>
+        <button class="aw-filter-btn" data-dept="Flight Crew">Flight Crew</button>
+        <button class="aw-filter-btn" data-dept="Operations">Operations</button>
+        <button class="aw-filter-btn" data-dept="All Departments">All Departments</button>
+      </div>
+
+      <div class="aw-course-grid" id="courseCatalog"></div>
+    </div>
+
+    <!-- My Progress -->
+    <div class="aw-tab-pane" data-tab-pane="progress" data-tab-group="training">
+      <div id="progressView"></div>
+    </div>
+
+    <!-- Certifications -->
+    <div class="aw-tab-pane" data-tab-pane="certs" data-tab-group="training">
+      <div id="certsView"></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── Course Detail Modal ── -->
+<div class="aw-overlay" id="courseOverlay">
+  <div class="aw-modal" style="max-width:620px">
+    <div class="aw-modal-head" id="courseModalHead">
+      <button class="aw-modal-close" onclick="closeCourse()"><i class="fas fa-times"></i></button>
+      <h2 id="courseModalTitle">Course</h2>
+      <p id="courseModalSub"></p>
+    </div>
+    <div class="aw-modal-body" id="courseModalBody"></div>
+  </div>
+</div>
+
+<!-- ── Lesson Modal ── -->
+<div class="aw-overlay" id="lessonOverlay">
+  <div class="aw-modal" style="max-width:620px">
+    <div class="aw-modal-head" id="lessonModalHead">
+      <button class="aw-modal-close" onclick="closeLesson()"><i class="fas fa-times"></i></button>
+      <h2 id="lessonTitle">Lesson</h2>
+      <p id="lessonSub"></p>
+    </div>
+    <div class="aw-modal-body" id="lessonBody"></div>
+  </div>
+</div>
+
+<div class="aw-disclaimer">
+  <div class="aw-container">
+    <span class="aw-disclaimer-title"><i class="fas fa-info-circle"></i> Training Notice</span>
+    All training content relates to simulator-based aviation roleplay operations within the OpenWorlds community. This is non-commercial entertainment. No real aviation qualification or certification is provided.
+  </div>
+</div>
+
+<footer class="aw-footer">
+  <div class="aw-container">
+    <div class="aw-footer-grid">
+      <div class="aw-footer-brand"><strong><img src="assets/openworlds-logo.png" alt=""> OpenWorlds Aviation</strong><p>Realistic aviation roleplay for entertainment only.</p></div>
+      <div class="aw-footer-col"><h4>Passengers</h4><ul><li><a href="flights.html">Search Flights</a></li><li><a href="my-account.html">My Bookings</a></li><li><a href="flight-status.html">Live Status</a></li></ul></div>
+      <div class="aw-footer-col"><h4>Staff</h4><ul><li><a href="careers.html">Open Roles</a></li><li><a href="training.html">Training</a></li><li><a href="staff-portal.html">Staff Portal</a></li></ul></div>
+      <div class="aw-footer-col"><h4>Community</h4><ul><li><a href="about.html">About</a></li><li><a href="community.html">Community Hub</a></li></ul></div>
+    </div>
+    <div class="aw-footer-bottom"><span>&copy; 2026 OpenWorlds Aviation. For entertainment only.</span></div>
+  </div>
+</footer>
+
+<script src="aviation.js"></script>
+<script>
+// ── Lesson content per course ──
+const LESSONS = {
+  PSI: [
+    { n:'1. Welcome to OpenWorlds Aviation', body:'Introduction to the community, our mission, and what makes our aviation roleplay unique. Learn about the OpenWorlds platform and how our aviation community fits within it.' },
+    { n:'2. Community Rules & Standards', body:'A comprehensive overview of community conduct rules, respect guidelines, and the standards expected of all members — both passengers and staff.' },
+    { n:'3. The Aviation Roleplay Framework', body:'Understanding how we simulate a real airline environment within a flight simulator. Covers the boundary between roleplay and reality, and why this distinction matters.' },
+    { n:'4. The Passenger Journey', body:'Walk through every stage of the passenger experience: searching for flights, booking, check-in, boarding, in-flight, arrival, and post-flight feedback.' },
+    { n:'5. Communication Standards', body:'How to communicate professionally within the community — on Discord, in the staff portal, and during live operations. Covers tone, language, and escalation.' },
+    { n:'6. Knowledge Check', body:'A short quiz to confirm your understanding of the course material. You must pass this check to receive your PSI certification.' },
+  ],
+  SEP: [
+    { n:'1. Safety Culture Overview', body:'Why safety is our top priority even in a roleplay environment. Introducing the safety management system and how it operates in our community.' },
+    { n:'2. Emergency Response Basics', body:'The fundamental principles of emergency response: assess, alert, act. How to recognise an emergency situation within an operation and what steps to take.' },
+    { n:'3. Evacuation Procedures', body:'Simulated aircraft evacuation procedures for flight crew, cabin crew, and ground staff. Roles and responsibilities during an evacuation scenario.' },
+    { n:'4. Communication During Emergencies', body:'How to relay emergency information clearly and concisely during a live operation. Phrases, protocols, and escalation paths.' },
+    { n:'5. Coordination With Other Teams', body:'How different departments work together during an emergency: flight crew, ground operations, passenger services, and management.' },
+    { n:'6. Medical Situations', body:'Handling simulated medical situations involving passengers or crew. Who to notify, what to record, and how to continue operations safely.' },
+    { n:'7. Incident Reporting', body:'How to file an incident report after an unusual event. Covers format, content, and submission process.' },
+    { n:'8. Emergency Exam', body:'A graded examination covering all emergency and safety modules. A minimum passing score of 80% is required to receive certification.' },
+  ],
+  CBP: [
+    { n:'1. Check-in Desk Setup', body:'How to open, manage, and close a simulated check-in desk. System overview and documentation review procedures.' },
+    { n:'2. Passenger Processing', body:'Step-by-step passenger processing: identity confirmation, booking verification, seat assignment, and baggage handling.' },
+    { n:'3. Boarding Gate Management', body:'Managing the boarding gate: gate opening time, boarding announcements, priority boarding groups, and final boarding calls.' },
+    { n:'4. Priority Boarding Rules', body:'Who gets priority boarding and in what order. Accessibility requirements, business class, families with young children, and crew members.' },
+    { n:'5. Special Requests Handling', body:'Managing passenger special requests: accessibility assistance, special meals, seating preferences, and unaccompanied minor procedures.' },
+    { n:'6. Irregular Operations', body:'How to handle disruptions: cancelled flights, gate changes, overbooking, and passenger rebooking during irregular operations.' },
+    { n:'7. Final Assessment', body:'Practical scenario exam testing your ability to manage a simulated check-in and boarding process end-to-end.' },
+  ],
+  CSE: [
+    { n:'1. Communication Best Practices', body:'How to communicate with passengers professionally and empathetically. Active listening, clear language, and tone management.' },
+    { n:'2. Handling Difficult Situations', body:'Techniques for managing frustrated or upset passengers. De-escalation strategies and when to escalate to a supervisor.' },
+    { n:'3. Accessibility & Inclusion', body:'Supporting passengers with disabilities or additional needs. Legal requirements in the simulation context and practical assistance techniques.' },
+    { n:'4. Service Recovery', body:'How to recover from a service failure. Apology, resolution, and follow-up. Turning a negative experience into a positive one.' },
+    { n:'5. Cultural Awareness', body:'Serving a diverse community of members. Cultural considerations, language awareness, and inclusive communication.' },
+  ],
+  FCO: [
+    { n:'1. Crew Roles & Responsibilities', body:'Overview of the flight deck crew: Captain, First Officer, and their respective responsibilities during all phases of flight.' },
+    { n:'2. Pre-flight Briefing', body:'How to conduct a professional pre-flight briefing. Route review, weather, NOTAMs, crew coordination, and contingency planning.' },
+    { n:'3. Cockpit Coordination', body:'Crew Resource Management principles for the flight deck. Communication, decision-making, and avoiding fixation errors.' },
+    { n:'4. Communication Protocols', body:'Standardised phraseology for simulator operations: ATC communications, crew calls, and passenger address system protocols.' },
+    { n:'5. Normal Operations Checklist', body:'Following standardised checklists for taxi, take-off, cruise, descent, approach, and landing phases.' },
+    { n:'6. Weather & Turbulence Handling', body:'Decision-making during adverse simulated weather. Diversion procedures, turbulence advisories, and passenger cabin communication.' },
+    { n:'7. Approach & Landing Procedures', body:'Standard approach briefings, instrument approaches, go-around procedures, and landing completion.' },
+    { n:'8. Abnormal & Emergency Procedures', body:'How to manage simulated system failures, emergencies, and evacuation commands from the flight deck.' },
+    { n:'9. Post-flight Duties', body:'Tech log completion, crew debrief, and handover procedures after landing.' },
+    { n:'10. Final Flight Crew Examination', body:'Comprehensive written and scenario exam for Flight Crew certification. Minimum 85% pass mark required.' },
+  ],
+  AOM: [
+    { n:'1. Operations Centre Overview', body:'Introduction to the operations control centre. Role of the Duty Manager, tools available, and responsibilities during a live operation.' },
+    { n:'2. Schedule Management', body:'How flight schedules are created, maintained, and modified. Slot allocation, turnaround times, and resource planning.' },
+    { n:'3. Multi-department Coordination', body:'Managing cross-functional teams during an operation. Communication flows, briefing cadence, and authority structures.' },
+    { n:'4. Disruption Management', body:'Handling flight delays, diversions, cancellations, and ground stops. Passenger impact assessment and rebooking strategies.' },
+    { n:'5. Performance Monitoring', body:'Key performance indicators for an operation. On-time performance, passenger satisfaction, and incident rates.' },
+    { n:'6. Leadership & Team Management', body:'Leading staff teams during high-pressure operations. Delegation, motivation, and maintaining operational standards.' },
+    { n:'7. Staff Scheduling', body:'Rostering principles for a simulated airline. Fatigue rules, minimum crew requirements, and standby procedures.' },
+    { n:'8. Reporting Standards', body:'Operational reporting: daily ops report, incident logs, performance summaries, and management briefings.' },
+    { n:'9. Senior Ops Exam', body:'Comprehensive senior-level examination. Scenario-based questions covering all operational management topics. 85% pass mark required.' },
+  ],
+};
+
+let activeCourseId = null;
+let currentLesson = null;
+
+// ── Render course catalog ──
+function renderCatalog(deptFilter = 'all') {
+  const progress = AW_STORE.getCourseProgress();
+  const el = document.getElementById('courseCatalog');
+
+  const courses = deptFilter === 'all'
+    ? AW_COURSES
+    : AW_COURSES.filter(c => c.dept === deptFilter);
+
+  if (!courses.length) {
+    el.innerHTML = `<div class="aw-empty"><i class="fas fa-search"></i><p>No courses in this category.</p></div>`;
+    return;
+  }
+
+  el.innerHTML = courses.map(c => {
+    const pct = progress[c.id] || 0;
+    const levelColor = { Required:'red', Staff:'blue', 'Senior Staff':'purple' }[c.level] || 'gray';
+    return `<div class="aw-course-card aw-animate">
+      <div class="aw-course-banner">
+        <div class="aw-course-icon">${c.icon}</div>
+        <h3>${c.title}</h3>
+        <div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap">
+          <span class="aw-badge aw-badge-${levelColor}">${c.level}</span>
+          <span class="aw-badge aw-badge-sky">${c.dept}</span>
+        </div>
+      </div>
+      <div class="aw-course-body">
+        <p>${c.desc}</p>
+        <div class="aw-course-meta">
+          <span><i class="fas fa-clock"></i> ${c.duration}</span>
+          <span><i class="fas fa-book"></i> ${c.lessons} lessons</span>
+          ${c.exam ? '<span><i class="fas fa-pencil-alt"></i> Exam included</span>' : ''}
+        </div>
+        <div class="aw-progress-bar"><div class="aw-progress-fill" style="width:${pct}%"></div></div>
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <span class="aw-progress-label">${pct}% complete</span>
+          ${pct === 100 ? `<span class="aw-badge aw-badge-green"><i class="fas fa-certificate"></i> Certified</span>` : ''}
+        </div>
+        <button class="aw-btn aw-btn-primary aw-btn-full" style="margin-top:14px" onclick="openCourse('${c.id}')">
+          ${pct === 0 ? '<i class="fas fa-play"></i> Start Course' : pct === 100 ? '<i class="fas fa-eye"></i> Review Course' : '<i class="fas fa-play-circle"></i> Continue Course'}
+        </button>
+      </div>
+    </div>`;
+  }).join('');
+
+  awInitAnimations();
+}
+
+// ── Render progress ──
+function renderProgress() {
+  const progress = AW_STORE.getCourseProgress();
+  const el = document.getElementById('progressView');
+
+  const total = AW_COURSES.length;
+  const completed = AW_COURSES.filter(c => (progress[c.id] || 0) === 100).length;
+  const inProgress = AW_COURSES.filter(c => (progress[c.id] || 0) > 0 && (progress[c.id] || 0) < 100).length;
+
+  el.innerHTML = `
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-bottom:28px">
+      <div class="aw-card" style="text-align:center">
+        <div style="font-size:2rem;font-weight:800;color:var(--aw-blue)">${total}</div>
+        <div style="font-size:.8rem;color:var(--aw-muted);text-transform:uppercase;font-weight:700">Total Courses</div>
+      </div>
+      <div class="aw-card" style="text-align:center">
+        <div style="font-size:2rem;font-weight:800;color:var(--aw-green)">${completed}</div>
+        <div style="font-size:.8rem;color:var(--aw-muted);text-transform:uppercase;font-weight:700">Completed</div>
+      </div>
+      <div class="aw-card" style="text-align:center">
+        <div style="font-size:2rem;font-weight:800;color:var(--aw-orange)">${inProgress}</div>
+        <div style="font-size:.8rem;color:var(--aw-muted);text-transform:uppercase;font-weight:700">In Progress</div>
+      </div>
+      <div class="aw-card" style="text-align:center">
+        <div style="font-size:2rem;font-weight:800;color:var(--aw-muted)">${total - completed - inProgress}</div>
+        <div style="font-size:.8rem;color:var(--aw-muted);text-transform:uppercase;font-weight:700">Not Started</div>
+      </div>
+    </div>
+    <div class="aw-card">
+      <div class="aw-card-title">Course Progress</div>
+      ${AW_COURSES.map(c => {
+        const pct = progress[c.id] || 0;
+        return `<div style="margin-bottom:18px">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+            <div style="display:flex;align-items:center;gap:10px">
+              <span style="font-size:1.2rem">${c.icon}</span>
+              <div>
+                <div style="font-weight:700;font-size:.9rem">${c.title}</div>
+                <div style="font-size:.75rem;color:var(--aw-muted)">${c.code} · ${c.dept}</div>
+              </div>
+            </div>
+            <div style="text-align:right">
+              <span style="font-weight:700;color:${pct===100?'var(--aw-green)':pct>0?'var(--aw-blue)':'var(--aw-muted)'}">${pct}%</span>
+              ${pct===100?'<span class="aw-badge aw-badge-green" style="margin-left:8px"><i class="fas fa-check"></i> Done</span>':''}
+            </div>
+          </div>
+          <div class="aw-progress-bar"><div class="aw-progress-fill" style="width:${pct}%"></div></div>
+        </div>`;
+      }).join('')}
+    </div>`;
+}
+
+// ── Render certifications ──
+function renderCerts() {
+  const progress = AW_STORE.getCourseProgress();
+  const el = document.getElementById('certsView');
+  const completed = AW_COURSES.filter(c => (progress[c.id] || 0) === 100);
+
+  if (!completed.length) {
+    el.innerHTML = `<div class="aw-empty"><i class="fas fa-certificate"></i><p>No certifications earned yet. Complete a course to receive your first certificate.</p><button class="aw-btn aw-btn-primary" onclick="document.querySelector('[data-tab=catalog]').click()">Browse Courses</button></div>`;
+    return;
+  }
+
+  el.innerHTML = `<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px">` +
+    completed.map(c => `
+      <div style="border:2px solid var(--aw-blue);border-radius:12px;overflow:hidden">
+        <div style="background:linear-gradient(135deg,var(--aw-dark),var(--aw-blue));color:#fff;padding:20px;text-align:center">
+          <div style="font-size:2.5rem;margin-bottom:8px">${c.icon}</div>
+          <div style="font-size:.7rem;opacity:.6;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:4px">Certificate of Completion</div>
+          <div style="font-size:1.1rem;font-weight:700">${c.title}</div>
+        </div>
+        <div style="padding:16px;text-align:center">
+          <div style="font-size:.82rem;color:var(--aw-muted);margin-bottom:10px">OpenWorlds Aviation Training Academy</div>
+          <div style="font-size:.75rem;color:var(--aw-muted);font-style:italic;margin-bottom:12px">This certifies successful completion of the ${c.title} training module within the OpenWorlds Aviation roleplay community.</div>
+          <span class="aw-badge aw-badge-green"><i class="fas fa-check-circle"></i> Completed</span>
+          <div style="font-size:.7rem;color:var(--aw-muted);margin-top:10px">⚠ Roleplay certification only. Not a real aviation qualification.</div>
+        </div>
+      </div>`).join('') + `</div>`;
+}
+
+// ── Open course ──
+function openCourse(courseId) {
+  activeCourseId = courseId;
+  const c = AW_COURSES.find(x => x.id === courseId);
+  if (!c) return;
+  const progress = AW_STORE.getCourseProgress();
+  const pct = progress[c.id] || 0;
+  const lessons = LESSONS[c.id] || [];
+  const lessonsComplete = Math.round((pct / 100) * lessons.length);
+
+  document.getElementById('courseModalTitle').textContent = c.title;
+  document.getElementById('courseModalSub').textContent = `${c.code} · ${c.dept} · ${c.duration}`;
+
+  document.getElementById('courseModalBody').innerHTML = `
+    <div style="display:flex;gap:12px;margin-bottom:16px;flex-wrap:wrap">
+      <span class="aw-badge aw-badge-${pct===100?'green':pct>0?'blue':'gray'}">${pct===100?'✓ Completed':pct>0?'In Progress':'Not Started'}</span>
+      ${c.exam ? '<span class="aw-badge aw-badge-orange"><i class="fas fa-pencil-alt"></i> Exam Required</span>' : ''}
+    </div>
+    <p style="color:var(--aw-muted);font-size:.9rem;line-height:1.7;margin-bottom:18px">${c.desc}</p>
+    <div class="aw-progress-bar" style="margin-bottom:6px"><div class="aw-progress-fill" style="width:${pct}%"></div></div>
+    <div style="display:flex;justify-content:space-between;font-size:.8rem;color:var(--aw-muted);margin-bottom:20px">
+      <span>${lessonsComplete} / ${lessons.length} lessons</span><span>${pct}% complete</span>
+    </div>
+    <div style="border:1px solid var(--aw-border);border-radius:8px;overflow:hidden;margin-bottom:20px">
+      ${lessons.map((l, i) => {
+        const done = i < lessonsComplete;
+        return `<div style="display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid #f0f3f7;cursor:pointer;transition:background .2s;hover:background:var(--aw-light)" onclick="openLesson('${courseId}',${i})" onmouseenter="this.style.background='var(--aw-light)'" onmouseleave="this.style.background=''">
+          <div style="width:24px;height:24px;border-radius:50%;border:2px solid ${done?'var(--aw-green)':'var(--aw-border)'};background:${done?'var(--aw-green)':'transparent'};display:flex;align-items:center;justify-content:center;flex-shrink:0">
+            ${done ? '<i class="fas fa-check" style="color:#fff;font-size:.65rem"></i>' : `<span style="font-size:.65rem;font-weight:700;color:var(--aw-muted)">${i+1}</span>`}
+          </div>
+          <div style="flex:1">
+            <div style="font-size:.88rem;font-weight:${done?600:500};color:${done?'var(--aw-text)':'var(--aw-muted)'}">${l.n}</div>
+          </div>
+          <i class="fas fa-chevron-right" style="color:var(--aw-muted);font-size:.8rem"></i>
+        </div>`;
+      }).join('')}
+    </div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      ${pct < 100 ? `<button class="aw-btn aw-btn-primary" onclick="startNextLesson('${courseId}')">
+        <i class="fas fa-play"></i> ${pct === 0 ? 'Start Course' : 'Continue Next Lesson'}
+      </button>` : '<span class="aw-badge aw-badge-green" style="padding:10px 16px"><i class="fas fa-certificate"></i> Course Complete!</span>'}
+      <button class="aw-btn aw-btn-outline" onclick="closeCourse()">Close</button>
+    </div>`;
+
+  document.getElementById('courseOverlay').classList.add('open');
+}
+
+function closeCourse() { document.getElementById('courseOverlay').classList.remove('open'); }
+
+function startNextLesson(courseId) {
+  const c = AW_COURSES.find(x => x.id === courseId);
+  const lessons = LESSONS[courseId] || [];
+  const progress = AW_STORE.getCourseProgress();
+  const pct = progress[c.id] || 0;
+  const next = Math.min(Math.round((pct/100)*lessons.length), lessons.length-1);
+  openLesson(courseId, next);
+}
+
+function openLesson(courseId, lessonIndex) {
+  const c = AW_COURSES.find(x => x.id === courseId);
+  const lessons = LESSONS[courseId] || [];
+  const lesson = lessons[lessonIndex];
+  if (!lesson) return;
+
+  currentLesson = { courseId, lessonIndex };
+  document.getElementById('lessonTitle').textContent = lesson.n;
+  document.getElementById('lessonSub').textContent = c.title + ' · ' + c.code;
+
+  const isLast = lessonIndex === lessons.length - 1;
+  const progress = AW_STORE.getCourseProgress();
+  const completedCount = Math.round(((progress[c.id]||0)/100)*lessons.length);
+  const alreadyDone = lessonIndex < completedCount;
+
+  document.getElementById('lessonBody').innerHTML = `
+    <div style="background:var(--aw-light);border-radius:8px;padding:14px 16px;margin-bottom:18px;font-size:.78rem;color:var(--aw-muted)">
+      <i class="fas fa-list" style="color:var(--aw-blue)"></i> Lesson ${lessonIndex+1} of ${lessons.length} · ${c.title}
+    </div>
+    <div style="font-size:.95rem;line-height:1.85;color:var(--aw-text);margin-bottom:24px">${lesson.body}</div>
+    ${isLast && c.exam ? `
+      <div style="background:#fff3cd;border-radius:8px;padding:14px 16px;margin-bottom:18px;font-size:.88rem">
+        <i class="fas fa-pencil-alt" style="color:#f39c12"></i>
+        <strong> Examination Required</strong> — This is the final lesson of the course. Completing it will mark the course as 100% complete and generate your certification. In a live community setting, an instructor would separately verify your practical readiness.
+      </div>` : ''}
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      ${!alreadyDone || isLast ? `<button class="aw-btn aw-btn-primary" onclick="completeLesson()">
+        <i class="fas fa-check"></i> ${isLast ? 'Complete Course' : 'Mark Complete & Continue'}
+      </button>` : ''}
+      ${lessonIndex > 0 ? `<button class="aw-btn aw-btn-outline" onclick="openLesson('${courseId}',${lessonIndex-1})"><i class="fas fa-arrow-left"></i> Previous</button>` : ''}
+      ${!isLast && !alreadyDone ? '' : lessonIndex < lessons.length-1 ? `<button class="aw-btn aw-btn-ghost" onclick="openLesson('${courseId}',${lessonIndex+1})">Next <i class="fas fa-arrow-right"></i></button>` : ''}
+      <button class="aw-btn aw-btn-ghost" onclick="closeLesson()">Close</button>
+    </div>`;
+
+  document.getElementById('lessonOverlay').classList.add('open');
+}
+
+function completeLesson() {
+  if (!currentLesson) return;
+  const { courseId, lessonIndex } = currentLesson;
+  const c = AW_COURSES.find(x => x.id === courseId);
+  const lessons = LESSONS[courseId] || [];
+  const progress = AW_STORE.getCourseProgress();
+  const currentPct = progress[c.id] || 0;
+  const newCompleted = Math.max(lessonIndex + 1, Math.round((currentPct/100)*lessons.length));
+  const newPct = Math.min(100, Math.round((newCompleted / lessons.length) * 100));
+
+  AW_STORE.updateCourse(courseId, newPct);
+  closeLesson();
+  closeCourse();
+
+  if (newPct === 100) {
+    awToast('Course Complete! 🎓', c.title + ' — certification earned!', 'success', 5000);
+  } else {
+    awToast('Lesson Complete', `Progress: ${newPct}%`, 'success');
+  }
+
+  renderCatalog(document.querySelector('.aw-filter-btn[data-dept].active')?.dataset.dept || 'all');
+}
+
+function closeLesson() {
+  document.getElementById('lessonOverlay').classList.remove('open');
+  if (activeCourseId) setTimeout(() => openCourse(activeCourseId), 100);
+}
+
+['courseOverlay','lessonOverlay'].forEach(id => {
+  document.getElementById(id).addEventListener('click', e => {
+    if (e.target.id === id) document.getElementById(id).classList.remove('open');
+  });
+});
+
+// Dept filter buttons
+document.querySelectorAll('.aw-filter-btn[data-dept]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.aw-filter-btn[data-dept]').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderCatalog(btn.dataset.dept);
+  });
+});
+
+// Tab switching with re-render
+document.querySelectorAll('.aw-tab[data-tab]').forEach(tab => {
+  tab.addEventListener('click', () => {
+    const t = tab.dataset.tab;
+    if (t === 'progress') renderProgress();
+    if (t === 'certs') renderCerts();
+  });
+});
+
+// Init
+awInitTabs();
+renderCatalog();
+</script>
+</body>
+</html>
